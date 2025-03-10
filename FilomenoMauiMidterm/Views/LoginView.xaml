@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FilomenoMauiMidterm.Views.LoginView"
+             BackgroundColor="#21222A"
+             Shell.NavBarIsVisible="False"
+             >
+    <VerticalStackLayout>
+        <Border>
+            <VerticalStackLayout Padding="18, 13, 18, 18">
+                <Label Text="Log in"/>
+                <VerticalStackLayout>
+                    <Label Text="Username"/>
+                    <Entry SemanticProperties.Description="Input the username"/>
+                </VerticalStackLayout>
+                <VerticalStackLayout>
+                    <Label Text="Password"/>
+                    <Entry SemanticProperties.Description="Input the password" IsPassword="True" />
+                </VerticalStackLayout>
+
+                <Button Text="Sign in"/>
+                <HorizontalStackLayout>
+                    <Label Text="Don't have an account? "/>
+                    <Label Text="Register"/>
+
+                </HorizontalStackLayout>
+               
+            </VerticalStackLayout>
+            
+
+        </Border>
+        
+        
+        
+    </VerticalStackLayout>
+</ContentPage>
