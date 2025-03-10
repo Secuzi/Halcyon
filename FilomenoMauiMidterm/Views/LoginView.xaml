@@ -8,7 +8,7 @@
     <VerticalStackLayout>
         <Border>
             <VerticalStackLayout Padding="18, 13, 18, 18">
-                <Label Text="Log in"/>
+                <Label Text="Log in" TextColor="#61DAFB" FontAttributes="Bold" FontSize="20" HorizontalTextAlignment="Center"/>
                 <VerticalStackLayout>
                     <Label Text="Username"/>
                     <Entry SemanticProperties.Description="Input the username"/>
