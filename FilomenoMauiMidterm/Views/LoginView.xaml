@@ -5,31 +5,34 @@
              BackgroundColor="#21222A"
              Shell.NavBarIsVisible="False"
              >
-    <VerticalStackLayout>
-        <Border>
-            <VerticalStackLayout Padding="18, 13, 18, 18">
-                <Label Text="Log in" TextColor="#61DAFB" FontAttributes="Bold" FontSize="20" HorizontalTextAlignment="Center"/>
-                <VerticalStackLayout>
-                    <Label Text="Username"/>
-                    <Entry SemanticProperties.Description="Input the username"/>
+    <VerticalStackLayout Background="Green">
+        <FlexLayout Background="Red" JustifyContent="Center" WidthRequest="">
+            <Border>
+                <VerticalStackLayout Padding="18, 13, 18, 18">
+                    <Label Text="Log in" TextColor="#61DAFB" FontAttributes="Bold" FontSize="20" HorizontalTextAlignment="Center"/>
+                    <VerticalStackLayout>
+                        <Label Text="Username"/>
+                        <Entry SemanticProperties.Description="Input the username"/>
+                    </VerticalStackLayout>
+                    <VerticalStackLayout>
+                        <Label Text="Password"/>
+                        <Entry SemanticProperties.Description="Input the password" IsPassword="True" />
+                    </VerticalStackLayout>
+
+                    <Button Text="Sign in"/>
+                    <HorizontalStackLayout>
+                        <Label Text="Don't have an account? "/>
+                        <Label Text="Register"/>
+
+                    </HorizontalStackLayout>
+
                 </VerticalStackLayout>
-                <VerticalStackLayout>
-                    <Label Text="Password"/>
-                    <Entry SemanticProperties.Description="Input the password" IsPassword="True" />
-                </VerticalStackLayout>
 
-                <Button Text="Sign in"/>
-                <HorizontalStackLayout>
-                    <Label Text="Don't have an account? "/>
-                    <Label Text="Register"/>
 
-                </HorizontalStackLayout>
-               
-            </VerticalStackLayout>
-            
+            </Border>
 
-        </Border>
-        
+        </FlexLayout>
+       
         
         
     </VerticalStackLayout>
