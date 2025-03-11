@@ -1,28 +1,106 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="FilomenoMauiMidterm.Views.LoginView"
-             BackgroundColor="#21222A"
-             Shell.NavBarIsVisible="False"
-             >
-    <VerticalStackLayout Background="Green">
-        <FlexLayout Background="Red" JustifyContent="Center" WidthRequest="">
-            <Border>
-                <VerticalStackLayout Padding="18, 13, 18, 18">
-                    <Label Text="Log in" TextColor="#61DAFB" FontAttributes="Bold" FontSize="20" HorizontalTextAlignment="Center"/>
-                    <VerticalStackLayout>
-                        <Label Text="Username"/>
-                        <Entry SemanticProperties.Description="Input the username"/>
+<ContentPage
+    x:Class="FilomenoMauiMidterm.Views.LoginView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    BackgroundColor="#21222A"
+    Shell.NavBarIsVisible="False">
+
+    <ContentPage.Resources>
+        <Style x:Key="PrimaryTextStyle" TargetType="Label">
+            <Setter Property="TextColor" Value="#61DAFB" />
+            <Setter Property="FontFamily" Value="Inter" />
+        </Style>
+        <Style x:Key="PrimaryTextStyleWithShadow" TargetType="Label">
+            <Setter Property="TextColor" Value="#61DAFB" />
+            <Setter Property="FontFamily" Value="Inter" />
+            <Setter Property="Shadow">
+                <Setter.Value>
+                    <Shadow
+                        Brush="Black"
+                        Opacity="0.8"
+                        Radius="100"
+                        Offset="0,5" />
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </ContentPage.Resources>
+    <Grid>
+        <FlexLayout
+            AlignItems="Center"
+            BackgroundColor="#21222A"
+            JustifyContent="Center">
+            <Border
+                BackgroundColor="#33373E"
+                Stroke="Transparent"
+                StrokeShape="RoundRectangle 8"
+                WidthRequest="310">
+                <VerticalStackLayout Padding="18,13,18,18">
+
+
+
+                    <Label
+                        Margin="0,0,0,28"
+                        FontAttributes="Bold"
+                        FontSize="30"
+                        HorizontalTextAlignment="Center"
+                        Style="{StaticResource PrimaryTextStyleWithShadow}"
+                        Text="Login" />
+
+
+
+
+
+
+                    <VerticalStackLayout Margin="0,0,0,14">
+                        <Label
+                            FontFamily="Inter"
+                            FontSize="16"
+                            Style="{StaticResource PrimaryTextStyleWithShadow}"
+                            Text="Username"
+                            TextColor="#61DAFB" />
+
+                        <Border
+                            Padding="12,4,12,4"
+                            BackgroundColor="#4D515762"
+                            Stroke="Transparent"
+                            StrokeShape="RoundRectangle 8">
+                            <Border.Shadow>
+                                <Shadow
+                                    Brush="Black"
+                                    Opacity="0.25"
+                                    Radius="4"
+                                    Offset="0,4" />
+                            </Border.Shadow>
+
+                            <Entry Opacity="1" TextColor="White" />
+                        </Border>
                     </VerticalStackLayout>
-                    <VerticalStackLayout>
-                        <Label Text="Password"/>
-                        <Entry SemanticProperties.Description="Input the password" IsPassword="True" />
+                    <VerticalStackLayout Margin="0,0,0,24">
+                        <Label
+                            FontSize="16"
+                            Style="{StaticResource PrimaryTextStyleWithShadow}"
+                            Text="Password" />
+                        <Border
+                            Padding="12,4,12,4"
+                            BackgroundColor="#4D515762"
+                            Stroke="Transparent"
+                            StrokeShape="RoundRectangle 8">
+                            <Border.Shadow>
+                                <Shadow
+                                    Brush="Black"
+                                    Opacity="0.25"
+                                    Radius="4"
+                                    Offset="0,4" />
+                            </Border.Shadow>
+                            <Entry Opacity="1" TextColor="White" />
+                        </Border>
                     </VerticalStackLayout>
 
-                    <Button Text="Sign in"/>
+                    <Button Text="Sign in" />
                     <HorizontalStackLayout>
-                        <Label Text="Don't have an account? "/>
-                        <Label Text="Register"/>
+                        <Label Text="Don't have an account? " />
+                        <Label Text="Register" />
 
                     </HorizontalStackLayout>
 
@@ -32,8 +110,8 @@
             </Border>
 
         </FlexLayout>
-       
-        
-        
-    </VerticalStackLayout>
+
+
+
+    </Grid>
 </ContentPage>
