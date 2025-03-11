@@ -41,7 +41,7 @@
 
                     <Label
                         Margin="0,0,0,28"
-                        FontAttributes="Bold"
+                        FontFamily="InterBold"
                         FontSize="30"
                         HorizontalTextAlignment="Center"
                         Style="{StaticResource PrimaryTextStyleWithShadow}"
@@ -54,11 +54,10 @@
 
                     <VerticalStackLayout Margin="0,0,0,14">
                         <Label
-                            FontFamily="Inter"
+                            FontFamily="InterSemiBold"
                             FontSize="16"
                             Style="{StaticResource PrimaryTextStyleWithShadow}"
-                            Text="Username"
-                            TextColor="#61DAFB" />
+                            Text="Username" />
 
                         <Border
                             Padding="12,4,12,4"
@@ -78,6 +77,7 @@
                     </VerticalStackLayout>
                     <VerticalStackLayout Margin="0,0,0,24">
                         <Label
+                            FontFamily="InterSemiBold"
                             FontSize="16"
                             Style="{StaticResource PrimaryTextStyleWithShadow}"
                             Text="Password" />
@@ -95,6 +95,7 @@
                             </Border.Shadow>
                             <Entry Opacity="1" TextColor="White" />
                         </Border>
+
                     </VerticalStackLayout>
 
                     <Button Text="Sign in" />
