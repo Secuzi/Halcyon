@@ -25,4 +25,5 @@ public partial class LoginView : ContentPage
 
 	}
 
+	
 }

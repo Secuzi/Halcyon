@@ -111,6 +111,7 @@
                                     FlexLayout.Grow="1"
                                     FontFamily="Inter"
                                     IsPassword="true"
+                                    MaximumWidthRequest="226"
                                     Opacity="1"
                                     TextColor="White" />
                                 <HorizontalStackLayout HorizontalOptions="Center" WidthRequest="20">
