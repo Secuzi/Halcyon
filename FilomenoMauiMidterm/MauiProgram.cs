@@ -18,6 +18,7 @@ namespace FilomenoMauiMidterm
                     fonts.AddFont("Inter24ptMedium.ttf", "InterMedium");
                     fonts.AddFont("Inter24ptSemiBold.ttf", "InterSemiBold");
                     fonts.AddFont("Inter28ptBold.ttf", "InterBold");
+                    fonts.AddFont("icomoon.ttf", "Icomoon");
                 });
 
 #if DEBUG

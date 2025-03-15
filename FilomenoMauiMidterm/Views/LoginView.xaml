@@ -7,6 +7,7 @@
     Shell.NavBarIsVisible="False">
 
     <ContentPage.Resources>
+        <x:String x:Key="eyeIcon">&#xe900;</x:String>
         <Style x:Key="PrimaryTextStyle" TargetType="Label">
             <Setter Property="TextColor" Value="#61DAFB" />
             <Setter Property="FontFamily" Value="Inter" />
@@ -106,20 +107,24 @@
                             </Border.Shadow>
                             <FlexLayout AlignItems="Center" HeightRequest="44">
                                 <Entry
+                                    x:Name="passwordEntry"
                                     FlexLayout.Grow="1"
                                     FontFamily="Inter"
+                                    IsPassword="true"
                                     Opacity="1"
                                     TextColor="White" />
-                                <Image>
-                                    <Image.Source>
-                                        <FontImageSource
-                                            FontFamily="icomoon.ttf"
-                                            Glyph="&#xe900;"
-                                            Size="20"
-                                            Color="#C7CBD1" />
-                                    </Image.Source>
-
-                                </Image>
+                                <HorizontalStackLayout HorizontalOptions="Center" WidthRequest="20">
+                                    <HorizontalStackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                                    </HorizontalStackLayout.GestureRecognizers>
+                                    <ImageButton
+                                        x:Name="TogglePasswordButton"
+                                        BackgroundColor="Transparent"
+                                        BorderWidth="30"
+                                        InputTransparent="True"
+                                        Source="password_not_visible.svg"
+                                        WidthRequest="20" />
+                                </HorizontalStackLayout>
                             </FlexLayout>
                             <!--
                                 Eyeopen: e901
