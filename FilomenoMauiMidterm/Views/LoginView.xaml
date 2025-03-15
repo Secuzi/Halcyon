@@ -35,7 +35,15 @@
                 Stroke="Transparent"
                 StrokeShape="RoundRectangle 8"
                 WidthRequest="310">
-                <VerticalStackLayout Padding="18,13,18,18">
+                <Border.Shadow>
+                    <Shadow
+                        Brush="Black"
+                        Opacity="0.25"
+                        Radius="4"
+                        Offset="0,4" />
+
+                </Border.Shadow>
+                <VerticalStackLayout Padding="18,13,18,24">
 
 
 
@@ -45,7 +53,7 @@
                         FontSize="30"
                         HorizontalTextAlignment="Center"
                         Style="{StaticResource PrimaryTextStyleWithShadow}"
-                        Text="Login" />
+                        Text="Sign in" />
 
 
 
@@ -72,7 +80,10 @@
                                     Offset="0,4" />
                             </Border.Shadow>
 
-                            <Entry Opacity="1" TextColor="White" />
+                            <Entry
+                                FontFamily="Inter"
+                                Opacity="1"
+                                TextColor="White" />
                         </Border>
                     </VerticalStackLayout>
                     <VerticalStackLayout Margin="0,0,0,24">
@@ -93,15 +104,62 @@
                                     Radius="4"
                                     Offset="0,4" />
                             </Border.Shadow>
-                            <Entry Opacity="1" TextColor="White" />
+                            <FlexLayout AlignItems="Center" HeightRequest="44">
+                                <Entry
+                                    FlexLayout.Grow="1"
+                                    FontFamily="Inter"
+                                    Opacity="1"
+                                    TextColor="White" />
+                                <Image>
+                                    <Image.Source>
+                                        <FontImageSource
+                                            FontFamily="icomoon.ttf"
+                                            Glyph="&#xe900;"
+                                            Size="20"
+                                            Color="#C7CBD1" />
+                                    </Image.Source>
+
+                                </Image>
+                            </FlexLayout>
+                            <!--
+                                Eyeopen: e901
+                                Eyeclosed: e900
+                            -->
+
                         </Border>
+
+                        <Label
+                            FontFamily="InterMedium"
+                            FontSize="12"
+                            Text="Forgot your password?"
+                            TextColor="#059DC7" />
 
                     </VerticalStackLayout>
 
-                    <Button Text="Sign in" />
-                    <HorizontalStackLayout>
-                        <Label Text="Don't have an account? " />
-                        <Label Text="Register" />
+                    <Button
+                        Margin="0,0,0,36"
+                        BackgroundColor="#61DAFB"
+                        FontFamily="InterSemiBold"
+                        Text="Sign in">
+                        <Button.Shadow>
+                            <Shadow
+                                Brush="Black"
+                                Opacity="0.10"
+                                Radius="4"
+                                Offset="0,4" />
+                        </Button.Shadow>
+
+                    </Button>
+                    <HorizontalStackLayout HorizontalOptions="Center" VerticalOptions="Center">
+                        <Label
+                            FontFamily="InterLight"
+                            FontSize="12"
+                            Text="Don't have an account? " />
+                        <Label
+                            FontFamily="InterMedium"
+                            FontSize="12"
+                            Text="Register"
+                            TextColor="#61DAFB" />
 
                     </HorizontalStackLayout>
 

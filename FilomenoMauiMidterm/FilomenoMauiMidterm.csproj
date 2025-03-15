@@ -57,10 +57,13 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\Fonts\icomoon.ttf" />
 	  <None Remove="Resources\Fonts\Inter18ptLight.ttf" />
 	  <None Remove="Resources\Fonts\Inter24ptMedium.ttf" />
 	  <None Remove="Resources\Fonts\Inter24ptSemiBold.ttf" />
 	  <None Remove="Resources\Fonts\Inter28ptBold.ttf" />
+	  <None Remove="Resources\Images\password_not_visible.svg" />
+	  <None Remove="Resources\Images\password_visible.svg" />
 	</ItemGroup>
 
 	<ItemGroup>
