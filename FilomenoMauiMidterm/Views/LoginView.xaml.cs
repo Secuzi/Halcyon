@@ -19,9 +19,9 @@ public partial class LoginView : ContentPage
 	private void TapGestureRecognizer_Tapped(object sender, TappedEventArgs e)
 	{
 		
-		TogglePasswordButton.Source = isPasswordVisible ? openEyeIcon : closedEyeIcon;
 		isPasswordVisible = !isPasswordVisible;
-		passwordEntry.IsPassword = isPasswordVisible;
+		TogglePasswordButton.Source = isPasswordVisible ? openEyeIcon : closedEyeIcon;
+		passwordEntry.IsPassword = !isPasswordVisible;
 
 	}
 
