@@ -14,7 +14,7 @@ namespace FilomenoMauiMidterm
 			{
                 handler.PlatformView.BackgroundTintList = Android.Content.Res.ColorStateList.ValueOf(Colors.Transparent.ToPlatform());
 
-						});
+            });
 
            Microsoft.Maui.Handlers.EntryHandler.Mapper.AppendToMapping("CursorColor", (handler, view) =>
             {
@@ -22,6 +22,6 @@ namespace FilomenoMauiMidterm
 
             });
 #endif
-		}
-	}
+        }
+    }
 }
