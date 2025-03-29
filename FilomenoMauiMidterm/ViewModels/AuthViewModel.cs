@@ -127,6 +127,7 @@ namespace FilomenoMauiMidterm.ViewModels
 			if (Username == "" || Password == "" || Email == "")
 			{
 				Debug.WriteLine("Invalid credentials!");
+				await Page.DisplayAlert("Invalid details", "Input must not be empty!", "Ok");
 				return;
 			}
 
@@ -135,8 +136,7 @@ namespace FilomenoMauiMidterm.ViewModels
 			bool answer = await Page.DisplayAlert("Confirm", "Are you sure?", "Ok", "Cancel");
 			if(answer)
 			{
-				await Shell.Current.GoToAsync($"//{nameof(LoginView)}?{nameof(RegisteredUsername)}={RegisteredUsername}&{nameof(RegisteredPassword)}={RegisteredPassword}&{nameof(RegisteredEmail)}={RegisteredEmail}");
-
+				await Shell.Current.GoToAsync($"//{nameof(LoginView)}?{nameof(RegisteredUsername)}={RegisteredUsername}&{nameof(RegisteredPassword)}={RegisteredPassword}&{nameof(RegisteredEmail)}={RegisteredEmail}"); 
 			}
 
 		}
@@ -146,12 +146,14 @@ namespace FilomenoMauiMidterm.ViewModels
 			if (Username == "" || Password == "")
 			{
 				Debug.WriteLine("Input must not be empty!");
+				await Page.DisplayAlert("Invalid details", "Input must not be empty!", "Ok");
 				return;
 			}
 
 			if (Username != RegisteredUsername || Password != RegisteredPassword)
 			{
 				Debug.WriteLine("Invalid information");
+				await Page.DisplayAlert("Invalid details", "Incorrect details", "Ok");
 				return;
 			}
 

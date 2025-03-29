@@ -21,10 +21,6 @@ public partial class RegisterView : ContentPage
 	private async void OnLoginTapped(object sender, TappedEventArgs e)
 	{
 		await Shell.Current.GoToAsync($"{nameof(LoginView)}");
-		//bool answer = await DisplayAlert("Confirm", "Are you sure you want to proceed?", "Ok", "Cancel");
-		//if (answer)
-		//{
-			
-		//}
+		
 	}
 }
