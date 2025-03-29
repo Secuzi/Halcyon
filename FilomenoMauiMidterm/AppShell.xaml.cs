@@ -1,5 +1,7 @@
 ﻿
 
+using FilomenoMauiMidterm.Views;
+
 namespace FilomenoMauiMidterm
 {
     public partial class AppShell : Shell
@@ -7,7 +9,8 @@ namespace FilomenoMauiMidterm
         public AppShell()
         {
             InitializeComponent();
-
+            Routing.RegisterRoute(nameof(LoginView), typeof(LoginView));
+            Routing.RegisterRoute(nameof(RegisterView), typeof(RegisterView));
 
 		}
 	}

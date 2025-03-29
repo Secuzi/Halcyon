@@ -79,6 +79,7 @@
                             <Entry
                                 FontFamily="Inter"
                                 Opacity="1"
+                                Text="{Binding RegisteredUsername}"
                                 TextColor="White" />
                         </Border>
                     </VerticalStackLayout>
@@ -106,6 +107,7 @@
                             <Entry
                                 FontFamily="Inter"
                                 Opacity="1"
+                                Text="{Binding RegisteredEmail}"
                                 TextColor="White" />
                         </Border>
                     </VerticalStackLayout>
@@ -138,6 +140,7 @@
                                     IsPassword="true"
                                     MaximumWidthRequest="226"
                                     Opacity="1"
+                                    Text="{Binding RegisteredPassword}"
                                     TextColor="White" />
                                 <HorizontalStackLayout HorizontalOptions="Center" WidthRequest="20">
                                     <HorizontalStackLayout.GestureRecognizers>
@@ -170,6 +173,7 @@
                     <Button
                         Margin="0,0,0,36"
                         BackgroundColor="#61DAFB"
+                        Command="{Binding RegisterUserCommand}"
                         FontFamily="InterSemiBold"
                         Text="Create your account">
                         <!--<Button.Shadow>
@@ -185,12 +189,17 @@
                         <Label
                             FontFamily="InterLight"
                             FontSize="12"
-                            Text="Don't have an account? " />
+                            Text="Already have an account? " />
                         <Label
                             FontFamily="InterMedium"
                             FontSize="12"
-                            Text="Register"
-                            TextColor="#61DAFB" />
+                            Text="Login"
+                            TextColor="#61DAFB">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnLoginTapped" />
+                            </Label.GestureRecognizers>
+
+                        </Label>
 
                     </HorizontalStackLayout>
 

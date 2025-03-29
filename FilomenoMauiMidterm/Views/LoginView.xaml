@@ -13,11 +13,7 @@
             <Setter Property="FontFamily" Value="Inter" />
         </Style>
 
-        <Style x:Key="PrimaryTextStyle" TargetType="Label">
-            <Setter Property="TextColor" Value="#61DAFB" />
-            <Setter Property="FontFamily" Value="Inter" />
 
-        </Style>
 
         <Style x:Key="PrimaryTextStyleWithShadow" TargetType="Label">
             <Setter Property="TextColor" Value="#61DAFB" />
@@ -63,11 +59,6 @@
                         Style="{StaticResource PrimaryTextStyle}"
                         Text="Sign in" />
 
-
-
-
-
-
                     <VerticalStackLayout Margin="0,0,0,14">
                         <Label
                             FontFamily="InterSemiBold"
@@ -91,6 +82,7 @@
                             <Entry
                                 FontFamily="Inter"
                                 Opacity="1"
+                                Text="{Binding Username}"
                                 TextColor="White" />
                         </Border>
                     </VerticalStackLayout>
@@ -120,6 +112,7 @@
                                     IsPassword="true"
                                     MaximumWidthRequest="226"
                                     Opacity="1"
+                                    Text="{Binding Password}"
                                     TextColor="White" />
                                 <HorizontalStackLayout HorizontalOptions="Center" WidthRequest="20">
                                     <HorizontalStackLayout.GestureRecognizers>
@@ -152,6 +145,7 @@
                     <Button
                         Margin="0,0,0,36"
                         BackgroundColor="#61DAFB"
+                        Command="{Binding LogInUserCommand}"
                         FontFamily="InterSemiBold"
                         Text="Sign in">
                         <!--<Button.Shadow>
@@ -172,7 +166,13 @@
                             FontFamily="InterMedium"
                             FontSize="12"
                             Text="Register"
-                            TextColor="#61DAFB" />
+                            TextColor="#61DAFB">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnRegisterTapped" />
+                            </Label.GestureRecognizers>
+
+
+                        </Label>
 
                     </HorizontalStackLayout>
 

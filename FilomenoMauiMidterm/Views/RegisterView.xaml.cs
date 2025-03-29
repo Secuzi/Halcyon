@@ -1,3 +1,4 @@
+using FilomenoMauiMidterm.ViewModels;
 namespace FilomenoMauiMidterm.Views;
 
 public partial class RegisterView : ContentPage
@@ -8,6 +9,7 @@ public partial class RegisterView : ContentPage
 	public RegisterView()
 	{
 		InitializeComponent();
+		BindingContext = new AuthViewModel(this);
 	}
 
 	private void TapGestureRecognizer_Tapped(object sender, TappedEventArgs e)
@@ -15,5 +17,14 @@ public partial class RegisterView : ContentPage
 		isPasswordVisible = !isPasswordVisible;
 		TogglePasswordButton.Source = isPasswordVisible ? openEyeIcon : closedEyeIcon;
 		passwordEntry.IsPassword = !isPasswordVisible;
+	}
+	private async void OnLoginTapped(object sender, TappedEventArgs e)
+	{
+		await Shell.Current.GoToAsync($"{nameof(LoginView)}");
+		//bool answer = await DisplayAlert("Confirm", "Are you sure you want to proceed?", "Ok", "Cancel");
+		//if (answer)
+		//{
+			
+		//}
 	}
 }

@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using FilomenoMauiMidterm.ViewModels;
 
 namespace FilomenoMauiMidterm.Views;
 
@@ -13,7 +14,7 @@ public partial class LoginView : ContentPage
 	public LoginView()
 	{
 		InitializeComponent();
-		Debug.WriteLine(TogglePasswordButton.Source);
+		BindingContext = new AuthViewModel(this);
 	}
 
 	private void TapGestureRecognizer_Tapped(object sender, TappedEventArgs e)
@@ -24,6 +25,12 @@ public partial class LoginView : ContentPage
 		passwordEntry.IsPassword = !isPasswordVisible;
 
 	}
+	private async void OnRegisterTapped (object sender, TappedEventArgs e)
+	{
+		await Shell.Current.GoToAsync($"{nameof(RegisterView)}");
+	}
 
 	
+
+
 }
