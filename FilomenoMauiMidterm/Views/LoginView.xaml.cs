@@ -10,11 +10,12 @@ public partial class LoginView : ContentPage
 	//const string openEyeIcon = "&#xe901;";
 	const string closedEyeIcon = "password_not_visible.svg";
 	const string openEyeIcon = "password_visible.svg";
-
+	AuthViewModel authViewModel;
 	public LoginView()
 	{
 		InitializeComponent();
-		BindingContext = new AuthViewModel(this);
+		authViewModel = new AuthViewModel();
+		BindingContext = authViewModel;
 	}
 
 	private void TapGestureRecognizer_Tapped(object sender, TappedEventArgs e)
@@ -30,7 +31,13 @@ public partial class LoginView : ContentPage
 		await Shell.Current.GoToAsync($"{nameof(RegisterView)}");
 	}
 
-	
+
+	protected override void OnAppearing()
+	{
+		base.OnAppearing();
+
+	}
+
 
 
 }

@@ -9,7 +9,7 @@ public partial class RegisterView : ContentPage
 	public RegisterView()
 	{
 		InitializeComponent();
-		BindingContext = new AuthViewModel(this);
+		BindingContext = new AuthViewModel();
 	}
 
 	private void TapGestureRecognizer_Tapped(object sender, TappedEventArgs e)
@@ -20,7 +20,7 @@ public partial class RegisterView : ContentPage
 	}
 	private async void OnLoginTapped(object sender, TappedEventArgs e)
 	{
-		await Shell.Current.GoToAsync($"{nameof(LoginView)}");
+		await Shell.Current.GoToAsync($"..");
 		
 	}
 }

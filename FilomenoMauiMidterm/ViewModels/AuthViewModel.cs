@@ -9,6 +9,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 using System.Windows.Input;
 
 namespace FilomenoMauiMidterm.ViewModels
@@ -19,9 +20,6 @@ namespace FilomenoMauiMidterm.ViewModels
 	[QueryProperty(nameof(RegisteredUsername), nameof(RegisteredUsername))]
 	public class AuthViewModel : INotifyPropertyChanged 
 	{
-        public User User { get; set; }
-		public Page Page { get; set; }
-
         private string _username;
         private string _password;
 		private string _email; 
@@ -115,27 +113,40 @@ namespace FilomenoMauiMidterm.ViewModels
 		private ICommand _logInCommand;
 		public ICommand RegisterUserCommand { get; private set; }
 		public ICommand LogInUserCommand => _logInCommand = new Command(LogInUser);
-		public AuthViewModel(Page page)
+		public AuthViewModel()
         {
-			Page = page;	
 			RegisterUserCommand = new Command(RegisterUser);
-			User = new User("admin", "123", "a@a");
         }
-
+		const byte MINIMUM_PASSWORD_LENGTH = 6;
+		readonly string EMAIL_PATTERN = @"^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$";
 		private async void RegisterUser()
 		{
-			if (Username == "" || Password == "" || Email == "")
+			
+			if (String.IsNullOrEmpty(RegisteredUsername) || String.IsNullOrEmpty(RegisteredPassword) || String.IsNullOrEmpty(RegisteredEmail))
 			{
-				Debug.WriteLine("Invalid credentials!");
-				await Page.DisplayAlert("Invalid details", "Input must not be empty!", "Ok");
+				await Shell.Current.DisplayAlert("Invalid details", "All inputs must not be empty!", "Ok");
+				return;
+			}
+			Regex emailRegex = new Regex(EMAIL_PATTERN, RegexOptions.IgnoreCase);
+
+			if (!emailRegex.IsMatch(RegisteredEmail))
+			{
+				await Shell.Current.DisplayAlert("Invalid details", "Invalid email!", "Ok");
 				return;
 			}
 
-			User = new User(RegisteredUsername, RegisteredPassword, RegisteredEmail);
-			//await Page.DisplayAlert("Success!", $"User Info:\nUsername: {User.Username}\nEmail:{User.Email}\nPassword:{User.Password}", "!skibidi", FlowDirection.LeftToRight);
-			bool answer = await Page.DisplayAlert("Confirm", "Are you sure?", "Ok", "Cancel");
+			if(RegisteredPassword.Length < MINIMUM_PASSWORD_LENGTH)
+			{
+				await Shell.Current.DisplayAlert("Invalid details", "Password must be greater than 6 characters!", "Ok");
+				return;
+			}
+
+			//await Shell.Current.DisplayAlert("Success!", $"User Info:\nUsername: {User.Username}\nEmail:{User.Email}\nPassword:{User.Password}", "!skibidi", FlowDirection.LeftToRight);
+			bool answer = await Shell.Current.DisplayAlert("Confirm", "Are you sure?", "Ok", "Cancel");
 			if(answer)
 			{
+				Username = string.Empty;
+				Password = string.Empty;
 				await Shell.Current.GoToAsync($"//{nameof(LoginView)}?{nameof(RegisteredUsername)}={RegisteredUsername}&{nameof(RegisteredPassword)}={RegisteredPassword}&{nameof(RegisteredEmail)}={RegisteredEmail}"); 
 			}
 
@@ -143,22 +154,22 @@ namespace FilomenoMauiMidterm.ViewModels
 
 		private async void LogInUser()
 		{
-			if (Username == "" || Password == "")
+			if (String.IsNullOrEmpty(Username) || String.IsNullOrEmpty(Password))
 			{
 				Debug.WriteLine("Input must not be empty!");
-				await Page.DisplayAlert("Invalid details", "Input must not be empty!", "Ok");
+				await Shell.Current.DisplayAlert("Invalid details", "Input must not be empty!", "Ok");
 				return;
 			}
 
 			if (Username != RegisteredUsername || Password != RegisteredPassword)
 			{
 				Debug.WriteLine("Invalid information");
-				await Page.DisplayAlert("Invalid details", "Incorrect details", "Ok");
+				await Shell.Current.DisplayAlert("Invalid details", "Incorrect details", "Ok");
 				return;
 			}
 
 
-			await Page.DisplayAlert("Success!", "nice one brother", "!skibidi", FlowDirection.LeftToRight);
+			await Shell.Current.DisplayAlert("Success!", "nice one fellow rizzler", "skibidi", FlowDirection.LeftToRight);
 
 		}
 
