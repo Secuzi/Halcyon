@@ -162,11 +162,7 @@
 
                         </Border>
 
-                        <Label
-                            FontFamily="InterMedium"
-                            FontSize="12"
-                            Text="Forgot your password?"
-                            TextColor="#059DC7" />
+
 
                     </VerticalStackLayout>
 
