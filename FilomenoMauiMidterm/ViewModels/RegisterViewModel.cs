@@ -20,14 +20,19 @@ namespace FilomenoMauiMidterm.ViewModels
         private string _username;
 
         [Required]
-        [MinLength(6)]
+        [MinLength(6, ErrorMessage = "Password must be at least 6 characters long!")]
         [ObservableProperty]
+
         private string _password;
 
         [Required]
         [EmailAddress]
         [ObservableProperty]
         private string _email;
+
+        [ObservableProperty]
+        private string _errors;
+
 
         private JsonSerializerOptions _serializerOptions;
         private HttpClient _client;
@@ -42,15 +47,16 @@ namespace FilomenoMauiMidterm.ViewModels
             Password = "";
             Email = "";
         }
-
+        
         [RelayCommand]
         public async Task RegisterUser()
         {
             ValidateAllProperties();
+            
             if (HasErrors)
             {
                 Debug.WriteLine("Validation error: ");
-                var test = string.Join("\n", GetErrors().Select(e => e.ErrorMessage));
+                Errors = string.Join("\n", GetErrors().Select(e => e.ErrorMessage));
                 return;
             }
             try

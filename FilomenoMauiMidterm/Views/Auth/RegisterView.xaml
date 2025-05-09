@@ -82,6 +82,8 @@
                                 Text="{Binding Username}"
                                 TextColor="White" />
                         </Border>
+
+
                     </VerticalStackLayout>
 
                     <VerticalStackLayout Margin="0,0,0,14">
@@ -170,7 +172,7 @@
                     </VerticalStackLayout>
 
                     <Button
-                        Margin="0,0,0,36"
+                        Margin="0,0,0,22"
                         BackgroundColor="#61DAFB"
                         Command="{Binding RegisterUserCommand}"
                         FontFamily="InterSemiBold"
@@ -184,6 +186,14 @@
                         </Button.Shadow>-->
 
                     </Button>
+                    <Label
+                        Margin="0,0,0,22"
+                        BackgroundColor="Cyan"
+                        FontSize="11"
+                        IsVisible="{Binding HasErrors}"
+                        Text="{Binding Errors}"
+                        TextColor="Red" />
+
                     <HorizontalStackLayout HorizontalOptions="Center" VerticalOptions="Center">
                         <Label
                             FontFamily="InterLight"
