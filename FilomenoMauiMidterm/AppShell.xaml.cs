@@ -1,6 +1,7 @@
 ﻿
 
 using FilomenoMauiMidterm.Views;
+using FilomenoMauiMidterm.Views.Tabs;
 
 namespace FilomenoMauiMidterm
 {
@@ -11,7 +12,10 @@ namespace FilomenoMauiMidterm
             InitializeComponent();
             Routing.RegisterRoute(nameof(LoginView), typeof(LoginView));
             Routing.RegisterRoute(nameof(RegisterView), typeof(RegisterView));
+            Routing.RegisterRoute(nameof(HomeView), typeof(HomeView));
+            Routing.RegisterRoute(nameof(PostView), typeof(PostView));
 
-		}
-	}
+
+        }
+    }
 }

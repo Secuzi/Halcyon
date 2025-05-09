@@ -127,11 +127,6 @@
                                         WidthRequest="20" />
                                 </HorizontalStackLayout>
                             </FlexLayout>
-                            <!--
-                                Eyeopen: e901
-                                Eyeclosed: e900
-                            -->
-
                         </Border>
 
                         <Label

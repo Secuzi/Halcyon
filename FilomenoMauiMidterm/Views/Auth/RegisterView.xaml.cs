@@ -6,10 +6,10 @@ public partial class RegisterView : ContentPage
 	bool isPasswordVisible = false;
 	const string closedEyeIcon = "password_not_visible.svg";
 	const string openEyeIcon = "password_visible.svg";
-	public RegisterView()
+	public RegisterView(RegisterViewModel registerViewModel)
 	{
 		InitializeComponent();
-		BindingContext = new AuthViewModel();
+		BindingContext = registerViewModel;
 	}
 
 	private void TapGestureRecognizer_Tapped(object sender, TappedEventArgs e)
@@ -20,7 +20,8 @@ public partial class RegisterView : ContentPage
 	}
 	private async void OnLoginTapped(object sender, TappedEventArgs e)
 	{
-		await Shell.Current.GoToAsync($"..");
+		//await Shell.Current.GoToAsync($"..");
+		await Navigation.PopToRootAsync();
 		
 	}
 }

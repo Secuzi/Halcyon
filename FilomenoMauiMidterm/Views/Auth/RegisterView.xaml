@@ -79,9 +79,11 @@
                             <Entry
                                 FontFamily="Inter"
                                 Opacity="1"
-                                Text="{Binding RegisteredUsername}"
+                                Text="{Binding Username}"
                                 TextColor="White" />
                         </Border>
+
+
                     </VerticalStackLayout>
 
                     <VerticalStackLayout Margin="0,0,0,14">
@@ -107,9 +109,12 @@
                             <Entry
                                 FontFamily="Inter"
                                 Opacity="1"
-                                Text="{Binding RegisteredEmail}"
+                                Text="{Binding Email}"
                                 TextColor="White" />
                         </Border>
+
+
+
                     </VerticalStackLayout>
 
 
@@ -140,7 +145,7 @@
                                     IsPassword="true"
                                     MaximumWidthRequest="226"
                                     Opacity="1"
-                                    Text="{Binding RegisteredPassword}"
+                                    Text="{Binding Password}"
                                     TextColor="White" />
                                 <HorizontalStackLayout HorizontalOptions="Center" WidthRequest="20">
                                     <HorizontalStackLayout.GestureRecognizers>
@@ -167,7 +172,7 @@
                     </VerticalStackLayout>
 
                     <Button
-                        Margin="0,0,0,36"
+                        Margin="0,0,0,22"
                         BackgroundColor="#61DAFB"
                         Command="{Binding RegisterUserCommand}"
                         FontFamily="InterSemiBold"
@@ -181,6 +186,14 @@
                         </Button.Shadow>-->
 
                     </Button>
+                    <Label
+                        Margin="0,0,0,22"
+                        BackgroundColor="Cyan"
+                        FontSize="11"
+                        IsVisible="{Binding HasErrors}"
+                        Text="{Binding Errors}"
+                        TextColor="Red" />
+
                     <HorizontalStackLayout HorizontalOptions="Center" VerticalOptions="Center">
                         <Label
                             FontFamily="InterLight"
