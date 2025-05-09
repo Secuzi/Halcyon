@@ -79,7 +79,7 @@
                             <Entry
                                 FontFamily="Inter"
                                 Opacity="1"
-                                Text="{Binding RegisteredUsername}"
+                                Text="{Binding Username}"
                                 TextColor="White" />
                         </Border>
                     </VerticalStackLayout>
@@ -107,9 +107,12 @@
                             <Entry
                                 FontFamily="Inter"
                                 Opacity="1"
-                                Text="{Binding RegisteredEmail}"
+                                Text="{Binding Email}"
                                 TextColor="White" />
                         </Border>
+
+
+
                     </VerticalStackLayout>
 
 
@@ -140,7 +143,7 @@
                                     IsPassword="true"
                                     MaximumWidthRequest="226"
                                     Opacity="1"
-                                    Text="{Binding RegisteredPassword}"
+                                    Text="{Binding Password}"
                                     TextColor="White" />
                                 <HorizontalStackLayout HorizontalOptions="Center" WidthRequest="20">
                                     <HorizontalStackLayout.GestureRecognizers>
