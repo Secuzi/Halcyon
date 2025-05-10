@@ -22,7 +22,7 @@ public partial class LoginView : ContentPage
 	{
 		
 		isPasswordVisible = !isPasswordVisible;
-		TogglePasswordButton.Source = isPasswordVisible ? openEyeIcon : closedEyeIcon;
+		TogglePasswordButton.Source = isPasswordVisible ? closedEyeIcon : openEyeIcon;
 		passwordEntry.IsPassword = !isPasswordVisible;
 
 	}
