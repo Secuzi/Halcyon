@@ -12,7 +12,7 @@ namespace FilomenoMauiMidterm.Services
 {
     public class UserService
     {
-        //const string baseUrl = "https://681db1d1f74de1d219b0a4f4.mockapi.io";
+        
         HttpClient _client;
         JsonSerializerOptions _serializerOptions;
         public UserService(HttpClient client, JsonSerializerOptions serializerOptions)
@@ -73,8 +73,7 @@ namespace FilomenoMauiMidterm.Services
             }
             catch (Exception e)
             {
-                await Shell.Current.DisplayAlert("An exception happened", e.Message, "ok");
-                return null;
+                throw new InvalidDataException(e.Message);
             }
 
 
