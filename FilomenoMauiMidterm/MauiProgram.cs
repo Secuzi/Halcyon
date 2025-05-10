@@ -23,6 +23,12 @@ namespace FilomenoMauiMidterm
                     fonts.AddFont("Inter24ptSemiBold.ttf", "InterSemiBold");
                     fonts.AddFont("Inter28ptBold.ttf", "InterBold");
                     fonts.AddFont("icomoon.ttf", "Icomoon");
+                })
+                .ConfigureMauiHandlers(handlers =>
+                {
+#if ANDROID
+                    handlers.AddHandler<Shell, RoundedFloatingTabbarHandler>();
+#endif
                 });
 
             builder.Services.AddSingleton<HttpClient>(new HttpClient() { BaseAddress = new Uri("https://681ebcd2c1c291fa6634fa21.mockapi.io/v1") });

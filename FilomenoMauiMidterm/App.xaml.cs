@@ -10,7 +10,8 @@ namespace FilomenoMauiMidterm
             InitializeComponent();
             
 
-            MainPage = new NavigationPage(new LoginView(loginViewModel, registerViewModel));
+            MainPage = new AppShell();
+            //MainPage = new NavigationPage(new LoginView(loginViewModel, registerViewModel));
 #if ANDROID
            Microsoft.Maui.Handlers.EntryHandler.Mapper.AppendToMapping(nameof(Entry), (handler, view) =>
 			{
