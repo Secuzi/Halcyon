@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
-    x:Class="FilomenoMauiMidterm.Views.Tabs.PostView"
+    x:Class="FilomenoMauiMidterm.Views.Tabs.SearchView"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    Title="PostView">
+    Title="SearchView">
     <VerticalStackLayout BackgroundColor="#121212">
         <Label
             HorizontalOptions="Center"
-            Text="Create a post"
+            Text="Search View"
             VerticalOptions="Center" />
     </VerticalStackLayout>
 </ContentPage>

@@ -7,14 +7,21 @@
     xmlns:tabs="clr-namespace:FilomenoMauiMidterm.Views.Tabs"
     xmlns:views="clr-namespace:FilomenoMauiMidterm.Views"
     Title="FilomenoMauiMidterm"
-    Shell.FlyoutBehavior="Disabled">
-
+    BackgroundColor="#0E0E0E"
+    FlyoutBackgroundColor="#0E0E0E"
+    Shell.FlyoutBehavior="Disabled"
+    Shell.TabBarBackgroundColor="#33373E"
+    Shell.TabBarForegroundColor="#29EAEB"
+    Shell.TabBarTitleColor="#29EAEB">
     <TabBar>
-        <Tab Title="Home">
+        <Tab Title="Home" Icon="home_icon.png">
             <ShellContent ContentTemplate="{DataTemplate tabs:HomeView}" Route="home" />
         </Tab>
-        <Tab Title="Post">
+        <Tab Title="Add Post" Icon="add.png">
             <ShellContent ContentTemplate="{DataTemplate tabs:PostView}" Route="post" />
+        </Tab>
+        <Tab Title="Search" Icon="search_icon.png">
+            <ShellContent ContentTemplate="{DataTemplate tabs:SearchView}" Route="search" />
         </Tab>
     </TabBar>
 
