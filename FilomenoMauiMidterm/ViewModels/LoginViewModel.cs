@@ -9,38 +9,22 @@ using CommunityToolkit.Mvvm.ComponentModel;
 namespace FilomenoMauiMidterm.ViewModels
 {
 
-    public class LoginViewModel : ObservableValidator
+    public partial class LoginViewModel : ObservableValidator
     {
+        [Required]
+        [ObservableProperty]
         private string _username;
 
+        [Required]
+        [ObservableProperty]
         private string _password;
-        [Required]
-        public string Username
-        {
-            get => _username;
-            set => SetProperty(ref _username, value, true);
-        }
-        [Required]
-        public string Password
-        {
-            get => _password;
-            set => SetProperty(ref _password, value);
-        }
+       
 
 
         public LoginViewModel()
         {
             
         }
-
-        async void Register()
-        {
-
-        }
-
-
-
-
 
 
     }
