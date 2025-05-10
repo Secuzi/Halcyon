@@ -25,7 +25,7 @@ namespace FilomenoMauiMidterm
                     fonts.AddFont("icomoon.ttf", "Icomoon");
                 });
 
-            builder.Services.AddSingleton<HttpClient>(new HttpClient() { BaseAddress = new Uri("https://681db1d1f74de1d219b0a4f4.mockapi.io") });
+            builder.Services.AddSingleton<HttpClient>(new HttpClient() { BaseAddress = new Uri("https://681ebcd2c1c291fa6634fa21.mockapi.io/v1") });
             builder.Services.AddTransient<LoginViewModel>();
             builder.Services.AddTransient<RegisterViewModel>();
             builder.Services.AddSingleton<UserService>();
