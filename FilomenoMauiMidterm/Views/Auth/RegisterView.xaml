@@ -54,7 +54,7 @@
                         FontSize="30"
                         HorizontalTextAlignment="Center"
                         Style="{StaticResource PrimaryTextStyle}"
-                        Text="Sign up" />
+                        Text="Register" />
 
                     <VerticalStackLayout Margin="0,0,0,14">
                         <Label
