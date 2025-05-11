@@ -80,5 +80,15 @@ namespace FilomenoMauiMidterm.Services
 
         }
 
+        public async Task<bool> ValidateUser(string username, string password)
+        {
+            var url = $"{_client.BaseAddress}/users";
+            var response = await _client.GetStreamAsync(url);
+            var users = JsonSerializer.Deserialize<List<User>>(response, _serializerOptions) ?? throw new InvalidOperationException("Failed to deserialize user");
+
+            return users.Any(u => u.Username == username && u.Password == password);
+        }
+
+
     }
 }

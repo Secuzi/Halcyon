@@ -22,7 +22,6 @@ namespace FilomenoMauiMidterm.ViewModels
         [Required]
         [MinLength(6, ErrorMessage = "Password must be at least 6 characters long!")]
         [ObservableProperty]
-
         private string _password;
 
         [Required]
