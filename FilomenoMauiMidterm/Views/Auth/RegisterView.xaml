@@ -156,7 +156,7 @@
                                         BackgroundColor="Transparent"
                                         BorderWidth="30"
                                         InputTransparent="True"
-                                        Source="password_not_visible.svg"
+                                        Source="password_visible.svg"
                                         WidthRequest="20" />
                                 </HorizontalStackLayout>
                             </FlexLayout>
@@ -188,7 +188,6 @@
                     </Button>
                     <Label
                         Margin="0,0,0,22"
-                        BackgroundColor="Cyan"
                         FontSize="11"
                         IsVisible="{Binding HasErrors}"
                         Text="{Binding Errors}"

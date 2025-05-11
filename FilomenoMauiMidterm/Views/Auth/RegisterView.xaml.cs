@@ -4,8 +4,8 @@ namespace FilomenoMauiMidterm.Views;
 public partial class RegisterView : ContentPage
 {
 	bool isPasswordVisible = false;
-	const string closedEyeIcon = "password_not_visible.svg";
-	const string openEyeIcon = "password_visible.svg";
+	const string openEyeIcon = "password_not_visible.svg";
+	const string closedEyeIcon = "password_visible.svg";
 	public RegisterView(RegisterViewModel registerViewModel)
 	{
 		InitializeComponent();

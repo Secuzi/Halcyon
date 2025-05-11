@@ -8,8 +8,8 @@ public partial class LoginView : ContentPage
 	bool isPasswordVisible = false;
 	//const string closedEyeIcon = "&#xe900;";
 	//const string openEyeIcon = "&#xe901;";
-	const string closedEyeIcon = "password_not_visible.svg";
-	const string openEyeIcon = "password_visible.svg";
+	const string openEyeIcon = "password_not_visible.svg";
+	const string closedEyeIcon = "password_visible.svg";
 	private RegisterViewModel _registerViewModel;
 	public LoginView(LoginViewModel loginViewModel, RegisterViewModel registerViewModel)
 	{
@@ -22,7 +22,7 @@ public partial class LoginView : ContentPage
 	{
 		
 		isPasswordVisible = !isPasswordVisible;
-		TogglePasswordButton.Source = isPasswordVisible ? closedEyeIcon : openEyeIcon;
+		TogglePasswordButton.Source = isPasswordVisible ? openEyeIcon : closedEyeIcon;
 		passwordEntry.IsPassword = !isPasswordVisible;
 
 	}
