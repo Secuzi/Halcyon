@@ -20,7 +20,6 @@ namespace FilomenoMauiMidterm.ViewModels
         private string _password;
        
 
-
         public LoginViewModel()
         {
             

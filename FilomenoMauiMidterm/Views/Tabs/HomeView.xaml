@@ -4,11 +4,132 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     Title="HomeView"
-    BackgroundColor="#121212">
-    <VerticalStackLayout BackgroundColor="#121212">
-        <Label
-            HorizontalOptions="Center"
-            Text="Home View"
-            VerticalOptions="Center" />
-    </VerticalStackLayout>
+    BackgroundColor="#161617">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="PrimaryColor">#28E2E3</Color>
+            <Color x:Key="SecondaryColor">#33373E</Color>
+            <Color x:Key="Backgroundcolor">#161617</Color>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <Grid RowDefinitions="Auto, *, Auto" HorizontalOptions="FillAndExpand">
+        <!-- Header -->
+        <StackLayout Grid.Row="0" Padding="10" BackgroundColor="{StaticResource Backgroundcolor}">
+            <HorizontalStackLayout WidthRequest="400"
+                               HeightRequest="60"                              
+                               VerticalOptions="StartAndExpand"
+                               Spacing="180"
+                               >
+                <Image Source="logo_icon.png" HeightRequest="50"/>
+                <Frame CornerRadius="50" HeightRequest="40" WidthRequest="40">
+                    <Image Source="user_sample.jpg" HeightRequest="40" WidthRequest="40"/>
+                </Frame>
+            </HorizontalStackLayout>
+        </StackLayout>
+        <!-- Scrollable Content -->
+        <ScrollView Grid.Row="1" WidthRequest="390"
+                    VerticalOptions="Center"
+                    BackgroundColor="{StaticResource Backgroundcolor}">
+            <StackLayout Padding="10" Spacing="20" >
+                <!-- Lots of scrollable content-->
+                <Frame BackgroundColor="{StaticResource SecondaryColor}"
+                       CornerRadius="10" HeightRequest="45"
+                       HorizontalOptions="CenterAndExpand">
+                    <Entry Placeholder="What's on your mind?" HeightRequest="60" WidthRequest="270"/>
+                </Frame>
+                <!--Posting Tempalte-->
+                <Frame CornerRadius="20" WidthRequest="363"
+                       BackgroundColor="{StaticResource SecondaryColor}"
+                       VerticalOptions="StartAndExpand">
+                    <VerticalStackLayout WidthRequest="363"
+                                         BackgroundColor="{StaticResource SecondaryColor}"
+                                         VerticalOptions="StartAndExpand">
+                        <Frame HeightRequest="410" WidthRequest="360" CornerRadius="10" VerticalOptions="StartAndExpand">
+                            <Image HeightRequest="412" WidthRequest="412" Source="user_sample.jpg"/>
+                        </Frame>
+                        <HorizontalStackLayout WidthRequest="360"
+                                               HeightRequest="33"
+                                               BackgroundColor="Transparent"
+                                               Spacing="4"
+                                               Padding="7,5,0,5">
+                            <Image x:Name="LikeImage"
+                                   Source="likeunfilled_icon.png"
+                                   HeightRequest="28">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnLikeTapped" />
+                                </Image.GestureRecognizers>
+                            </Image>
+                            <Label x:Name="likes_quantity" Text="0"/>
+                        </HorizontalStackLayout>
+                        <Grid RowDefinitions="*, 2*" ColumnDefinitions="1*, 3*" VerticalOptions="FillAndExpand" BackgroundColor="Transparent">
+                            <!--User_Profile -->
+                            <Frame Grid.RowSpan="2" Grid.Column="0" HeightRequest="50" WidthRequest="50" CornerRadius="50">
+                                <Image Source="user_sample.jpg" HeightRequest="60" WidthRequest="60"/>
+                            </Frame>
+                            <!-- Display Name  -->
+                            <HorizontalStackLayout BackgroundColor="Transparent" Grid.Row="0" Grid.Column="1" VerticalOptions="FillAndExpand">
+                                <Label Text="Alex Gonzales" TextColor="White" FontAttributes="Bold" FontSize="15"/>
+                            </HorizontalStackLayout>
+                            <!-- Image Caption -->
+                            <VerticalStackLayout Grid.Row="1" Grid.Column="1"
+                                 BackgroundColor="Transparent"
+                                 Padding="0"
+                                 >
+                                <Label  
+                                       Text="Dog lover ka pero dli ka ganahan sa akoah? naunsa diay ka?" 
+                                       LineBreakMode="WordWrap"
+                                       HorizontalOptions="FillAndExpand"
+                                       VerticalOptions="Start"
+                                       FontSize="12" />
+                            </VerticalStackLayout>
+
+                        </Grid>
+                    </VerticalStackLayout>
+                </Frame>
+
+                <Label Text="Item 1" />
+                <Label Text="Item 2" />
+                <Label Text="Item 1" />
+                <Label Text="Item 2" />
+                <Label Text="Item 1" />
+                <Label Text="Item 2" />
+                <Label Text="Item 1" />
+                <Label Text="Item 1" />
+                <Label Text="Item 1" />
+                <Label Text="Item 1" />
+                <Label Text="Item 2" />
+                <Label Text="Item 1" />
+                <Label Text="Item 2" />
+                <Label Text="Item 1" />
+                <Label Text="Item 2" />
+                <Label Text="Item 1" />
+                <Label Text="Item 2" />
+                <Label Text="Item 1" />
+                <Label Text="Item 2" />
+                <Label Text="Item 1" />
+                <Label Text="Item 2" />
+                <Label Text="Item 1" />
+                <Label Text="Item 2" />
+                <Label Text="Item 2" />
+                <Label Text="Item 2" />
+                <Label Text="Item 2" />
+                <!-- ... -->
+                <Label Text="Item 100" />
+            </StackLayout>
+        </ScrollView>  
+        <!-- Footer -->
+        <Frame Grid.Row="2" Padding="10"
+               Margin="0,0,0,15"
+               HeightRequest="55"
+               WidthRequest="310"
+               CornerRadius="20"
+               BackgroundColor="{StaticResource SecondaryColor}">
+            <HorizontalStackLayout Spacing="88">
+                <Image Source="home_icon.png" />
+                <Image Source="add.png" />
+                <Image Source="search_icon.png" />
+            </HorizontalStackLayout>
+
+        </Frame>
+    </Grid>
 </ContentPage>
