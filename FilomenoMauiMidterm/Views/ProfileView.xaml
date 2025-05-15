@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="FilomenoMauiMidterm.Views.ProfileView"
-             Title="ProfileView">
+<ContentPage
+    x:Class="FilomenoMauiMidterm.Views.ProfileView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:models="clr-namespace:FilomenoMauiMidterm.Models"
+    Title="ProfileView">
     <ContentPage.Resources>
         <Style x:Key="PrimaryTextStyle" TargetType="Label">
             <Setter Property="TextColor" Value="White" />
@@ -16,94 +18,151 @@
         </Style>
     </ContentPage.Resources>
     <VerticalStackLayout>
-        <ScrollView Padding="10">
-            <Frame Margin="5"
-                   HeightRequest="200"
-                   WidthRequest="340"
-                   BackgroundColor="#33373E"
-                   CornerRadius="25">
-                <Grid RowDefinitions=".15*,*"
-                      ColumnDefinitions="*,*"
-                      Padding="10, 0">
-                    <Image Source="back"
-                           WidthRequest="20"
-                           VerticalOptions="Start"
-                           HorizontalOptions="Start"/>
-                    <Image Source="back"
-                           Grid.Column="1" 
-                           WidthRequest="20"
-                           VerticalOptions="Start"
-                           HorizontalOptions="End"/>
-                    <Grid Grid.Row="1"
-                          Grid.ColumnSpan="2"
-                          ColumnDefinitions=".3*,*"
-                          ColumnSpacing="10"
-                          RowDefinitions="*,*">
-                        <Image Source="dotnet_bot"
-                               WidthRequest="70"
-                               VerticalOptions="Center"
-                               Grid.RowSpan="2"/>
-                        <Grid Grid.Column="1"
-                              ColumnDefinitions=".7*,.15*,.15*"
-                              RowDefinitions=".6*, .4*">
-                            <Label Text="Arturo Gallardo"
-                               Style="{StaticResource PrimaryTextStyle}"
-                                   VerticalOptions="End"/>
-                            <Label Text="@_gallardo03"
-                                   Grid.Row="1"
-                                   Style="{StaticResource SecondaryTextStyle}"
-                                   VerticalOptions="Start"/>
-                            <Image Source="add_user"
-                                   Grid.Column="1"
-                                   Grid.RowSpan="2"
-                                   WidthRequest="20"/>
-                            <Image Source="messages"
-                                   Grid.Column="2"
-                                   Grid.RowSpan="2"
-                                   WidthRequest="20" />
-                        </Grid>
-                        <Grid Grid.Row="1"
-                              Grid.Column="1"
-                              ColumnDefinitions="*,*,*"
-                              RowDefinitions="*,*">
-                            <Label Text="2"
-                                   Style="{StaticResource PrimaryTextStyle}"
-                                   VerticalOptions="Center"
-                                   HorizontalOptions="Center"/>
-                            <Label Text="Posts"
-                                   Grid.Row="1"
-                                   Style="{StaticResource SecondaryTextStyle}"
-                                   VerticalOptions="Start"
-                                   HorizontalOptions="Center"/>
-                            <Label Text="2"
-                                   Grid.Column="1"
-                                   Style="{StaticResource PrimaryTextStyle}"
-                                   VerticalOptions="Center"
-                                   HorizontalOptions="Center"/>
-                            <Label Text="Posts"
-                                   Grid.Row="1"
-                                   Grid.Column="1"
-                                   Style="{StaticResource SecondaryTextStyle}"
-                                   VerticalOptions="Start"
-                                   HorizontalOptions="Center"/>
-                            <Label Text="2"
-                                   Grid.Column="2"                                   
-                                   Style="{StaticResource PrimaryTextStyle}"
-                                   VerticalOptions="Center"
-                                   HorizontalOptions="Center"/>
-                            <Label Text="Posts"
-                                   Grid.Row="1"
-                                   Grid.Column="2"                                  
-                                   Style="{StaticResource SecondaryTextStyle}"
-                                   VerticalOptions="Start"
-                                   HorizontalOptions="Center"/>
+        <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" />
+        <ScrollView Padding="10" IsVisible="{Binding IsNotBusy}">
+            <VerticalStackLayout>
+                <Frame
+                    Margin="5"
+                    BackgroundColor="#33373E"
+                    CornerRadius="25"
+                    HeightRequest="200"
+                    WidthRequest="340">
+                    <Grid
+                        Padding="10,0"
+                        ColumnDefinitions="*,*"
+                        RowDefinitions=".15*,*">
+                        <Image
+                            HorizontalOptions="Start"
+                            Source="back"
+                            VerticalOptions="Start"
+                            WidthRequest="20" />
+                        <Image
+                            Grid.Column="1"
+                            HorizontalOptions="End"
+                            Source="back"
+                            VerticalOptions="Start"
+                            WidthRequest="20" />
+                        <Grid
+                            Grid.Row="1"
+                            Grid.ColumnSpan="2"
+                            ColumnDefinitions=".4*,*"
+                            ColumnSpacing="20"
+                            RowDefinitions="*,*">
+                            <FlexLayout
+                                Grid.RowSpan="2"
+                                HeightRequest="120"
+                                VerticalOptions="Center"
+                                WidthRequest="90">
+                                <Border
+                                    Stroke="Transparent"
+                                    StrokeShape="RoundRectangle 100"
+                                    VerticalOptions="Center">
+                                    <Image
+                                        Aspect="AspectFit"
+                                        Source="{Binding User.Avatar}"
+                                        VerticalOptions="Center" />
+                                </Border>
+                            </FlexLayout>
+
+
+                            <Grid
+                                Grid.Column="1"
+                                ColumnDefinitions=".5*,.15*,.15*"
+                                RowDefinitions=".6*, .4*">
+                                <Label
+                                    Style="{StaticResource PrimaryTextStyle}"
+                                    Text="{Binding FullName}"
+                                    VerticalOptions="End" />
+
+                                <Label
+                                    Grid.Row="1"
+                                    Style="{StaticResource SecondaryTextStyle}"
+                                    Text="{Binding User.Username, StringFormat='@{0}'}"
+                                    VerticalOptions="Start" />
+                                <Image
+                                    Grid.RowSpan="2"
+                                    Grid.Column="1"
+                                    Source="add_user"
+                                    WidthRequest="20" />
+                                <Image
+                                    Grid.RowSpan="2"
+                                    Grid.Column="2"
+                                    Source="messages"
+                                    WidthRequest="20" />
+                            </Grid>
+                            <Grid
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                ColumnDefinitions="*,*,*"
+                                RowDefinitions="*,*">
+                                <Label
+                                    HorizontalOptions="Center"
+                                    Style="{StaticResource PrimaryTextStyle}"
+                                    Text="{Binding NumberOfPosts}"
+                                    VerticalOptions="Center" />
+                                <Label
+                                    Grid.Row="1"
+                                    HorizontalOptions="Center"
+                                    Style="{StaticResource SecondaryTextStyle}"
+                                    Text="Posts"
+                                    VerticalOptions="Start" />
+                                <Label
+                                    Grid.Column="1"
+                                    HorizontalOptions="Center"
+                                    Style="{StaticResource PrimaryTextStyle}"
+                                    Text="2"
+                                    VerticalOptions="Center" />
+                                <Label
+                                    Grid.Row="1"
+                                    Grid.Column="1"
+                                    HorizontalOptions="Center"
+                                    Style="{StaticResource SecondaryTextStyle}"
+                                    Text="Posts"
+                                    VerticalOptions="Start" />
+                                <Label
+                                    Grid.Column="2"
+                                    HorizontalOptions="Center"
+                                    Style="{StaticResource PrimaryTextStyle}"
+                                    Text="2"
+                                    VerticalOptions="Center" />
+                                <Label
+                                    Grid.Row="1"
+                                    Grid.Column="2"
+                                    HorizontalOptions="Center"
+                                    Style="{StaticResource SecondaryTextStyle}"
+                                    Text="Posts"
+                                    VerticalOptions="Start" />
+
+                            </Grid>
 
                         </Grid>
-
                     </Grid>
-                </Grid>
-            </Frame>
-            
+                </Frame>
+
+                <CollectionView Margin="0,20,0,0" ItemsSource="{Binding Posts}">
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout
+                            HorizontalItemSpacing="16"
+                            Orientation="Vertical"
+                            Span="2"
+                            VerticalItemSpacing="16" />
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="models:Post">
+
+                            <Border
+                                HeightRequest="105"
+                                Stroke="Transparent"
+                                StrokeShape="RoundRectangle 10"
+                                WidthRequest="130">
+                                <Image Aspect="AspectFill" Source="{Binding Image}" />
+                            </Border>
+
+
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </VerticalStackLayout>
         </ScrollView>
     </VerticalStackLayout>
 </ContentPage>
