@@ -10,6 +10,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using FilomenoMauiMidterm.Models;
 using FilomenoMauiMidterm.Services;
+using FilomenoMauiMidterm.Views.Tabs;
 
 namespace FilomenoMauiMidterm.ViewModels
 {
@@ -30,6 +31,8 @@ namespace FilomenoMauiMidterm.ViewModels
 
         [ObservableProperty]
         bool _isNotBusy;
+        [ObservableProperty]
+        UserPost _selectedPost;
 
         //[ObservableProperty]
         //string _fullName;
@@ -43,6 +46,13 @@ namespace FilomenoMauiMidterm.ViewModels
             _postService = postService;
             _userService = userService;
             _cancellationToken = cancellationToken;
+        }
+
+        [RelayCommand]
+        private void ShowPostOptions(UserPost post)
+        {
+            var page = (Shell.Current.CurrentPage as HomeView);
+            page?.FindByName<Syncfusion.Maui.Toolkit.BottomSheet.SfBottomSheet>("PostOptionsBottomSheet")?.Show();
         }
 
 
