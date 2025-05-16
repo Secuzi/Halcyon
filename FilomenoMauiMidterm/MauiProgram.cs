@@ -5,6 +5,7 @@ using FilomenoMauiMidterm.ViewModels;
 using FilomenoMauiMidterm.Views.Tabs;
 using Imagekit.Sdk;
 using Microsoft.Extensions.Logging;
+using Syncfusion.Maui.Toolkit.Hosting;
 
 namespace FilomenoMauiMidterm
 {
@@ -15,6 +16,7 @@ namespace FilomenoMauiMidterm
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
+                .ConfigureSyncfusionToolkit()
                 .UseFFImageLoading()
                 .ConfigureFonts(fonts =>
                 {
