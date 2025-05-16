@@ -17,7 +17,7 @@ namespace FilomenoMauiMidterm.Models
 
         public int Likes { get; set; }
 
-        public string PostID { get; set; }
+        public string PostId { get; set; }
 
         public bool IsLiked { get; set; }
     }
