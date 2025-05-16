@@ -87,7 +87,7 @@ namespace FilomenoMauiMidterm.Services
         {
             try
             {
-                var response = await _httpClient.GetAsync($"{_httpClient.BaseAddress}/${postId}");
+                var response = await _httpClient.GetAsync($"{_httpClient.BaseAddress.OriginalString}/post/{postId}");
                 await using var responseStream = await response.Content.ReadAsStreamAsync(cancellationToken);
                 var post = await JsonSerializer.DeserializeAsync<Post>(
                 responseStream,
@@ -108,7 +108,7 @@ namespace FilomenoMauiMidterm.Services
         {
             try
             {
-                if (postToUpdate?.PostID == null)
+                if (postToUpdate?.PostId == null)
                 {
                     // Handle the case where the Post doesn't have an ID for updating
                     System.Diagnostics.Debug.WriteLine("Error: Post ID is null for update.");
@@ -119,7 +119,7 @@ namespace FilomenoMauiMidterm.Services
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
 
                 // Assuming your API endpoint for updating a post includes the Post ID
-                var response = await _httpClient.PutAsync($"{_httpClient.BaseAddress}/post/{postToUpdate.PostID}", content, cancellationToken);
+                var response = await _httpClient.PutAsync($"{_httpClient.BaseAddress}/post/{postToUpdate.PostId}", content, cancellationToken);
 
                 response.EnsureSuccessStatusCode(); // Will throw an exception for unsuccessful status codes
 
