@@ -3,6 +3,7 @@
     x:Class="FilomenoMauiMidterm.Views.Tabs.HomeView"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:bottomSheet="clr-namespace:Syncfusion.Maui.Toolkit.BottomSheet;assembly=Syncfusion.Maui.Toolkit"
     xmlns:ffimageloading="clr-namespace:FFImageLoading.Maui;assembly=FFImageLoading.Maui"
     xmlns:models="clr-namespace:FilomenoMauiMidterm.Models"
     xmlns:viewmodel="clr-namespace:FilomenoMauiMidterm.ViewModels"
@@ -18,177 +19,200 @@
             <Color x:Key="Backgroundcolor">#161617</Color>
         </ResourceDictionary>
     </ContentPage.Resources>
-    <Grid HorizontalOptions="FillAndExpand" RowDefinitions="Auto, *, Auto">
-        <!--  Header  -->
-        <StackLayout
-            Grid.Row="0"
-            Padding="10"
-            BackgroundColor="{StaticResource Backgroundcolor}">
-            <HorizontalStackLayout
-                HeightRequest="60"
-                Spacing="180"
-                VerticalOptions="StartAndExpand"
-                WidthRequest="400">
-                <Image HeightRequest="50" Source="logo_icon.png" />
-                <Frame
-                    CornerRadius="50"
-                    HeightRequest="40"
-                    WidthRequest="40">
-                    <Image
-                        HeightRequest="40"
-                        Source="user_sample.jpg"
-                        WidthRequest="40" />
-                </Frame>
-            </HorizontalStackLayout>
-        </StackLayout>
-        <!--  Scrollable Content  -->
+    <Grid>
 
-        <ActivityIndicator
-            Grid.Row="1"
-            HeightRequest="36"
-            IsRunning="{Binding IsBusy}"
-            IsVisible="{Binding IsBusy}"
-            Color="Cyan" />
-        <ScrollView
-            Grid.Row="1"
-            BackgroundColor="{StaticResource Backgroundcolor}"
-            IsVisible="{Binding IsNotBusy}"
-            VerticalOptions="Center"
-            WidthRequest="390">
-            <StackLayout Padding="10" Spacing="20">
-                <!--  Lots of scrollable content  -->
-                <Frame
-                    BackgroundColor="{StaticResource SecondaryColor}"
-                    CornerRadius="10"
-                    HeightRequest="45"
-                    HorizontalOptions="CenterAndExpand">
-                    <Entry
-                        HeightRequest="60"
-                        Placeholder="What's on your mind?"
-                        WidthRequest="270" />
-                </Frame>
-                <!--  Posting Tempalte  -->
-                <CollectionView ItemsSource="{Binding UserPosts}">
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate x:DataType="models:UserPost">
+        <!--  Bottom Sheet (overlay)  -->
+        <bottomSheet:SfBottomSheet
+            x:Name="PostOptionsBottomSheet"
+            BackgroundColor="{StaticResource SecondaryColor}"
+            CornerRadius="20,20,0,0"
+            IsOpen="False"
+            ShowGrabber="False">
+            <bottomSheet:SfBottomSheet.Content>
+                <Grid HorizontalOptions="FillAndExpand" RowDefinitions="Auto, *, Auto">
+                    <!--  Header  -->
+                    <StackLayout
+                        Grid.Row="0"
+                        Padding="10"
+                        BackgroundColor="{StaticResource Backgroundcolor}">
+                        <HorizontalStackLayout
+                            HeightRequest="60"
+                            Spacing="180"
+                            VerticalOptions="StartAndExpand"
+                            WidthRequest="400">
+                            <Image HeightRequest="50" Source="logo_icon.png" />
+                            <Frame
+                                CornerRadius="50"
+                                HeightRequest="40"
+                                WidthRequest="40">
+                                <Image
+                                    HeightRequest="40"
+                                    Source="user_sample.jpg"
+                                    WidthRequest="40" />
+                            </Frame>
+                        </HorizontalStackLayout>
+                    </StackLayout>
+                    <!--  Scrollable Content  -->
 
-
-                            <!--<VerticalStackLayout>
-                                <HorizontalStackLayout>
-                                    <Label Text="{Binding FirstName}" />
-                                    <Label Text="{Binding LastName}" />
-                                </HorizontalStackLayout>
-                                <ffimageloading:CachedImage
-                                    Aspect="AspectFit"
-                                    HeightRequest="200"
-                                    LoadingPlaceholder="loading.png"
-                                    Source="{Binding Image}"
-                                    WidthRequest="300" />
-                            </VerticalStackLayout>-->
-
+                    <ActivityIndicator
+                        Grid.Row="1"
+                        HeightRequest="36"
+                        IsRunning="{Binding IsBusy}"
+                        IsVisible="{Binding IsBusy}"
+                        Color="Cyan" />
+                    <ScrollView
+                        Grid.Row="1"
+                        BackgroundColor="{StaticResource Backgroundcolor}"
+                        IsVisible="{Binding IsNotBusy}"
+                        VerticalOptions="Center"
+                        WidthRequest="390">
+                        <StackLayout Padding="10" Spacing="20">
+                            <!--  Lots of scrollable content  -->
                             <Frame
                                 BackgroundColor="{StaticResource SecondaryColor}"
-                                CornerRadius="20"
-                                VerticalOptions="StartAndExpand"
-                                WidthRequest="363">
-                                <VerticalStackLayout
-                                    BackgroundColor="{StaticResource SecondaryColor}"
-                                    VerticalOptions="StartAndExpand"
-                                    WidthRequest="363">
-
-                                    <Frame
-                                        Padding="0"
-                                        BackgroundColor="Transparent"
-                                        CornerRadius="10">
-
-                                        <ffimageloading:CachedImage
-                                            Aspect="AspectFit"
-                                            LoadingPlaceholder="loading.png"
-                                            Source="{Binding Image}" />
-
-                                    </Frame>
-
-                                    <HorizontalStackLayout
-                                        Padding="7,5,0,5"
-                                        BackgroundColor="Transparent"
-                                        HeightRequest="33"
-                                        Spacing="4"
-                                        WidthRequest="360">
-                                        <Image
-                                            x:Name="LikeImage"
-                                            HeightRequest="28"
-                                            Source="{Binding IsLiked, Converter={StaticResource LikeImageConverter}}">
-                                            <Image.GestureRecognizers>
-                                                <TapGestureRecognizer Command="{Binding BindingContext.LikeTappedCommand, Source={x:Reference HomeViewRef}}" CommandParameter="{Binding .}" />
-                                            </Image.GestureRecognizers>
-                                        </Image>
-                                        <Label x:Name="likes_quantity" Text="{Binding Likes}" />
-                                    </HorizontalStackLayout>
-                                    <Grid
-                                        BackgroundColor="Transparent"
-                                        ColumnDefinitions="1*, 3*"
-                                        RowDefinitions="*, 2*"
-                                        VerticalOptions="FillAndExpand">
-                                        <!--  User_Profile  -->
-                                        <Frame
-                                            Grid.RowSpan="2"
-                                            Grid.Column="0"
-                                            CornerRadius="50"
-                                            HeightRequest="50"
-                                            WidthRequest="50">
-
-                                            <ffimageloading:CachedImage
-                                                Aspect="AspectFit"
-                                                HeightRequest="60"
-                                                LoadingPlaceholder="loading.png"
-                                                Source="{Binding Avatar}"
-                                                WidthRequest="60" />
-
-
-                                        </Frame>
-                                        <!--  Display Name  -->
-                                        <HorizontalStackLayout
-                                            Grid.Row="0"
-                                            Grid.Column="1"
-                                            BackgroundColor="Transparent"
-                                            VerticalOptions="FillAndExpand">
-                                            <HorizontalStackLayout Spacing="5">
-                                                <Label
-                                                    FontAttributes="Bold"
-                                                    FontSize="15"
-                                                    Text="{Binding FirstName}"
-                                                    TextColor="White" />
-                                                <Label
-                                                    FontAttributes="Bold"
-                                                    FontSize="15"
-                                                    Text="{Binding LastName}"
-                                                    TextColor="White" />
-                                            </HorizontalStackLayout>
-                                        </HorizontalStackLayout>
-                                        <!--  Image Caption  -->
-                                        <VerticalStackLayout
-                                            Grid.Row="1"
-                                            Grid.Column="1"
-                                            Padding="0"
-                                            BackgroundColor="Transparent">
-                                            <Label
-                                                FontSize="12"
-                                                HorizontalOptions="FillAndExpand"
-                                                LineBreakMode="WordWrap"
-                                                Text="{Binding Description}"
-                                                VerticalOptions="Start" />
-                                        </VerticalStackLayout>
-
-                                    </Grid>
-                                </VerticalStackLayout>
+                                CornerRadius="10"
+                                HeightRequest="45"
+                                HorizontalOptions="CenterAndExpand">
+                                <Entry
+                                    HeightRequest="60"
+                                    Placeholder="What's on your mind?"
+                                    WidthRequest="270" />
                             </Frame>
+                            <!--  Posting Tempalte  -->
+                            <CollectionView ItemsSource="{Binding UserPosts}">
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate x:DataType="models:UserPost">
 
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>
 
-            </StackLayout>
-        </ScrollView>
+                                        <!--<VerticalStackLayout>
+                      <HorizontalStackLayout>
+                          <Label Text="{Binding FirstName}" />
+                          <Label Text="{Binding LastName}" />
+                      </HorizontalStackLayout>
+                      <ffimageloading:CachedImage
+                          Aspect="AspectFit"
+                          HeightRequest="200"
+                          LoadingPlaceholder="loading.png"
+                          Source="{Binding Image}"
+                          WidthRequest="300" />
+                  </VerticalStackLayout>-->
+
+                                        <Frame
+                                            BackgroundColor="{StaticResource SecondaryColor}"
+                                            CornerRadius="20"
+                                            VerticalOptions="StartAndExpand"
+                                            WidthRequest="363">
+                                            <VerticalStackLayout
+                                                BackgroundColor="{StaticResource SecondaryColor}"
+                                                VerticalOptions="StartAndExpand"
+                                                WidthRequest="363">
+
+                                                <Frame
+                                                    Padding="0"
+                                                    BackgroundColor="Transparent"
+                                                    CornerRadius="10">
+
+                                                    <ffimageloading:CachedImage
+                                                        Aspect="AspectFit"
+                                                        LoadingPlaceholder="loading.png"
+                                                        Source="{Binding Image}" />
+
+                                                </Frame>
+
+                                                <HorizontalStackLayout
+                                                    Padding="7,5,0,5"
+                                                    BackgroundColor="Transparent"
+                                                    HeightRequest="33"
+                                                    Spacing="4"
+                                                    WidthRequest="360">
+                                                    <Image
+                                                        x:Name="LikeImage"
+                                                        HeightRequest="28"
+                                                        Source="{Binding IsLiked, Converter={StaticResource LikeImageConverter}}">
+                                                        <Image.GestureRecognizers>
+                                                            <TapGestureRecognizer Command="{Binding BindingContext.LikeTappedCommand, Source={x:Reference HomeViewRef}}" CommandParameter="{Binding .}" />
+                                                        </Image.GestureRecognizers>
+                                                    </Image>
+                                                    <Label x:Name="likes_quantity" Text="{Binding Likes}" />
+
+                                                    <Button
+                                                        Command="{Binding BindingContext.ShowPostOptionsCommand, Source={x:Reference HomeViewRef}}"
+                                                        CommandParameter="{Binding .}"
+                                                        Text="..." />
+
+
+                                                </HorizontalStackLayout>
+                                                <Grid
+                                                    BackgroundColor="Transparent"
+                                                    ColumnDefinitions="1*, 3*"
+                                                    RowDefinitions="*, 2*"
+                                                    VerticalOptions="FillAndExpand">
+                                                    <!--  User_Profile  -->
+                                                    <Frame
+                                                        Grid.RowSpan="2"
+                                                        Grid.Column="0"
+                                                        CornerRadius="50"
+                                                        HeightRequest="50"
+                                                        WidthRequest="50">
+
+                                                        <ffimageloading:CachedImage
+                                                            Aspect="AspectFit"
+                                                            HeightRequest="60"
+                                                            LoadingPlaceholder="loading.png"
+                                                            Source="{Binding Avatar}"
+                                                            WidthRequest="60" />
+
+
+                                                    </Frame>
+                                                    <!--  Display Name  -->
+                                                    <HorizontalStackLayout
+                                                        Grid.Row="0"
+                                                        Grid.Column="1"
+                                                        BackgroundColor="Transparent"
+                                                        VerticalOptions="FillAndExpand">
+                                                        <HorizontalStackLayout Spacing="5">
+                                                            <Label
+                                                                FontAttributes="Bold"
+                                                                FontSize="15"
+                                                                Text="{Binding FirstName}"
+                                                                TextColor="White" />
+                                                            <Label
+                                                                FontAttributes="Bold"
+                                                                FontSize="15"
+                                                                Text="{Binding LastName}"
+                                                                TextColor="White" />
+                                                        </HorizontalStackLayout>
+                                                    </HorizontalStackLayout>
+                                                    <!--  Image Caption  -->
+                                                    <VerticalStackLayout
+                                                        Grid.Row="1"
+                                                        Grid.Column="1"
+                                                        Padding="0"
+                                                        BackgroundColor="Transparent">
+                                                        <Label
+                                                            FontSize="12"
+                                                            HorizontalOptions="FillAndExpand"
+                                                            LineBreakMode="WordWrap"
+                                                            Text="{Binding Description}"
+                                                            VerticalOptions="Start" />
+                                                    </VerticalStackLayout>
+
+                                                </Grid>
+                                            </VerticalStackLayout>
+                                        </Frame>
+
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+
+                        </StackLayout>
+                    </ScrollView>
+
+                </Grid>
+
+            </bottomSheet:SfBottomSheet.Content>
+
+        </bottomSheet:SfBottomSheet>
 
     </Grid>
 </ContentPage>
