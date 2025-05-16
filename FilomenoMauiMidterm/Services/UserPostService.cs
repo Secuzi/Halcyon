@@ -22,7 +22,7 @@ namespace FilomenoMauiMidterm.Services
                              select new UserPost
                              {
                                  UserId = user.Id,
-                                 PostId = post.PostID,
+                                 PostId = post.PostId,
                                  Avatar = user.Avatar,
                                  FirstName = user.FirstName,
                                  LastName = user.LastName,
