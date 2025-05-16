@@ -1,6 +1,8 @@
 ﻿using System.Text.Json;
+using FFImageLoading.Maui;
 using FilomenoMauiMidterm.Services;
 using FilomenoMauiMidterm.ViewModels;
+using FilomenoMauiMidterm.Views.Tabs;
 using Imagekit.Sdk;
 using Microsoft.Extensions.Logging;
 
@@ -13,6 +15,7 @@ namespace FilomenoMauiMidterm
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
+                .UseFFImageLoading()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
@@ -31,10 +34,14 @@ namespace FilomenoMauiMidterm
 #endif
                 });
 
-            builder.Services.AddSingleton<HttpClient>(new HttpClient() { BaseAddress = new Uri("https://681ebcd2c1c291fa6634fa21.mockapi.io/v1") });
+            builder.Services.AddSingleton<HttpClient>(new HttpClient() { BaseAddress = new Uri("https://681db1d1f74de1d219b0a4f4.mockapi.io") });
+            //builder.Services.AddSingleton<HttpClient>(new HttpClient() { BaseAddress = new Uri("https://681ebcd2c1c291fa6634fa21.mockapi.io/v1") });
             builder.Services.AddTransient<LoginViewModel>();
             builder.Services.AddTransient<RegisterViewModel>();
+            builder.Services.AddTransient<HomeViewModel>();
             builder.Services.AddSingleton<UserService>();
+            builder.Services.AddSingleton<PostService>();
+            builder.Services.AddTransient<HomeView>();
             builder.Services.AddSingleton<JsonSerializerOptions>(
                 new JsonSerializerOptions()
                 {

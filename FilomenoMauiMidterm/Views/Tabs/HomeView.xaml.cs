@@ -1,10 +1,18 @@
+using System.Diagnostics;
+using FilomenoMauiMidterm.Models;
+using FilomenoMauiMidterm.ViewModels;
+
 namespace FilomenoMauiMidterm.Views.Tabs;
 
 public partial class HomeView : ContentPage
 {
-	public HomeView()
+    HomeViewModel _homeViewModel;
+    CancellationTokenSource _cancellationTokenSource;
+	public HomeView(HomeViewModel homeViewModel)
 	{
 		InitializeComponent();
+        _homeViewModel = homeViewModel;
+        BindingContext = _homeViewModel;
 	}
 	private async void HomePage_Clicked(object sender, EventArgs e)
 	{
@@ -12,17 +20,33 @@ public partial class HomeView : ContentPage
 	}
     private bool isLiked = false;
 
-    private async void OnLikeTapped(object sender, EventArgs e)
+    protected override async void OnAppearing()
     {
-        isLiked = !isLiked;
+        base.OnAppearing();
+        _cancellationTokenSource = new CancellationTokenSource();
+        try
+        {
+            await _homeViewModel.LoadDataAsync(_cancellationTokenSource.Token);
 
-        // Change image source
-        LikeImage.Source = isLiked ? "likefilled_icon.png" : "likeunfilled_icon.png";
-        // Animate with a "pop" effect
-        await LikeImage.ScaleTo(1.3, 100, Easing.CubicOut);  // Slight zoom in
-        await LikeImage.ScaleTo(1.0, 100, Easing.CubicIn);   // Back to normal
-        LikeImage.Opacity = 0.5;
-        await LikeImage.FadeTo(1.0, 100);
+        }
+        catch (OperationCanceledException)
+        {
+
+            Debug.Write("Operation Cancelled");
+        }
     }
+
+
+    protected override void OnDisappearing()
+    {
+        base.OnDisappearing();
+        _homeViewModel.UserPosts = [];
+        _cancellationTokenSource?.Cancel();
+
+        // Clean up resources
+        _cancellationTokenSource?.Dispose();
+        _cancellationTokenSource = null;
+    }
+   
 
 }
