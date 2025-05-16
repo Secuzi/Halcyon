@@ -88,23 +88,33 @@ namespace FilomenoMauiMidterm.ViewModels
             var newPost = new Post()
             {
                 Description = selectedItem.Description,
-                UserId = selectedItem.UserId,
+                UserId = $"userId {selectedItem.UserId}",
                 Image = selectedItem.Image,
-                PostID = selectedItem.PostId,
-            
+                PostId = selectedItem.PostId,
+                LikedByUsers = post.LikedByUsers
             };
 
 
             if (selectedItem.IsLiked)
             {
+                //Change to userId
+                var userId = $"userId {TestUserId}";
+                if(post.LikedByUsers.Contains(userId))
+                {
+                    return;
+                }
                 selectedItem.Likes++;
+                newPost.LikedByUsers.Add($"userId {TestUserId}");
             }
             else
             {
+                newPost.LikedByUsers.Remove($"userId {TestUserId}");
                 selectedItem.Likes--;
             }
-            
-            //await _postService.UpdatePost(newPost, _cancellationToken);
+
+
+
+            await _postService.UpdatePost(newPost, _cancellationToken);
             //    Debug.WriteLine($"Liked post: {selectedItem.IsLiked}"); // Example: Accessing properties of the liked post
             //                                                    // Your logic to update the like status for this specific post
         }
