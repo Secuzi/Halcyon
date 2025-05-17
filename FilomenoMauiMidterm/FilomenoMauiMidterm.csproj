@@ -31,6 +31,8 @@
 		<ApplicationVersion>1</ApplicationVersion>
 
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
+
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -57,12 +59,16 @@
 	  <None Remove="Resources\Fonts\Inter24ptMedium.ttf" />
 	  <None Remove="Resources\Fonts\Inter24ptSemiBold.ttf" />
 	  <None Remove="Resources\Fonts\Inter28ptBold.ttf" />
+	  <None Remove="Resources\Images\dots_icon.png" />
+	  <None Remove="Resources\Images\logo_icon.png" />
 	  <None Remove="Resources\Images\password_not_visible.svg" />
 	  <None Remove="Resources\Images\password_visible.svg" />
+	  <None Remove="Resources\Images\user_sample.jpg" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
+		<PackageReference Include="FFImageLoading.Maui" Version="1.2.7" />
 		<PackageReference Include="Imagekit" Version="5.0.0" />
 		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
