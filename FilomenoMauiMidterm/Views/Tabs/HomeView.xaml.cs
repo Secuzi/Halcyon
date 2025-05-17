@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using FilomenoMauiMidterm.Models;
 using FilomenoMauiMidterm.ViewModels;
+using Syncfusion.Maui.Toolkit.BottomSheet;
 
 namespace FilomenoMauiMidterm.Views.Tabs;
 
@@ -42,11 +43,12 @@ public partial class HomeView : ContentPage
         base.OnDisappearing();
         _homeViewModel.UserPosts = [];
         _cancellationTokenSource?.Cancel();
-
+        _homeViewModel.IsDeleteModalEnabled = false;
         // Clean up resources
+        PostOptionsBottomSheet.Close();
         _cancellationTokenSource?.Dispose();
         _cancellationTokenSource = null;
     }
-   
+    
 
 }
