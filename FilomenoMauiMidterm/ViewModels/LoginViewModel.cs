@@ -13,6 +13,7 @@ using FilomenoMauiMidterm.Services;
 using CommunityToolkit.Mvvm.Input;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using CommunityToolkit.Mvvm;
+using FilomenoMauiMidterm.Context;
 
 namespace FilomenoMauiMidterm.ViewModels
 {
@@ -30,19 +31,37 @@ namespace FilomenoMauiMidterm.ViewModels
         [ObservableProperty]
         private string _errors;
 
+        CancellationToken _cancellationToken;
         private readonly UserService _userService;
         private readonly JsonSerializerOptions _serializerOptions;
-
-        public LoginViewModel(UserService userService, JsonSerializerOptions serializerOptions)
+        private LoggedUser _loggedUser;
+        public LoginViewModel(UserService userService, JsonSerializerOptions serializerOptions, LoggedUser loggedUser)
         {
             _userService = userService;
+            _loggedUser = loggedUser;
             _serializerOptions = serializerOptions;
-            Username = "";
-            Password = "";
+       
+            Username = "graham";
+            Password = "skibidi";
+        }
+        public async Task<User> ValidateUser(string username, string password)
+        {
+            try
+            {
+                var users = await _userService.GetUsers();
+                var user = users.SingleOrDefault(user => user.Username == username && user.Password == password);
+                return user;
+            }
+            catch (Exception)
+            {
+
+                throw new Exception();
+            }
         }
 
+
         [RelayCommand]
-        public async Task LoginUser()
+        public async Task LogInUser()
         {
             ValidateAllProperties();
 
@@ -55,26 +74,26 @@ namespace FilomenoMauiMidterm.ViewModels
 
             try
             {
-                bool isValidUser = await _userService.ValidateUser(Username, Password);
+                var user = await ValidateUser(Username, Password);
 
-                if (isValidUser)
+                if (user != null)
                 {
                     Debug.WriteLine("Login successful.");
-                    await Shell.Current.DisplayAlert("Success", "You are logged in!", "OK");
-
+                    _loggedUser.User = user;
+                    Application.Current.MainPage = new AppShell();
                     //  Navigate to a home page
-                    await Shell.Current.GoToAsync("//HomeView");
+                    
                 }
                 else
                 {
                     Debug.WriteLine("Invalid credentials.");
-                    await Shell.Current.DisplayAlert("Login Failed", "Invalid username or password.", "OK");
+                  
                 }
             }
             catch (Exception ex)
             {
                 Debug.WriteLine($"Login error: {ex.Message}");
-                await Shell.Current.DisplayAlert("Error", "Something went wrong during login.", "OK");
+                
             }
         }
 
