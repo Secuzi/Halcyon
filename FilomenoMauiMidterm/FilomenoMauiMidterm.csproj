@@ -60,7 +60,6 @@
 	  <None Remove="Resources\Fonts\Inter24ptSemiBold.ttf" />
 	  <None Remove="Resources\Fonts\Inter28ptBold.ttf" />
 	  <None Remove="Resources\Images\dots_icon.png" />
-	  <None Remove="Resources\Images\likeunfilled_icon.png" />
 	  <None Remove="Resources\Images\logo_icon.png" />
 	  <None Remove="Resources\Images\password_not_visible.svg" />
 	  <None Remove="Resources\Images\password_visible.svg" />
