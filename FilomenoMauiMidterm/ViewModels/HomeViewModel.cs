@@ -33,7 +33,8 @@ namespace FilomenoMauiMidterm.ViewModels
         bool _isNotBusy;
         [ObservableProperty]
         UserPost _selectedPost;
-
+        [ObservableProperty]
+        bool _isDeleteModalEnabled;
         //[ObservableProperty]
         //string _fullName;
         CancellationToken _cancellationToken;
@@ -46,16 +47,43 @@ namespace FilomenoMauiMidterm.ViewModels
             _postService = postService;
             _userService = userService;
             _cancellationToken = cancellationToken;
+            IsDeleteModalEnabled = false;
         }
 
         [RelayCommand]
         private void ShowPostOptions(UserPost post)
         {
             var page = (Shell.Current.CurrentPage as HomeView);
+            var semi = post;
+            SelectedPost = post;
             page?.FindByName<Syncfusion.Maui.Toolkit.BottomSheet.SfBottomSheet>("PostOptionsBottomSheet")?.Show();
         }
+        [RelayCommand]
+        private async void DeletePost()
+        {
+            var postToRemove = UserPosts.FirstOrDefault(_selectedPost => _selectedPost.PostId == SelectedPost.PostId);
+            if (postToRemove != null)
+            {
+                UserPosts.Remove(postToRemove);
+            }
+            await _postService.DeletePost(SelectedPost.PostId, _cancellationToken);
+            SelectedPost = null;
+            IsDeleteModalEnabled = false;
+            CloseDeleteModal();
+        }
+        [RelayCommand]
+        private void ToggleDeleteModal()
+         {
+            IsDeleteModalEnabled = !IsDeleteModalEnabled;
+            if (!IsDeleteModalEnabled) SelectedPost = null; 
 
-
+        }
+        [RelayCommand]
+        private void CloseDeleteModal()
+        {
+            var page = (Shell.Current.CurrentPage as HomeView);
+            page?.FindByName<Syncfusion.Maui.Toolkit.BottomSheet.SfBottomSheet>("PostOptionsBottomSheet")?.Close();
+        }
 
         public async Task LoadDataAsync(CancellationToken cancellationToken)
         {
@@ -119,7 +147,12 @@ namespace FilomenoMauiMidterm.ViewModels
             else
             {
                 newPost.LikedByUsers.Remove($"userId {TestUserId}");
-                selectedItem.Likes--;
+                if(selectedItem.Likes > 0)
+                {
+
+                    selectedItem.Likes--;
+                }
+                
             }
 
 
