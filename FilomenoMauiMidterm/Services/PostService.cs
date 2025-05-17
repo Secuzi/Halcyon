@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,9 +6,8 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using FilomenoMauiMidterm.Models;
 
+
 using Microsoft.Maui.Controls;
-
-
 
 namespace FilomenoMauiMidterm.Services
 {
@@ -27,6 +26,7 @@ namespace FilomenoMauiMidterm.Services
         {
             return posts.FindAll(post => post.UserId.Split(' ')[1] == userId);
         }
+
 
         public async Task<List<Post>> GetPosts(CancellationToken cancellationToken = default)
         {
@@ -49,6 +49,7 @@ namespace FilomenoMauiMidterm.Services
             catch (Exception ex)
             {
                 //await Shell.Current.DisplayAlert("Invalid", "An unexpected error occurred: " + ex.Message, "OK");
+
                 return new List<Post>();
             }
         }

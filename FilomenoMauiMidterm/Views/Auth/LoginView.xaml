@@ -124,7 +124,7 @@
                                         BackgroundColor="Transparent"
                                         BorderWidth="30"
                                         InputTransparent="True"
-                                        Source="password_not_visible.svg"
+                                        Source="password_visible.svg"
                                         WidthRequest="20" />
                                 </HorizontalStackLayout>
                             </FlexLayout>

@@ -1,4 +1,5 @@
 using System;
+
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,7 +14,7 @@ namespace FilomenoMauiMidterm.Models
         public string Description { get; set; }
 
         public string Image { get; set; }
-        
+
         public List<string> LikedByUsers { get; set; }
 
         public int Likes { get; set; }
@@ -21,5 +22,6 @@ namespace FilomenoMauiMidterm.Models
         public string PostId { get; set; }
 
         public bool IsLiked { get; set; }
+
     }
 }
