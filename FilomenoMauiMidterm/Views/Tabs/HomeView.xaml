@@ -3,12 +3,430 @@
     x:Class="FilomenoMauiMidterm.Views.Tabs.HomeView"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:bottomSheet="clr-namespace:Syncfusion.Maui.Toolkit.BottomSheet;assembly=Syncfusion.Maui.Toolkit"
+    xmlns:ffimageloading="clr-namespace:FFImageLoading.Maui;assembly=FFImageLoading.Maui"
+    xmlns:models="clr-namespace:FilomenoMauiMidterm.Models"
+    xmlns:utils="clr-namespace:FilomenoMauiMidterm.Utils"
+    xmlns:viewmodel="clr-namespace:FilomenoMauiMidterm.ViewModels"
+    x:Name="HomeViewRef"
     Title="HomeView"
-    BackgroundColor="#121212">
-    <VerticalStackLayout BackgroundColor="#121212">
-        <Label
-            HorizontalOptions="Center"
-            Text="Home View"
-            VerticalOptions="Center" />
-    </VerticalStackLayout>
+    BackgroundColor="#161617"
+    Shell.NavBarIsVisible="False">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="PrimaryColor">#28E2E3</Color>
+            <Color x:Key="SecondaryColor">#33373E</Color>
+            <Color x:Key="Backgroundcolor">#161617</Color>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Grid>
+        <Grid HorizontalOptions="FillAndExpand" RowDefinitions="Auto, *, Auto">
+            <!--  Header  -->
+            <StackLayout Grid.Row="0" BackgroundColor="{StaticResource Backgroundcolor}">
+                <HorizontalStackLayout
+                    Margin="10,5,10,0"
+                    HeightRequest="60"
+                    Spacing="205"
+                    VerticalOptions="StartAndExpand"
+                    WidthRequest="400">
+                    <HorizontalStackLayout>
+                        <Image
+                            Margin="12,0,0,0"
+                            HeightRequest="40"
+                            Source="add.png" />
+                        <Label
+                            FontFamily="Inter"
+                            FontSize="20"
+                            Text="Halcyon"
+                            TextColor="{StaticResource PrimaryColor}"
+                            VerticalOptions="Center" />
+                    </HorizontalStackLayout>
+                    <Frame
+                        CornerRadius="50"
+                        HeightRequest="40"
+                        HorizontalOptions="End"
+                        WidthRequest="40">
+                        <Image
+                            HeightRequest="40"
+                            Source="user_sample.jpg"
+                            WidthRequest="40">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding .}" />
+                            </Image.GestureRecognizers>
+                        </Image>
+                    </Frame>
+                </HorizontalStackLayout>
+            </StackLayout>
+            <!--  Scrollable Content  -->
+
+            <ActivityIndicator
+                Grid.Row="1"
+                HeightRequest="36"
+                IsRunning="{Binding IsBusy}"
+                IsVisible="{Binding IsBusy}"
+                Color="Cyan" />
+            <ScrollView
+                Grid.Row="1"
+                BackgroundColor="{StaticResource Backgroundcolor}"
+                IsVisible="{Binding IsNotBusy}"
+                VerticalOptions="Center"
+                WidthRequest="390">
+                <StackLayout Padding="10" Spacing="10">
+                    <!--  Lots of scrollable content  -->
+                    <Frame
+                        BackgroundColor="{StaticResource SecondaryColor}"
+                        CornerRadius="10"
+                        HeightRequest="45"
+                        HorizontalOptions="CenterAndExpand">
+                        <Entry
+                            HeightRequest="60"
+                            Placeholder="What's on your mind?"
+                            WidthRequest="270" />
+                    </Frame>
+                    <!--  Posting Tempalte  -->
+                    <CollectionView ItemsSource="{Binding UserPosts}">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="models:UserPost">
+
+
+                                <!--<VerticalStackLayout>
+        <HorizontalStackLayout>
+            <Label Text="{Binding FirstName}" />
+            <Label Text="{Binding LastName}" />
+        </HorizontalStackLayout>
+        <ffimageloading:CachedImage
+            Aspect="AspectFit"
+            HeightRequest="200"
+            LoadingPlaceholder="loading.png"
+            Source="{Binding Image}"
+            WidthRequest="300" />
+    </VerticalStackLayout>-->
+
+                                <Frame
+                                    Margin="0,10"
+                                    Padding="10"
+                                    BackgroundColor="{StaticResource SecondaryColor}"
+                                    CornerRadius="20"
+                                    VerticalOptions="StartAndExpand"
+                                    WidthRequest="363">
+                                    <VerticalStackLayout
+                                        BackgroundColor="{StaticResource SecondaryColor}"
+                                        VerticalOptions="StartAndExpand"
+                                        WidthRequest="363">
+                                        <Image
+                                            Margin="0,0,20,5"
+                                            HorizontalOptions="End"
+                                            Source="options"
+                                            VerticalOptions="Start"
+                                            WidthRequest="20">
+                                            <Image.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding BindingContext.ShowPostOptionsCommand, Source={x:Reference HomeViewRef}}" CommandParameter="{Binding .}" />
+                                            </Image.GestureRecognizers>
+                                        </Image>
+
+                                        <Frame
+                                            Padding="0"
+                                            BackgroundColor="Transparent"
+                                            CornerRadius="0">
+
+                                            <ffimageloading:CachedImage
+                                                Aspect="AspectFit"
+                                                LoadingPlaceholder="loading.png"
+                                                Source="{Binding Image}" />
+
+                                        </Frame>
+
+                                        <HorizontalStackLayout
+                                            Padding="17,5,0,5"
+                                            BackgroundColor="Transparent"
+                                            HeightRequest="35"
+                                            Spacing="4"
+                                            WidthRequest="360">
+                                            <Image
+                                                x:Name="LikeImage"
+                                                Margin="15,15,0,15"
+                                                HeightRequest="28"
+                                                Source="{Binding IsLiked, Converter={StaticResource LikeImageConverter}}">
+                                                <Image.GestureRecognizers>
+                                                    <TapGestureRecognizer Command="{Binding BindingContext.LikeTappedCommand, Source={x:Reference HomeViewRef}}" CommandParameter="{Binding .}" />
+                                                </Image.GestureRecognizers>
+                                            </Image>
+                                            <Label
+                                                x:Name="likes_quantity"
+                                                Text="{Binding Likes}"
+                                                VerticalOptions="Center" />
+                                        </HorizontalStackLayout>
+                                        <Grid
+                                            Margin="5"
+                                            BackgroundColor="Transparent"
+                                            ColumnDefinitions="1*, 3*"
+                                            RowDefinitions="*, 2*"
+                                            VerticalOptions="FillAndExpand">
+                                            <!--  User_Profile  -->
+                                            <Frame
+                                                Grid.RowSpan="2"
+                                                Grid.Column="0"
+                                                CornerRadius="50"
+                                                HeightRequest="50"
+                                                VerticalOptions="Start"
+                                                WidthRequest="50">
+
+                                                <ffimageloading:CachedImage
+                                                    Aspect="AspectFit"
+                                                    HeightRequest="60"
+                                                    LoadingPlaceholder="loading.png"
+                                                    Source="{Binding Avatar}"
+                                                    WidthRequest="60" />
+
+
+                                            </Frame>
+                                            <!--  Display Name  -->
+                                            <HorizontalStackLayout
+                                                Grid.Row="0"
+                                                Grid.Column="1"
+                                                BackgroundColor="Transparent"
+                                                VerticalOptions="FillAndExpand">
+                                                <HorizontalStackLayout Spacing="5">
+                                                    <Label
+                                                        FontAttributes="Bold"
+                                                        FontSize="15"
+                                                        Text="{Binding FirstName}"
+                                                        TextColor="White" />
+                                                    <Label
+                                                        FontAttributes="Bold"
+                                                        FontSize="15"
+                                                        Text="{Binding LastName}"
+                                                        TextColor="White" />
+                                                </HorizontalStackLayout>
+                                            </HorizontalStackLayout>
+                                            <!--  Image Caption  -->
+                                            <VerticalStackLayout
+                                                Grid.Row="1"
+                                                Grid.Column="1"
+                                                Padding="0"
+                                                BackgroundColor="Transparent">
+                                                <Label
+                                                    Padding="0,0,15,0"
+                                                    FontSize="12"
+                                                    HorizontalOptions="FillAndExpand"
+                                                    LineBreakMode="TailTruncation"
+                                                    MaxLines="3"
+                                                    Text="{Binding Description}"
+                                                    VerticalOptions="Start" />
+                                            </VerticalStackLayout>
+
+                                        </Grid>
+                                    </VerticalStackLayout>
+                                </Frame>
+
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+
+                </StackLayout>
+            </ScrollView>
+            <!--  Bottom Sheet (overlay)  -->
+
+
+        </Grid>
+
+
+
+
+        <bottomSheet:SfBottomSheet
+            x:Name="PostOptionsBottomSheet"
+            Background="#161617"
+            ContentPadding="16"
+            CornerRadius="20,20,0,0"
+            EnableSwiping="False"
+            GrabberBackground="White"
+            HalfExpandedRatio="0.8"
+            StateChanged="PostOptionsBottomSheet_StateChanged"
+            ZIndex="1">
+            <bottomSheet:SfBottomSheet.BottomSheetContent>
+                <VerticalStackLayout>
+                    <HorizontalStackLayout>
+                        <ffimageloading:CachedImage Aspect="AspectFit" Source="exit.svg">
+                            <ffimageloading:CachedImage.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding BindingContext.HidePostOptionsCommand, Source={x:Reference HomeViewRef}}" />
+                            </ffimageloading:CachedImage.GestureRecognizers>
+                        </ffimageloading:CachedImage>
+                    </HorizontalStackLayout>
+                    <FlexLayout Margin="0,16,0,0" JustifyContent="SpaceBetween">
+                        <Border
+                            Padding="0,8,0,8"
+                            BackgroundColor="#33373E"
+                            Stroke="Transparent"
+                            StrokeShape="RoundRectangle 10"
+                            WidthRequest="125">
+                            <VerticalStackLayout HorizontalOptions="Center">
+                                <ffimageloading:CachedImage Aspect="AspectFit" Source="save_icon.png" />
+                                <Label Text="Save" />
+                            </VerticalStackLayout>
+                        </Border>
+                        <Border
+                            Padding="0,8,0,8"
+                            BackgroundColor="#33373E"
+                            Stroke="Transparent"
+                            StrokeShape="RoundRectangle 10"
+                            WidthRequest="125">
+                            <VerticalStackLayout HorizontalOptions="Center">
+                                <ffimageloading:CachedImage Aspect="AspectFit" Source="share_icon.png" />
+                                <Label Text="Share" />
+                            </VerticalStackLayout>
+                        </Border>
+                    </FlexLayout>
+
+                    <Border
+                        Margin="0,24,0,0"
+                        Padding="0,18,0,0"
+                        BackgroundColor="#33373E"
+                        HeightRequest="600"
+                        Stroke="Transparent"
+                        StrokeShape="RoundRectangle 10, 10, 0, 0">
+                        <VerticalStackLayout>
+                            <VerticalStackLayout>
+                                <FlexLayout
+                                    Padding="8,0,8,0"
+                                    AlignItems="Center"
+                                    HeightRequest="28">
+                                    <ffimageloading:CachedImage Source="likeunfilled_icon.svg" />
+                                    <Label Margin="7,0,0,0" Text="Unhide like count" />
+                                </FlexLayout>
+                                <BoxView
+                                    Margin="0,4,0,0"
+                                    HeightRequest="1"
+                                    HorizontalOptions="Fill"
+                                    Color="Gray" />
+                                <FlexLayout
+                                    Margin="0,4,0,0"
+                                    Padding="8,0,8,0"
+                                    AlignItems="Center"
+                                    HeightRequest="28">
+                                    <ffimageloading:CachedImage Source="turn_off.svg" />
+                                    <Label Margin="4,0,0,0" Text="Turn off commenting" />
+                                </FlexLayout>
+                                <BoxView
+                                    Margin="0,4,0,0"
+                                    HeightRequest="1"
+                                    HorizontalOptions="Fill"
+                                    Color="Gray" />
+                                <FlexLayout
+                                    Margin="0,4,0,0"
+                                    Padding="8,0,8,0"
+                                    AlignItems="Center"
+                                    HeightRequest="28">
+                                    <ffimageloading:CachedImage Source="editpost_icon.svg" />
+                                    <Label Margin="7,0,0,0" Text="Edit" />
+                                </FlexLayout>
+                                <BoxView
+                                    Margin="0,4,0,0"
+                                    HeightRequest="1"
+                                    HorizontalOptions="Fill"
+                                    Color="Gray" />
+                                <FlexLayout
+                                    Margin="0,4,0,0"
+                                    Padding="8,0,8,0"
+                                    AlignItems="Center"
+                                    HeightRequest="28">
+                                    <FlexLayout.Behaviors>
+                                        <utils:TappedAnimationBehavior AnimationDuration="100" ScaleDownTo="0.96" />
+                                    </FlexLayout.Behaviors>
+                                    <FlexLayout.GestureRecognizers>
+
+                                        <TapGestureRecognizer Command="{Binding BindingContext.OpenDeleteModalCommand, Source={x:Reference HomeViewRef}}" />
+                                    </FlexLayout.GestureRecognizers>
+                                    <ffimageloading:CachedImage Source="delete.svg" />
+                                    <Label Margin="5,0,0,0" Text="Delete" />
+                                </FlexLayout>
+                                <BoxView
+                                    Margin="0,4,0,0"
+                                    HeightRequest="1"
+                                    HorizontalOptions="Fill"
+                                    Color="Gray" />
+                            </VerticalStackLayout>
+                        </VerticalStackLayout>
+                    </Border>
+                </VerticalStackLayout>
+
+            </bottomSheet:SfBottomSheet.BottomSheetContent>
+
+        </bottomSheet:SfBottomSheet>
+
+        <AbsoluteLayout
+            x:Name="DeleteModal"
+            AbsoluteLayout.LayoutBounds="0,0,1,1"
+            AbsoluteLayout.LayoutFlags="All"
+            BackgroundColor="#806B6B6B"
+            InputTransparent="False"
+            IsEnabled="{Binding IsDeleteModalEnabled}"
+            IsVisible="{Binding IsDeleteModalEnabled}"
+            ZIndex="2">
+
+            <FlexLayout
+                AlignItems="Center"
+                HeightRequest="637"
+                JustifyContent="Center"
+                Opacity="100"
+                WidthRequest="360">
+                <Border
+                    Padding="8,16,8,16"
+                    BackgroundColor="#33373E"
+                    Stroke="Transparent"
+                    StrokeShape="RoundRectangle 10"
+                    WidthRequest="200">
+                    <VerticalStackLayout>
+                        <Label
+                            HorizontalTextAlignment="Center"
+                            Text="Delete this post?"
+                            TextColor="#28E2E3" />
+                        <Label
+                            Margin="0,14,0,0"
+                            FontSize="10"
+                            HorizontalTextAlignment="Center"
+                            Text="You can restore this post for the next 30 days from your account settings. After that it will be permanently deleted. If you restored this post, these will be restored." />
+                        <BoxView
+                            Margin="0,11,0,0"
+                            HeightRequest="1"
+                            HorizontalOptions="Fill"
+                            Color="Gray" />
+                        <Label
+                            Margin="0,8,0,8"
+                            HorizontalTextAlignment="Center"
+                            Text="Delete"
+                            TextColor="#28E2E3">
+                            <Label.Behaviors>
+                                <utils:TappedAnimationBehavior />
+                            </Label.Behaviors>
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding BindingContext.DeletePostCommand, Source={x:Reference HomeViewRef}}" />
+                            </Label.GestureRecognizers>
+
+                        </Label>
+                        <BoxView
+                            Margin="0,0,0,0"
+                            HeightRequest="1"
+                            HorizontalOptions="Fill"
+                            Color="Gray" />
+                        <Label
+                            Margin="0,8,0,0"
+                            HorizontalTextAlignment="Center"
+                            Text="Discard">
+                            <Label.Behaviors>
+                                <utils:TappedAnimationBehavior />
+                            </Label.Behaviors>
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding BindingContext.CloseDeleteModalCommand, Source={x:Reference HomeViewRef}}" />
+                            </Label.GestureRecognizers>
+
+                        </Label>
+                    </VerticalStackLayout>
+                </Border>
+            </FlexLayout>
+        </AbsoluteLayout>
+    </Grid>
+
+
 </ContentPage>

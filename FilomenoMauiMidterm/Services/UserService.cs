@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Text.Json;
@@ -44,9 +45,30 @@ namespace FilomenoMauiMidterm.Services
               
                 throw new InvalidDataException(e.Message);
             }
-
-
         }
+
+        public async Task<List<User>> GetUsers(CancellationToken cancellationToken = default)
+        {
+            try
+            {
+                var response = await _client.GetAsync($"{_client.BaseAddress}/user", cancellationToken);
+                response.EnsureSuccessStatusCode();
+
+                await using var responseStream = await response.Content.ReadAsStreamAsync(cancellationToken); ;
+                var users = await JsonSerializer.DeserializeAsync<List<User>>(responseStream, _serializerOptions)
+                ?? throw new InvalidOperationException("Failed to deserialize users");
+                return users;
+               
+
+            }
+            catch (Exception)
+            {
+
+                throw new Exception();
+            }
+        }
+
+
 
         public async Task<User> GetUser (string id)
         {

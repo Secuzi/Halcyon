@@ -8,12 +8,18 @@ namespace FilomenoMauiMidterm.Models
 {
     public class Post
     {
-        public int PostID {  get; set; } // uniqie id
-        public string Description {  get; set; } // post desciption
-        public int Likes {  get; set; } // like counts per post
 
-        public string Image {  get; set; } // string since in the mockapi website string bases
+        public string UserId { get; set; }
+        public string Description { get; set; }
 
+        public string Image { get; set; }
+        
+        public List<string> LikedByUsers { get; set; }
 
+        public int Likes { get; set; }
+
+        public string PostId { get; set; }
+
+        public bool IsLiked { get; set; }
     }
 }

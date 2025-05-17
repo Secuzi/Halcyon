@@ -1,17 +1,17 @@
 ﻿using FilomenoMauiMidterm.ViewModels;
 using FilomenoMauiMidterm.Views;
+using FilomenoMauiMidterm.Views.Tabs;
 using Microsoft.Maui.Platform;
 namespace FilomenoMauiMidterm
 {
     public partial class App : Application
     {
-        public App(LoginViewModel loginViewModel, RegisterViewModel registerViewModel)
+        public App(LoginViewModel loginViewModel, RegisterViewModel registerViewModel, HomeViewModel homeViewModel)
         {
             InitializeComponent();
-
-
-            //MainPage = new AppShell();
-            MainPage = new NavigationPage(new LoginView(loginViewModel, registerViewModel));
+            //HomeView(homeViewModel)
+            MainPage = new AppShell();
+          // MainPage = new NavigationPage(new LoginView(loginViewModel, registerViewModel));
 #if ANDROID
            Microsoft.Maui.Handlers.EntryHandler.Mapper.AppendToMapping(nameof(Entry), (handler, view) =>
 			{
