@@ -82,7 +82,28 @@ namespace FilomenoMauiMidterm.Services
                 return null;
             }
         }
+        public async Task<bool> DeletePost(string postID, CancellationToken cancellationToken)
+        {
+            try
+            {
+                var url = $"{_httpClient.BaseAddress.OriginalString}/post/{postID}";//gets the dets from the mockapi if delete or ney
+                var response = await _httpClient.DeleteAsync(url, cancellationToken);
 
+                if (response.IsSuccessStatusCode)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                await Shell.Current.DisplayAlert("Error", $"An error occurred: {ex.Message}", "OK");
+                return false;
+            }
+        }
         public async Task<Post> GetPost(string postId, CancellationToken cancellationToken)
         {
             try
