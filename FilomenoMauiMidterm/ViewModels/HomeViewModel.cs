@@ -8,6 +8,7 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using FilomenoMauiMidterm.Context;
 using FilomenoMauiMidterm.Models;
 using FilomenoMauiMidterm.Services;
 using FilomenoMauiMidterm.Views.Tabs;
@@ -33,14 +34,24 @@ namespace FilomenoMauiMidterm.ViewModels
         bool _isNotBusy;
         [ObservableProperty]
         UserPost _selectedPost;
+
+        
+
         [ObservableProperty]
         bool _isDeleteModalEnabled;
         //[ObservableProperty]
         //string _fullName;
         CancellationToken _cancellationToken;
 
-        string TestUserId = "1";
-        public HomeViewModel(HttpClient httpClient, JsonSerializerOptions jsonSerializerOptions, PostService postService, UserService userService, CancellationToken cancellationToken = default)
+        [ObservableProperty]
+        LoggedUser _loggedUserProp;
+
+        [ObservableProperty]
+        bool _isPostFromUser;
+
+
+
+        public HomeViewModel(HttpClient httpClient, JsonSerializerOptions jsonSerializerOptions, PostService postService, UserService userService, LoggedUser loggedUser, CancellationToken cancellationToken = default)
         {
             _httpClient = httpClient;
             _serializerOptions = jsonSerializerOptions;
@@ -48,14 +59,24 @@ namespace FilomenoMauiMidterm.ViewModels
             _userService = userService;
             _cancellationToken = cancellationToken;
             IsDeleteModalEnabled = false;
+            LoggedUserProp = loggedUser;
         }
 
         [RelayCommand]
         private void ShowPostOptions(UserPost post)
         {
             var page = (Shell.Current.CurrentPage as HomeView);
-            var semi = post;
+           
             SelectedPost = post;
+
+            if (SelectedPost.UserId == LoggedUserProp.User.Id)
+            {
+                IsPostFromUser = true;
+            }
+            else
+            {
+                IsPostFromUser = false;
+            }
             page?.FindByName<Syncfusion.Maui.Toolkit.BottomSheet.SfBottomSheet>("PostOptionsBottomSheet")?.Show();
         }
         [RelayCommand]
@@ -106,7 +127,7 @@ namespace FilomenoMauiMidterm.ViewModels
                 await Task.WhenAll(postsTask, usersTask);
                 var posts = await postsTask;
                 var users = await usersTask;
-                var userPosts = await UserPostService.GetUserPosts(users, posts);
+                var userPosts = await UserPostService.GetUserPosts(users, posts, LoggedUserProp.User);
                 
                 UserPosts = userPosts;
             }
@@ -143,17 +164,17 @@ namespace FilomenoMauiMidterm.ViewModels
             if (selectedItem.IsLiked)
             {
                 //Change to userId
-                var userId = $"userId {TestUserId}";
+                var userId = $"userId {LoggedUserProp.User.Id}";
                 if(post.LikedByUsers.Contains(userId))
                 {
                     return;
                 }
                 selectedItem.Likes++;
-                newPost.LikedByUsers.Add($"userId {TestUserId}");
+                newPost.LikedByUsers.Add($"userId {LoggedUserProp.User.Id}");
             }
             else
             {
-                newPost.LikedByUsers.Remove($"userId {TestUserId}");
+                newPost.LikedByUsers.Remove($"userId {LoggedUserProp.User.Id}");
                 if(selectedItem.Likes > 0)
                 {
 
