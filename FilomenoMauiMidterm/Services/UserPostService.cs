@@ -13,7 +13,7 @@ namespace FilomenoMauiMidterm.Services
 
         public UserPostService() { }
 
-        public static Task<ObservableCollection<UserPost>> GetUserPosts(List<User> users, List<Post> posts)
+        public static Task<ObservableCollection<UserPost>> GetUserPosts(List<User> users, List<Post> posts, User currentUser)
         {
             return Task.Run(() =>
             {
@@ -32,7 +32,7 @@ namespace FilomenoMauiMidterm.Services
                                  //If naa then isLiked is true
                                  //To get the number of likes kay ang length ra sa array
                                  Likes = post.LikedByUsers.Count,
-                                 IsLiked = post.IsLiked,
+                                 IsLiked = post.LikedByUsers.Any(userId => userId == "userId " + currentUser.Id),
                              };
 
                 return new ObservableCollection<UserPost>(joined);
