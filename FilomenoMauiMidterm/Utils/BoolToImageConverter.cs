@@ -13,7 +13,7 @@ namespace FilomenoMauiMidterm.Utils
         {
             if (value is bool isLiked)
             {
-                return isLiked ? "likefilled_icon.png" : "likeunfilled_icon.png";
+                return isLiked ? "likefilled_icon.png" : "likeunfilled_icon.svg";
             }
             return "likeunfilled_icon.png"; // Default
         }
