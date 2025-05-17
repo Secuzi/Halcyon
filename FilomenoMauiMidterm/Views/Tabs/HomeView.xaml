@@ -90,7 +90,8 @@
                                 BackgroundColor="{StaticResource SecondaryColor}"
                                 CornerRadius="20"
                                 VerticalOptions="StartAndExpand"
-                                WidthRequest="363">
+                                WidthRequest="363"
+                                Margin="0,10">
                                 <VerticalStackLayout
                                     BackgroundColor="{StaticResource SecondaryColor}"
                                     VerticalOptions="StartAndExpand"
@@ -99,7 +100,7 @@
                                     <Frame
                                         Padding="0"
                                         BackgroundColor="Transparent"
-                                        CornerRadius="10">
+                                        >
 
                                         <ffimageloading:CachedImage
                                             Aspect="AspectFit"
@@ -109,25 +110,29 @@
                                     </Frame>
 
                                     <HorizontalStackLayout
-                                        Padding="7,5,0,5"
+                                        Padding="17,5,0,5"
                                         BackgroundColor="Transparent"
                                         HeightRequest="33"
                                         Spacing="4"
                                         WidthRequest="360">
                                         <Image
                                             x:Name="LikeImage"
+                                            Margin="10,10,0,10"
                                             HeightRequest="28"
                                             Source="{Binding IsLiked, Converter={StaticResource LikeImageConverter}}">
                                             <Image.GestureRecognizers>
                                                 <TapGestureRecognizer Command="{Binding BindingContext.LikeTappedCommand, Source={x:Reference HomeViewRef}}" CommandParameter="{Binding .}" />
                                             </Image.GestureRecognizers>
                                         </Image>
-                                        <Label x:Name="likes_quantity" Text="{Binding Likes}" />
+                                        <Label x:Name="likes_quantity" 
+                                               Text="{Binding Likes}" 
+                                               VerticalOptions="Center"/>
                                     </HorizontalStackLayout>
                                     <Grid
                                         BackgroundColor="Transparent"
                                         ColumnDefinitions="1*, 3*"
                                         RowDefinitions="*, 2*"
+                                        Margin="5"
                                         VerticalOptions="FillAndExpand">
                                         <!--  User_Profile  -->
                                         <Frame
@@ -135,7 +140,8 @@
                                             Grid.Column="0"
                                             CornerRadius="50"
                                             HeightRequest="50"
-                                            WidthRequest="50">
+                                            WidthRequest="50"
+                                            VerticalOptions="Start">
 
                                             <ffimageloading:CachedImage
                                                 Aspect="AspectFit"
@@ -174,7 +180,8 @@
                                             <Label
                                                 FontSize="12"
                                                 HorizontalOptions="FillAndExpand"
-                                                LineBreakMode="WordWrap"
+                                                MaxLines="3"
+                                                LineBreakMode="TailTruncation"
                                                 Text="{Binding Description}"
                                                 VerticalOptions="Start" />
                                         </VerticalStackLayout>
