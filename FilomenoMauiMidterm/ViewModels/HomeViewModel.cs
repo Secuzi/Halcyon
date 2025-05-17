@@ -69,17 +69,24 @@ namespace FilomenoMauiMidterm.ViewModels
             await _postService.DeletePost(SelectedPost.PostId, _cancellationToken);
             SelectedPost = null;
             IsDeleteModalEnabled = false;
-            CloseDeleteModal();
+            HidePostOptions();
         }
         [RelayCommand]
-        private void ToggleDeleteModal()
+        private void OpenDeleteModal()
          {
-            IsDeleteModalEnabled = !IsDeleteModalEnabled;
-            if (!IsDeleteModalEnabled) SelectedPost = null; 
+            IsDeleteModalEnabled = true;
+        
 
         }
         [RelayCommand]
         private void CloseDeleteModal()
+        {
+            IsDeleteModalEnabled = false;
+            if (!IsDeleteModalEnabled) SelectedPost = null;
+        }
+
+        [RelayCommand]
+        private void HidePostOptions()
         {
             var page = (Shell.Current.CurrentPage as HomeView);
             page?.FindByName<Syncfusion.Maui.Toolkit.BottomSheet.SfBottomSheet>("PostOptionsBottomSheet")?.Close();

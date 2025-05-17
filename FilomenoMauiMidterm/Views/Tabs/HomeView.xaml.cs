@@ -49,6 +49,14 @@ public partial class HomeView : ContentPage
         _cancellationTokenSource?.Dispose();
         _cancellationTokenSource = null;
     }
-    
 
+    private void PostOptionsBottomSheet_StateChanged(object sender, StateChangedEventArgs e)
+    {
+        if (e.NewState == BottomSheetState.Hidden)
+        {
+            _homeViewModel.HidePostOptionsCommand.Execute(_cancellationTokenSource.Token);
+            _homeViewModel.IsDeleteModalEnabled = false;
+        }
+    
+    }
 }

@@ -242,11 +242,17 @@
             CornerRadius="20,20,0,0"
             EnableSwiping="False"
             GrabberBackground="White"
-            HalfExpandedRatio="0.8">
+            HalfExpandedRatio="0.8"
+            StateChanged="PostOptionsBottomSheet_StateChanged"
+            ZIndex="1">
             <bottomSheet:SfBottomSheet.BottomSheetContent>
                 <VerticalStackLayout>
                     <HorizontalStackLayout>
-                        <ffimageloading:CachedImage Aspect="AspectFit" Source="exit.svg" />
+                        <ffimageloading:CachedImage Aspect="AspectFit" Source="exit.svg">
+                            <ffimageloading:CachedImage.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding BindingContext.HidePostOptionsCommand, Source={x:Reference HomeViewRef}}" />
+                            </ffimageloading:CachedImage.GestureRecognizers>
+                        </ffimageloading:CachedImage>
                     </HorizontalStackLayout>
                     <FlexLayout Margin="0,16,0,0" JustifyContent="SpaceBetween">
                         <Border
@@ -330,7 +336,7 @@
                                     </FlexLayout.Behaviors>
                                     <FlexLayout.GestureRecognizers>
 
-                                        <TapGestureRecognizer Command="{Binding BindingContext.ToggleDeleteModalCommand, Source={x:Reference HomeViewRef}}" />
+                                        <TapGestureRecognizer Command="{Binding BindingContext.OpenDeleteModalCommand, Source={x:Reference HomeViewRef}}" />
                                     </FlexLayout.GestureRecognizers>
                                     <ffimageloading:CachedImage Source="delete.svg" />
                                     <Label Margin="5,0,0,0" Text="Delete" />
@@ -356,7 +362,8 @@
             BackgroundColor="#806B6B6B"
             InputTransparent="False"
             IsEnabled="{Binding IsDeleteModalEnabled}"
-            IsVisible="{Binding IsDeleteModalEnabled}">
+            IsVisible="{Binding IsDeleteModalEnabled}"
+            ZIndex="2">
 
             <FlexLayout
                 AlignItems="Center"
@@ -411,7 +418,7 @@
                                 <utils:TappedAnimationBehavior />
                             </Label.Behaviors>
                             <Label.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding BindingContext.ToggleDeleteModalCommand, Source={x:Reference HomeViewRef}}" />
+                                <TapGestureRecognizer Command="{Binding BindingContext.CloseDeleteModalCommand, Source={x:Reference HomeViewRef}}" />
                             </Label.GestureRecognizers>
 
                         </Label>
