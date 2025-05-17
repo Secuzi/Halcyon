@@ -48,14 +48,14 @@
                         HeightRequest="40"
                         HorizontalOptions="End"
                         WidthRequest="40">
-                        <Image
+                        <ffimageloading:CachedImage
                             HeightRequest="40"
-                            Source="user_sample.jpg"
+                            Source="{Binding LoggedUserProp.User.Avatar}"
                             WidthRequest="40">
-                            <Image.GestureRecognizers>
+                            <ffimageloading:CachedImage.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding .}" />
-                            </Image.GestureRecognizers>
-                        </Image>
+                            </ffimageloading:CachedImage.GestureRecognizers>
+                        </ffimageloading:CachedImage>
                     </Frame>
                 </HorizontalStackLayout>
             </StackLayout>
@@ -317,7 +317,8 @@
                                     Margin="0,4,0,0"
                                     Padding="8,0,8,0"
                                     AlignItems="Center"
-                                    HeightRequest="28">
+                                    HeightRequest="28"
+                                    IsVisible="{Binding IsPostFromUser}">
                                     <ffimageloading:CachedImage Source="editpost_icon.svg" />
                                     <Label Margin="7,0,0,0" Text="Edit" />
                                 </FlexLayout>
@@ -325,12 +326,14 @@
                                     Margin="0,4,0,0"
                                     HeightRequest="1"
                                     HorizontalOptions="Fill"
+                                    IsVisible="{Binding IsPostFromUser}"
                                     Color="Gray" />
                                 <FlexLayout
                                     Margin="0,4,0,0"
                                     Padding="8,0,8,0"
                                     AlignItems="Center"
-                                    HeightRequest="28">
+                                    HeightRequest="28"
+                                    IsVisible="{Binding IsPostFromUser}">
                                     <FlexLayout.Behaviors>
                                         <utils:TappedAnimationBehavior AnimationDuration="100" ScaleDownTo="0.96" />
                                     </FlexLayout.Behaviors>
@@ -345,6 +348,7 @@
                                     Margin="0,4,0,0"
                                     HeightRequest="1"
                                     HorizontalOptions="Fill"
+                                    IsVisible="{Binding IsPostFromUser}"
                                     Color="Gray" />
                             </VerticalStackLayout>
                         </VerticalStackLayout>
