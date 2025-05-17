@@ -34,7 +34,9 @@ namespace FilomenoMauiMidterm
             builder.Services.AddSingleton<HttpClient>(new HttpClient() { BaseAddress = new Uri("https://681ebcd2c1c291fa6634fa21.mockapi.io/v1") });
             builder.Services.AddTransient<LoginViewModel>();
             builder.Services.AddTransient<RegisterViewModel>();
+            builder.Services.AddTransient<ProfileViewModel>();
             builder.Services.AddSingleton<UserService>();
+            builder.Services.AddSingleton <PostService>();
             builder.Services.AddSingleton<JsonSerializerOptions>(
                 new JsonSerializerOptions()
                 {
