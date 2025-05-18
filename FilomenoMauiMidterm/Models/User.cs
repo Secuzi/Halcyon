@@ -20,7 +20,7 @@ namespace FilomenoMauiMidterm.Models
         public string LastName { get; set; }
 
         public string Id { get; set; }
-		public User(string username, string password, string email)
+		public User(string username, string password)
 		{
 			Username = username;
 			Password = password;

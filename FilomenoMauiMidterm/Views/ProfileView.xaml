@@ -3,6 +3,7 @@
     x:Class="FilomenoMauiMidterm.Views.ProfileView"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ffimageloading="clr-namespace:FFImageLoading.Maui;assembly=FFImageLoading.Maui"
     xmlns:models="clr-namespace:FilomenoMauiMidterm.Models"
     Title="ProfileView"
     Shell.NavBarIsVisible="False">
@@ -19,7 +20,12 @@
         </Style>
     </ContentPage.Resources>
     <VerticalStackLayout>
-        <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" />
+        <ActivityIndicator
+            Margin="0,50,0,0"
+            IsRunning="{Binding IsBusy}"
+            IsVisible="{Binding IsBusy}"
+            WidthRequest="32"
+            Color="#28E2E3" />
         <ScrollView Padding="10" IsVisible="{Binding IsNotBusy}">
             <VerticalStackLayout>
                 <Frame
@@ -166,7 +172,7 @@
                                 Stroke="Transparent"
                                 StrokeShape="RoundRectangle 10"
                                 WidthRequest="130">
-                                <Image Aspect="AspectFill" Source="{Binding Image}" />
+                                <ffimageloading:CachedImage Aspect="AspectFill" Source="{Binding Image}" />
                             </Border>
 
 

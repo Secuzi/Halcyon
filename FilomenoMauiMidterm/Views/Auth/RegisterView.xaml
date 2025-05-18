@@ -54,7 +54,6 @@
                         FontSize="30"
                         HorizontalTextAlignment="Center"
                         Style="{StaticResource PrimaryTextStyle}"
-
                         Text="Registration" />
 
                     <VerticalStackLayout Margin="0,0,0,14">
@@ -92,7 +91,7 @@
                             FontFamily="InterSemiBold"
                             FontSize="16"
                             Style="{StaticResource PrimaryTextStyle}"
-                            Text="Email" />
+                            Text="First Name" />
 
                         <Border
                             Padding="12,4,12,4"
@@ -110,7 +109,7 @@
                             <Entry
                                 FontFamily="Inter"
                                 Opacity="1"
-                                Text="{Binding Email}"
+                                Text="{Binding FirstName}"
                                 TextColor="White" />
                         </Border>
 
@@ -119,6 +118,36 @@
                     </VerticalStackLayout>
 
 
+                    <VerticalStackLayout Margin="0,0,0,14">
+                        <Label
+                            FontFamily="InterSemiBold"
+                            FontSize="16"
+                            Style="{StaticResource PrimaryTextStyle}"
+                            Text="Last Name" />
+
+                        <Border
+                            Padding="12,4,12,4"
+                            BackgroundColor="#4D515762"
+                            Stroke="Transparent"
+                            StrokeShape="RoundRectangle 8">
+                            <!--<Border.Shadow>
+                 <Shadow
+                     Brush="Black"
+                     Opacity="0.25"
+                     Radius="4"
+                     Offset="0,4" />
+             </Border.Shadow>-->
+
+                            <Entry
+                                FontFamily="Inter"
+                                Opacity="1"
+                                Text="{Binding LastName}"
+                                TextColor="White" />
+                        </Border>
+
+
+
+                    </VerticalStackLayout>
 
                     <VerticalStackLayout Margin="0,0,0,24">
                         <Label
@@ -175,7 +204,7 @@
                     <Button
                         Margin="0,0,0,22"
                         BackgroundColor="#61DAFB"
-                        Command="{Binding RegisterUserCommand}"
+                        Clicked="Register_Clicked"
                         FontFamily="InterSemiBold"
                         Text="Create your account">
                         <!--<Button.Shadow>

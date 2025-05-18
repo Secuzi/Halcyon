@@ -6,10 +6,12 @@ using System.Linq;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using Bogus;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using FilomenoMauiMidterm.Models;
 using FilomenoMauiMidterm.Services;
+using FilomenoMauiMidterm.Views;
 
 namespace FilomenoMauiMidterm.ViewModels
 {
@@ -22,13 +24,14 @@ namespace FilomenoMauiMidterm.ViewModels
         [Required]
         [MinLength(6, ErrorMessage = "Password must be at least 6 characters long!")]
         [ObservableProperty]
-
         private string _password;
 
         [Required]
-        [EmailAddress]
         [ObservableProperty]
-        private string _email;
+        private string _firstName;
+        [Required]
+        [ObservableProperty]
+        private string _lastName;
 
         [ObservableProperty]
         private string _errors;
@@ -45,11 +48,22 @@ namespace FilomenoMauiMidterm.ViewModels
             _userService = userService;
             Username = "";
             Password = "";
-            Email = "";
+            FirstName = "";
+            LastName = "";
         }
-        
+
+        public string GetRandomImage()
+        {
+            var faker = new Faker();
+
+      
+            return $"https://picsum.photos/300/300?random={faker.Random.Int()}";
+
+           
+        }
+
         [RelayCommand]
-        public async Task RegisterUser()
+        public async Task<bool> RegisterUser()
         {
             ValidateAllProperties();
             
@@ -57,16 +71,32 @@ namespace FilomenoMauiMidterm.ViewModels
             {
                 Debug.WriteLine("Validation error: ");
                 Errors = string.Join("\n", GetErrors().Select(e => e.ErrorMessage));
-                return;
+                return false ;
             }
             try
             {
-                var user = new User(Username, Password, Email);
+                var users = await _userService.GetUsers();
+
+                var doesUserExist = users.Any(user => user.Username == Username);
+                
+                if (doesUserExist) return false;
+                
+                var user = new User()
+                {
+                    Username = Username,
+                    Password = Password,
+                    FirstName = FirstName,
+                    LastName = LastName,
+                    Avatar = GetRandomImage()
+                };
+
+
                 var response = await _userService.AddUser(user);
                 if (!response)
                 {
                     Debug.WriteLine("Invalid");
                 }
+             return true ;
             }
             catch (Exception e)
             {
