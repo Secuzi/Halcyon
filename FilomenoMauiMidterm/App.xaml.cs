@@ -8,14 +8,14 @@ namespace FilomenoMauiMidterm
     public partial class App : Application
     {
 
-        public App(LoginViewModel loginViewModel, RegisterViewModel registerViewModel, HomeViewModel homeViewModel, PostViewModel postViewModel)
+        public App(LoginViewModel loginViewModel, RegisterViewModel registerViewModel, HomeViewModel homeViewModel, PostViewModel postViewModel, SearchViewModel searchViewModel)
         {
             InitializeComponent();
             //HomeView(homeViewModel)
             //MainPage = new AppShell();
             MainPage = new NavigationPage(new LoginView(loginViewModel, registerViewModel));
             //MainPage = new PostView(postViewModel);
-            //MainPage = new EditPostView();
+            //MainPage = new SearchView(searchViewModel);
 #if ANDROID
             Microsoft.Maui.Handlers.EntryHandler.Mapper.AppendToMapping(nameof(Entry), (handler, view) =>
 			{

@@ -29,9 +29,6 @@ namespace FilomenoMauiMidterm.Services
                                  Description = post.Description,
                                  Username = user.Username,
                                  Image = post.Image,
-                                 //Idea himo ug array of userid tapos check if current user is naa sa list
-                                 //If naa then isLiked is true
-                                 //To get the number of likes kay ang length ra sa array
                                  Likes = post.LikedByUsers.Count,
                                  IsLiked = post.LikedByUsers.Any(userId => userId == "userId " + currentUser.Id),
                              };

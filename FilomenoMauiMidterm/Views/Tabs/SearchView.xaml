@@ -3,11 +3,113 @@
     x:Class="FilomenoMauiMidterm.Views.Tabs.SearchView"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    Title="SearchView">
-    <VerticalStackLayout BackgroundColor="#121212">
-        <Label
-            HorizontalOptions="Center"
-            Text="Search View"
-            VerticalOptions="Center" />
+    xmlns:models="clr-namespace:FilomenoMauiMidterm.Models"
+    xmlns:viewmodel="clr-namespace:FilomenoMauiMidterm.ViewModels"
+    x:Name="SearchViewRef"
+    Title="SearchView"
+    Shell.NavBarIsVisible="False">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="PrimaryColor">#28E2E3</Color>
+            <Color x:Key="SecondaryColor">#33373E</Color>
+            <Color x:Key="Backgroundcolor">#161617</Color>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <VerticalStackLayout Padding="0,21,0,0" BackgroundColor="#121212">
+        <FlexLayout
+            Padding="9,0,9,0"
+            AlignItems="Center"
+            HeightRequest="45"
+            JustifyContent="Center">
+            <Border
+                BackgroundColor="#6B6B6B"
+                Stroke="Transparent"
+                StrokeShape="RoundRectangle 10"
+                WidthRequest="250">
+                <FlexLayout Padding="8,0,8,0" AlignItems="Center">
+                    <Image HeightRequest="20" Source="search_icon.png" />
+                    <Entry
+                        BackgroundColor="Red"
+                        Placeholder="Search"
+                        PlaceholderColor="White"
+                        Text="{Binding SearchQuery}"
+                        TextChanged="Entry_TextChanged"
+                        WidthRequest="210" />
+                </FlexLayout>
+            </Border>
+            <Label Margin="8,0,0,0" Text="Cancel">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding ClearSearchCommand}" />
+                </Label.GestureRecognizers>
+            </Label>
+        </FlexLayout>
+        <BoxView
+            Margin="0,20,0,10"
+            HeightRequest="1"
+            HorizontalOptions="Fill"
+            Color="Gray" />
+        <ScrollView>
+            <VerticalStackLayout>
+
+
+                <CollectionView ItemsSource="{Binding SearchedUsers}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="models:User">
+                            <Frame
+                                Padding="5"
+                                BackgroundColor="{StaticResource Backgroundcolor}"
+                                CornerRadius="0"
+                                HeightRequest="70"
+                                VerticalOptions="StartAndExpand">
+
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding BindingContext.GotoProfileViewCommand, Source={x:Reference SearchViewRef}}" CommandParameter="{Binding Id}" />
+                                </Frame.GestureRecognizers>
+                                <Grid ColumnDefinitions=".2*,.6*, .2*" RowDefinitions="*,*">
+                                    <Frame
+                                        Grid.RowSpan="2"
+                                        CornerRadius="30"
+                                        HeightRequest="58"
+                                        HorizontalOptions="Start"
+                                        WidthRequest="58">
+                                        <Image
+                                            Aspect="AspectFit"
+                                            HeightRequest="58"
+                                            Source="{Binding Avatar}"
+                                            WidthRequest="58" />
+                                    </Frame>
+                                    <HorizontalStackLayout Grid.Column="1">
+                                        <Label
+                                            FontFamily="InterSemiBold"
+                                            HorizontalOptions="Start"
+                                            Text="{Binding FirstName}"
+                                            VerticalOptions="End" />
+                                        <Label
+                                            Margin="4,0,0,0"
+                                            FontFamily="InterSemiBold"
+                                            HorizontalOptions="Start"
+                                            Text="{Binding LastName}"
+                                            VerticalOptions="End" />
+                                    </HorizontalStackLayout>
+                                    <Label
+                                        Grid.Row="1"
+                                        Grid.Column="1"
+                                        HorizontalOptions="Start"
+                                        Text="{Binding Username, StringFormat='@{0}'}"
+                                        TextColor="#8A8A8B"
+                                        VerticalOptions="Start" />
+
+
+                                </Grid>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </VerticalStackLayout>
+        </ScrollView>
+
+
+
+
     </VerticalStackLayout>
 </ContentPage>

@@ -47,9 +47,11 @@ namespace FilomenoMauiMidterm
             builder.Services.AddSingleton<LoggedUser>(new LoggedUser());
             builder.Services.AddSingleton<SelectedPost>();
             builder.Services.AddTransient<HomeViewModel>();
+            builder.Services.AddTransient<SearchView>();
             builder.Services.AddTransient<EditPostViewModel>();
             builder.Services.AddSingleton<UserService>();
             builder.Services.AddSingleton<PostService>();
+            builder.Services.AddTransient<SearchViewModel>();
             builder.Services.AddTransient<HomeView>();
             builder.Services.AddTransient<EditPostView>();
             builder.Services.AddTransient<ProfileView>();
