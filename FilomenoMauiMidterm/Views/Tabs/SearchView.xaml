@@ -3,11 +3,38 @@
     x:Class="FilomenoMauiMidterm.Views.Tabs.SearchView"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    Title="SearchView">
-    <VerticalStackLayout BackgroundColor="#121212">
-        <Label
-            HorizontalOptions="Center"
-            Text="Search View"
-            VerticalOptions="Center" />
+    Title="SearchView"
+    Shell.NavBarIsVisible="False">
+    <VerticalStackLayout Padding="0,21,0,0" BackgroundColor="#121212">
+        <FlexLayout
+            Padding="9,0,9,0"
+            AlignItems="Center"
+            HeightRequest="45"
+            JustifyContent="Center">
+            <Border
+                BackgroundColor="#6B6B6B"
+                Stroke="Transparent"
+                StrokeShape="RoundRectangle 10"
+                WidthRequest="250">
+                <FlexLayout Padding="8,0,8,0" AlignItems="Center">
+                    <Image HeightRequest="20" Source="search_icon.png" />
+                    <Entry
+                        BackgroundColor="Red"
+                        Placeholder="Search"
+                        PlaceholderColor="White"
+                        WidthRequest="210" />
+                </FlexLayout>
+            </Border>
+            <Label Margin="8,0,0,0" Text="Cancel" />
+        </FlexLayout>
+        <BoxView
+            Margin="0,20,0,0"
+            HeightRequest="1"
+            HorizontalOptions="Fill"
+            Color="Gray" />
+
+
+
+
     </VerticalStackLayout>
 </ContentPage>

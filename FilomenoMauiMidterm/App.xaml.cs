@@ -13,9 +13,9 @@ namespace FilomenoMauiMidterm
             InitializeComponent();
             //HomeView(homeViewModel)
             //MainPage = new AppShell();
-            MainPage = new NavigationPage(new LoginView(loginViewModel, registerViewModel));
+            //MainPage = new NavigationPage(new LoginView(loginViewModel, registerViewModel));
             //MainPage = new PostView(postViewModel);
-            //MainPage = new EditPostView();
+            MainPage = new SearchView();
 #if ANDROID
             Microsoft.Maui.Handlers.EntryHandler.Mapper.AppendToMapping(nameof(Entry), (handler, view) =>
 			{
