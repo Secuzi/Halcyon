@@ -61,7 +61,7 @@ namespace FilomenoMauiMidterm.Services
                 var json = JsonSerializer.Serialize(post, _jsonSerializerOptions);
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
 
-                var response = await _httpClient.PostAsync(baseURL, content);
+                var response = await _httpClient.PostAsync($"{_httpClient.BaseAddress.OriginalString}/post", content);
 
                 if (!response.IsSuccessStatusCode)
                 {

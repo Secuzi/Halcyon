@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using FilomenoMauiMidterm.Context;
 using FilomenoMauiMidterm.Models;
 using FilomenoMauiMidterm.Services;
 
@@ -33,15 +35,21 @@ namespace FilomenoMauiMidterm.ViewModels
         [ObservableProperty]
         int _numberOfPosts;
 
-        public ProfileViewModel(PostService postService, UserService userService)
+        public ProfileViewModel(PostService postService, UserService userService, NavigationId navigationId )
         {
             _postService = postService;
             _userService = userService;
             //Static for now
-            UserId = "1";
+            UserId = navigationId.Id;
 
 
         }
+        [RelayCommand]
+        private async Task BackToHome()
+        {
+            await Shell.Current.GoToAsync("..");
+        }
+
         public async Task LoadDataAsync()
         {
             IsBusy = true;
