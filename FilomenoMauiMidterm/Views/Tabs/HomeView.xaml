@@ -325,6 +325,9 @@
                                     AlignItems="Center"
                                     HeightRequest="28"
                                     IsVisible="{Binding IsPostFromUser}">
+                                    <FlexLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding EditPostCommand}" />
+                                    </FlexLayout.GestureRecognizers>
                                     <ffimageloading:CachedImage Source="editpost_icon.svg" />
                                     <Label Margin="7,0,0,0" Text="Edit" />
                                 </FlexLayout>

@@ -107,7 +107,7 @@ namespace FilomenoMauiMidterm.Services
                 return false;
             }
         }
-        public async Task<Post> GetPost(string postId, CancellationToken cancellationToken)
+        public async Task<Post> GetPost(string postId, CancellationToken cancellationToken = default)
         {
             try
             {
@@ -128,7 +128,7 @@ namespace FilomenoMauiMidterm.Services
             }
         }
 
-        public async Task<bool> UpdatePost(Post postToUpdate, CancellationToken cancellationToken)
+        public async Task<bool> UpdatePost(Post postToUpdate, CancellationToken cancellationToken = default)
         {
             try
             {

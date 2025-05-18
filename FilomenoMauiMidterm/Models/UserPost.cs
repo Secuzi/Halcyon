@@ -25,6 +25,9 @@ namespace FilomenoMauiMidterm.Models
         
         [ObservableProperty]
         private string _description;
+
+        [ObservableProperty]
+        private string _username;
         
         [ObservableProperty]
         private int _likes;
