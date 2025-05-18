@@ -7,7 +7,7 @@ using Imagekit.Sdk;
 
 namespace FilomenoMauiMidterm.Services
 {
-    class ImageKitService
+    public class ImageKitService
     {
 
         private readonly ImagekitClient _client;
