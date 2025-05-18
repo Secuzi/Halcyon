@@ -52,7 +52,8 @@ namespace FilomenoMauiMidterm.ViewModels
 
         NavigationId _navigationId;
 
-        public HomeViewModel(HttpClient httpClient, JsonSerializerOptions jsonSerializerOptions, PostService postService, UserService userService, LoggedUser loggedUser, NavigationId navigationId,  CancellationToken cancellationToken = default)
+        SelectedPost _globalSelectedPost;
+        public HomeViewModel(HttpClient httpClient, JsonSerializerOptions jsonSerializerOptions, PostService postService, UserService userService, LoggedUser loggedUser, NavigationId navigationId, SelectedPost selectedPost, CancellationToken cancellationToken = default)
         {
             _httpClient = httpClient;
             _serializerOptions = jsonSerializerOptions;
@@ -62,6 +63,8 @@ namespace FilomenoMauiMidterm.ViewModels
             IsDeleteModalEnabled = false;
             LoggedUserProp = loggedUser;
             _navigationId  = navigationId;
+            
+            _globalSelectedPost = selectedPost;
         }
 
         [RelayCommand]
@@ -115,6 +118,14 @@ namespace FilomenoMauiMidterm.ViewModels
             page?.FindByName<Syncfusion.Maui.Toolkit.BottomSheet.SfBottomSheet>("PostOptionsBottomSheet")?.Close();
         }
 
+        [RelayCommand]
+        private async Task EditPost()
+        {
+            _globalSelectedPost.SelectedUserPost = SelectedPost;
+            await Shell.Current.GoToAsync($"edit");
+
+        }
+
         public async Task LoadDataAsync(CancellationToken cancellationToken)
         {
             _cancellationToken = cancellationToken;
@@ -153,7 +164,7 @@ namespace FilomenoMauiMidterm.ViewModels
         private async Task GotoProfileView(string id)
         {
             _navigationId.Id = id;
-            await Shell.Current.GoToAsync($"profile");
+            await Shell.Current.GoToAsync("profile");
         }
 
 

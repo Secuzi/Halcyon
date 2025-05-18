@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="FilomenoMauiMidterm.Views.EditPostView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ffimageloading="clr-namespace:FFImageLoading.Maui;assembly=FFImageLoading.Maui"
+    Title="EditPostView"
+    Shell.NavBarIsVisible="False">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="PrimaryColor">#28E2E3</Color>
+            <Color x:Key="SecondaryColor">#33373E</Color>
+            <Color x:Key="Backgroundcolor">#161617</Color>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <VerticalStackLayout
+        Padding="0,22,0,0"
+        HorizontalOptions="Fill"
+        VerticalOptions="FillAndExpand">
+        <FlexLayout JustifyContent="SpaceAround">
+            <Label Text="Cancel" TextColor="#28E2E3">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding CancelUpdateCommand}" />
+                </Label.GestureRecognizers>
+            </Label>
+            <Label Text="Edit info" />
+            <Label Text="Done" TextColor="#28E2E3">
+                <Label.GestureRecognizers>
+
+                    <TapGestureRecognizer Command="{Binding UpdatePostCommand}" />
+                </Label.GestureRecognizers>
+            </Label>
+        </FlexLayout>
+        <BoxView
+            Margin="0,12,0,0"
+            HeightRequest="1"
+            HorizontalOptions="Fill"
+            Color="#6B6B6B" />
+        <ScrollView HeightRequest="600">
+            <VerticalStackLayout>
+                <HorizontalStackLayout
+                    Margin="0,20,0,0"
+                    Padding="20,0,20,0"
+                    VerticalOptions="Center">
+                    <Border
+                        Stroke="Transparent"
+                        StrokeShape="RoundRectangle 100"
+                        WidthRequest="56">
+
+                        <ffimageloading:CachedImage Aspect="AspectFit" Source="{Binding SelectedUserPostProp.Avatar}" />
+                    </Border>
+                    <Label
+                        Margin="4,0,0,0"
+                        Text="{Binding SelectedUserPostProp.Username}"
+                        VerticalTextAlignment="Center" />
+
+                </HorizontalStackLayout>
+
+                <Frame
+                    Margin="0,10"
+                    Padding="0"
+                    BackgroundColor="{StaticResource SecondaryColor}"
+                    BorderColor="Transparent"
+                    CornerRadius="20"
+                    VerticalOptions="StartAndExpand"
+                    WidthRequest="363">
+                    <VerticalStackLayout
+                        BackgroundColor="{StaticResource SecondaryColor}"
+                        VerticalOptions="StartAndExpand"
+                        WidthRequest="363">
+                        <Image
+                            Margin="0,0,20,5"
+                            HorizontalOptions="End"
+                            Source="options"
+                            VerticalOptions="Start"
+                            WidthRequest="20">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding BindingContext.ShowPostOptionsCommand, Source={x:Reference HomeViewRef}}" CommandParameter="{Binding .}" />
+                            </Image.GestureRecognizers>
+                        </Image>
+
+                        <Frame
+                            Padding="0"
+                            BackgroundColor="Transparent"
+                            CornerRadius="0">
+                            <VerticalStackLayout>
+                                <ActivityIndicator IsRunning="{Binding IsImageLoading}" IsVisible="{Binding IsImageLoading}" />
+                                <ffimageloading:CachedImage
+                                    Aspect="AspectFit"
+                                    LoadingPlaceholder="loading.png"
+                                    Source="{Binding SelectedUserPostProp.Image}" />
+                            </VerticalStackLayout>
+
+                        </Frame>
+
+                        <Button
+                            Margin="0,6,0,0"
+                            BackgroundColor="#28E2E3"
+                            Command="{Binding PickPhotoCommand}"
+                            Text="Change image" />
+                    </VerticalStackLayout>
+                </Frame>
+
+
+                <VerticalStackLayout Margin="0,8,0,0" Padding="18,0,18,0">
+                    <Editor
+                        AutoSize="TextChanges"
+                        HeightRequest="200"
+                        Placeholder="Your description here"
+                        Text="{Binding SelectedUserPostProp.Description}" />
+                </VerticalStackLayout>
+
+
+            </VerticalStackLayout>
+        </ScrollView>
+    </VerticalStackLayout>
+</ContentPage>
