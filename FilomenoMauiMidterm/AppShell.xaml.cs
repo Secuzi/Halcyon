@@ -15,6 +15,7 @@ namespace FilomenoMauiMidterm
             Routing.RegisterRoute(nameof(HomeView), typeof(HomeView));
             Routing.RegisterRoute(nameof(PostView), typeof(PostView));
             Routing.RegisterRoute(nameof(SearchView), typeof(SearchView));
+            Routing.RegisterRoute($"home/profile", typeof(ProfileView));  
 
         }
     }

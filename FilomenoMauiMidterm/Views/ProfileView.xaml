@@ -4,7 +4,8 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:models="clr-namespace:FilomenoMauiMidterm.Models"
-    Title="ProfileView">
+    Title="ProfileView"
+    Shell.NavBarIsVisible="False">
     <ContentPage.Resources>
         <Style x:Key="PrimaryTextStyle" TargetType="Label">
             <Setter Property="TextColor" Value="White" />
@@ -35,7 +36,11 @@
                             HorizontalOptions="Start"
                             Source="back"
                             VerticalOptions="Start"
-                            WidthRequest="20" />
+                            WidthRequest="20" >
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding BackToHomeCommand}"/>
+                            </Image.GestureRecognizers>
+                        </Image>
                         <Image
                             Grid.Column="1"
                             HorizontalOptions="End"

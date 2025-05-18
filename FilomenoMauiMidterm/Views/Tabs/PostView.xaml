@@ -3,11 +3,199 @@
     x:Class="FilomenoMauiMidterm.Views.Tabs.PostView"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    Title="PostView">
-    <VerticalStackLayout BackgroundColor="#121212">
-        <Label
-            HorizontalOptions="Center"
-            Text="Create a post"
-            VerticalOptions="Center" />
-    </VerticalStackLayout>
+    xmlns:bottomSheet="clr-namespace:Syncfusion.Maui.Toolkit.BottomSheet;assembly=Syncfusion.Maui.Toolkit"
+    xmlns:ffimageloading="clr-namespace:FFImageLoading.Maui;assembly=FFImageLoading.Maui"
+    Title="PostView"
+    BackgroundColor="#33373E"
+    Shell.NavBarIsVisible="False">
+    <Grid RowDefinitions=".5*, .25*">
+
+        <VerticalStackLayout Padding="0,16,0,0" BackgroundColor="#33373E">
+            <FlexLayout JustifyContent="SpaceAround">
+                <ffimageloading:CachedImage HeightRequest="24" Source="exit.svg" />
+                <Label Text="Create post" />
+                <ffimageloading:CachedImage Source="create.svg">
+                    <ffimageloading:CachedImage.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding CreatePostCommand}" />
+
+
+
+                    </ffimageloading:CachedImage.GestureRecognizers>
+
+                </ffimageloading:CachedImage>
+            </FlexLayout>
+            <BoxView
+                Margin="0,12,0,0"
+                HeightRequest="1"
+                HorizontalOptions="Fill"
+                Color="Black" />
+            <FlexLayout
+                Margin="0,32,0,0"
+                Padding="32,0,32,0"
+                AlignItems="Center">
+                <Border Stroke="Transparent" StrokeShape="RoundRectangle 100">
+                    <ffimageloading:CachedImage HeightRequest="36" Source="{Binding LoggedUserProp.User.Avatar}" />
+
+                </Border>
+                <HorizontalStackLayout>
+                    <Label Margin="4,0,0,0" Text="{Binding LoggedUserProp.User.FirstName}" />
+                    <Label Margin="4,0,0,0" Text="{Binding LoggedUserProp.User.LastName}" />
+                </HorizontalStackLayout>
+            </FlexLayout>
+            <FlexLayout
+                Margin="0,24,0,16"
+                Padding="32,0,32,0"
+                JustifyContent="SpaceEvenly">
+                <Border
+                    Padding="4,2,4,2"
+                    BackgroundColor="#28E2E3"
+                    Stroke="Transparent"
+                    StrokeShape="RoundRectangle 100">
+                    <FlexLayout AlignItems="Center" HeightRequest="21">
+                        <ffimageloading:CachedImage Source="globe.svg" />
+                        <Label
+                            Margin="1,0,1,0"
+                            FontSize="11"
+                            Text="Public"
+                            TextColor="Black" />
+                        <ffimageloading:CachedImage Source="chevdown.svg" />
+                    </FlexLayout>
+
+                </Border>
+                <Border
+                    Padding="4,2,4,2"
+                    BackgroundColor="#28E2E3"
+                    Stroke="Transparent"
+                    StrokeShape="RoundRectangle 100">
+                    <FlexLayout AlignItems="Center" HeightRequest="21">
+                        <ffimageloading:CachedImage Source="plus_math.svg" />
+                        <Label
+                            Margin="1,0,1,0"
+                            FontSize="11"
+                            Text="Album"
+                            TextColor="Black" />
+                        <ffimageloading:CachedImage Source="chevdown.svg" />
+                    </FlexLayout>
+
+                </Border>
+                <Border
+                    Padding="4,2,4,2"
+                    BackgroundColor="#28E2E3"
+                    Stroke="Transparent"
+                    StrokeShape="RoundRectangle 100"
+                    WidthRequest="81">
+                    <FlexLayout
+                        AlignItems="Center"
+                        HeightRequest="21"
+                        JustifyContent="Center">
+                        <ffimageloading:CachedImage Source="instagram.svg" />
+                        <Label
+                            Margin="1,0,1,0"
+                            FontSize="11"
+                            Text="Off"
+                            TextColor="Black" />
+                        <ffimageloading:CachedImage Source="chevdown.svg" />
+                    </FlexLayout>
+
+                </Border>
+
+            </FlexLayout>
+            <ScrollView HeightRequest="300">
+                <VerticalStackLayout Margin="0,16,0,0">
+                    <VerticalStackLayout Margin="0,0,0,8" Padding="32,0,32,0">
+                        <Editor
+                            AutoSize="TextChanges"
+                            Placeholder="What's on your mind?"
+                            PlaceholderColor="#B3B3B3"
+                            Text="{Binding PostDescription}" />
+                    </VerticalStackLayout>
+                    <ActivityIndicator
+                        IsRunning="{Binding IsImageLoading}"
+                        IsVisible="{Binding IsImageLoading}"
+                        Color="#28E2E3" />
+                    <ffimageloading:CachedImage LoadingPlaceholder="loading.png" Source="{Binding PostImage}" />
+
+                    <HorizontalStackLayout HorizontalOptions="End" IsVisible="{Binding HasImage}">
+                        <ffimageloading:CachedImage LoadingPlaceholder="loading.png" Source="exit.png">
+                            <ffimageloading:CachedImage.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding ClearImageCommand}" />
+
+                            </ffimageloading:CachedImage.GestureRecognizers>
+                        </ffimageloading:CachedImage>
+                        <Label Text="Remove image" />
+                    </HorizontalStackLayout>
+
+                </VerticalStackLayout>
+            </ScrollView>
+
+        </VerticalStackLayout>
+
+        <Border
+            Grid.Row="1"
+            Stroke="Black"
+            StrokeShape="RoundRectangle 20, 20, 0, 0"
+            StrokeThickness="4">
+            <VerticalStackLayout Padding="0,32,0,0" Background="#33373E">
+
+                <FlexLayout
+                    Margin="0,4,0,0"
+                    Padding="8,0,8,0"
+                    AlignItems="Center"
+                    HeightRequest="28">
+                    <FlexLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding PickPhotoCommand}" />
+                    </FlexLayout.GestureRecognizers>
+                    <ffimageloading:CachedImage Source="wallpaper_icon.svg" />
+                    <Label Margin="4,0,0,0" Text="Add Photo" />
+
+
+
+                </FlexLayout>
+                <BoxView
+                    Margin="0,8,0,0"
+                    HeightRequest="1"
+                    HorizontalOptions="Fill"
+                    Color="Gray" />
+                <FlexLayout
+                    Margin="0,4,0,0"
+                    Padding="8,0,8,0"
+                    AlignItems="Center"
+                    HeightRequest="28">
+                    <ffimageloading:CachedImage Source="tag.svg" />
+                    <Label Margin="4,0,0,0" Text="Tag People" />
+                </FlexLayout>
+                <BoxView
+                    Margin="0,8,0,0"
+                    HeightRequest="1"
+                    HorizontalOptions="Fill"
+                    Color="Gray" />
+                <FlexLayout
+                    Margin="0,4,0,0"
+                    Padding="8,0,8,0"
+                    AlignItems="Center"
+                    HeightRequest="28">
+                    <ffimageloading:CachedImage Source="place_marker.svg" />
+                    <Label Margin="4,0,0,0" Text="Location" />
+                </FlexLayout>
+                <BoxView
+                    Margin="0,8,0,0"
+                    HeightRequest="1"
+                    HorizontalOptions="Fill"
+                    Color="Gray" />
+                <FlexLayout
+                    Margin="0,4,0,0"
+                    Padding="8,0,8,0"
+                    AlignItems="Center"
+                    HeightRequest="28">
+                    <ffimageloading:CachedImage Source="feeling_icon.svg" />
+                    <Label Margin="4,0,0,0" Text="Feeling/Activity" />
+                </FlexLayout>
+                <BoxView
+                    Margin="0,8,0,0"
+                    HeightRequest="1"
+                    HorizontalOptions="Fill"
+                    Color="Gray" />
+            </VerticalStackLayout>
+        </Border>
+    </Grid>
 </ContentPage>

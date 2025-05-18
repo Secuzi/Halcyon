@@ -3,6 +3,7 @@ using FFImageLoading.Maui;
 using FilomenoMauiMidterm.Context;
 using FilomenoMauiMidterm.Services;
 using FilomenoMauiMidterm.ViewModels;
+using FilomenoMauiMidterm.Views;
 using FilomenoMauiMidterm.Views.Tabs;
 using Imagekit.Sdk;
 using Microsoft.Extensions.Logging;
@@ -42,12 +43,16 @@ namespace FilomenoMauiMidterm
             builder.Services.AddTransient<LoginViewModel>();
             builder.Services.AddTransient<RegisterViewModel>();
             builder.Services.AddTransient<ProfileViewModel>();
+            builder.Services.AddTransient<PostViewModel>();  
             builder.Services.AddSingleton<LoggedUser>(new LoggedUser());
             builder.Services.AddTransient<HomeViewModel>();
             builder.Services.AddSingleton<UserService>();
             builder.Services.AddSingleton<PostService>();
             builder.Services.AddTransient<HomeView>();
-
+            builder.Services.AddTransient<ProfileView>();
+            builder.Services.AddSingleton<NavigationId>();
+            builder.Services.AddTransient<PostView>();
+            builder.Services.AddSingleton<ImageKitService>();
             builder.Services.AddSingleton<JsonSerializerOptions>(
                 new JsonSerializerOptions()
                 {

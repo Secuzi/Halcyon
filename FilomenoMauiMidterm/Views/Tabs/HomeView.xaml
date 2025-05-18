@@ -53,7 +53,7 @@
                             Source="{Binding LoggedUserProp.User.Avatar}"
                             WidthRequest="40">
                             <ffimageloading:CachedImage.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding .}" />
+                                <TapGestureRecognizer Command="{Binding GotoProfileViewCommand}" CommandParameter="{Binding LoggedUserProp.User.Id}" />
                             </ffimageloading:CachedImage.GestureRecognizers>
                         </ffimageloading:CachedImage>
                     </Frame>
@@ -178,7 +178,13 @@
                                                     HeightRequest="60"
                                                     LoadingPlaceholder="loading.png"
                                                     Source="{Binding Avatar}"
-                                                    WidthRequest="60" />
+                                                    WidthRequest="60">
+                                                    <ffimageloading:CachedImage.GestureRecognizers>
+                                                        <TapGestureRecognizer Command="{Binding BindingContext.GotoProfileViewCommand, Source={x:Reference HomeViewRef}}" CommandParameter="{Binding UserId}" />
+
+                                                    </ffimageloading:CachedImage.GestureRecognizers>
+
+                                                </ffimageloading:CachedImage>
 
 
                                             </Frame>
