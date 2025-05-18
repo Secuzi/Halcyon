@@ -141,10 +141,10 @@ namespace FilomenoMauiMidterm.ViewModels
                 var posts = await postsTask;
                 var users = await usersTask;
                 var userPosts = await UserPostService.GetUserPosts(users, posts, LoggedUserProp.User);
-                
+
                 UserPosts = userPosts;
             }
-            catch(OperationCanceledException)
+            catch (OperationCanceledException)
             {
                 Debug.WriteLine($"Canclled task");
             }
@@ -158,6 +158,8 @@ namespace FilomenoMauiMidterm.ViewModels
                 IsNotBusy = true;
             }
         }
+
+
 
 
         [RelayCommand]

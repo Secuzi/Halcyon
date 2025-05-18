@@ -9,6 +9,7 @@ using CommunityToolkit.Mvvm.Input;
 using FilomenoMauiMidterm.Context;
 using FilomenoMauiMidterm.Models;
 using FilomenoMauiMidterm.Services;
+using FilomenoMauiMidterm.Views;
 
 namespace FilomenoMauiMidterm.ViewModels
 {
@@ -35,19 +36,36 @@ namespace FilomenoMauiMidterm.ViewModels
         [ObservableProperty]
         int _numberOfPosts;
 
-        public ProfileViewModel(PostService postService, UserService userService, NavigationId navigationId )
+        LoggedUser _loggedUser;
+
+        [ObservableProperty]
+        bool _canUserLogout;
+
+        LoginViewModel _loginViewModel;
+
+        RegisterViewModel _registerViewModel;
+
+        public ProfileViewModel(PostService postService, UserService userService, NavigationId navigationId, LoggedUser loggedUser, LoginViewModel loginViewModel, RegisterViewModel registerViewModel )
         {
             _postService = postService;
             _userService = userService;
             //Static for now
             UserId = navigationId.Id;
-
-
+            _loggedUser = loggedUser;
+            CanUserLogout = _loggedUser.User.Id == UserId;
+            _loginViewModel = loginViewModel;
+            _registerViewModel = registerViewModel;
         }
         [RelayCommand]
         private async Task BackToHome()
         {
             await Shell.Current.GoToAsync("..");
+        }
+        [RelayCommand]
+        private async Task Logout()
+        {
+            _loggedUser.User = new User();
+            Application.Current.MainPage = new NavigationPage(new LoginView(_loginViewModel, _registerViewModel));
         }
 
         public async Task LoadDataAsync()

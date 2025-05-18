@@ -36,17 +36,23 @@
                             HorizontalOptions="Start"
                             Source="back"
                             VerticalOptions="Start"
-                            WidthRequest="20" >
+                            WidthRequest="20">
                             <Image.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding BackToHomeCommand}"/>
+                                <TapGestureRecognizer Command="{Binding BackToHomeCommand}" />
                             </Image.GestureRecognizers>
                         </Image>
                         <Image
                             Grid.Column="1"
                             HorizontalOptions="End"
-                            Source="back"
+                            IsVisible="{Binding CanUserLogout}"
+                            Source="logout.svg"
                             VerticalOptions="Start"
-                            WidthRequest="20" />
+                            WidthRequest="20">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding LogoutCommand}" />
+                            </Image.GestureRecognizers>
+
+                        </Image>
                         <Grid
                             Grid.Row="1"
                             Grid.ColumnSpan="2"
