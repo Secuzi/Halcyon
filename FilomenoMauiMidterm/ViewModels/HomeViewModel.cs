@@ -11,6 +11,7 @@ using CommunityToolkit.Mvvm.Input;
 using FilomenoMauiMidterm.Context;
 using FilomenoMauiMidterm.Models;
 using FilomenoMauiMidterm.Services;
+using FilomenoMauiMidterm.Views;
 using FilomenoMauiMidterm.Views.Tabs;
 
 namespace FilomenoMauiMidterm.ViewModels
@@ -49,9 +50,9 @@ namespace FilomenoMauiMidterm.ViewModels
         [ObservableProperty]
         bool _isPostFromUser;
 
+        NavigationId _navigationId;
 
-
-        public HomeViewModel(HttpClient httpClient, JsonSerializerOptions jsonSerializerOptions, PostService postService, UserService userService, LoggedUser loggedUser, CancellationToken cancellationToken = default)
+        public HomeViewModel(HttpClient httpClient, JsonSerializerOptions jsonSerializerOptions, PostService postService, UserService userService, LoggedUser loggedUser, NavigationId navigationId,  CancellationToken cancellationToken = default)
         {
             _httpClient = httpClient;
             _serializerOptions = jsonSerializerOptions;
@@ -60,6 +61,7 @@ namespace FilomenoMauiMidterm.ViewModels
             _cancellationToken = cancellationToken;
             IsDeleteModalEnabled = false;
             LoggedUserProp = loggedUser;
+            _navigationId  = navigationId;
         }
 
         [RelayCommand]
@@ -145,6 +147,15 @@ namespace FilomenoMauiMidterm.ViewModels
                 IsNotBusy = true;
             }
         }
+
+
+        [RelayCommand]
+        private async Task GotoProfileView(string id)
+        {
+            _navigationId.Id = id;
+            await Shell.Current.GoToAsync($"profile");
+        }
+
 
         [RelayCommand]
         public async Task LikeTapped(UserPost selectedItem)
