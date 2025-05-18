@@ -3,8 +3,17 @@
     x:Class="FilomenoMauiMidterm.Views.Tabs.SearchView"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:models="clr-namespace:FilomenoMauiMidterm.Models"
+    xmlns:viewmodel="clr-namespace:FilomenoMauiMidterm.ViewModels"
     Title="SearchView"
-    Shell.NavBarIsVisible="False">
+    Shell.NavBarIsVisible="True">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="PrimaryColor">#28E2E3</Color>
+            <Color x:Key="SecondaryColor">#33373E</Color>
+            <Color x:Key="Backgroundcolor">#161617</Color>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <VerticalStackLayout Padding="0,21,0,0" BackgroundColor="#121212">
         <FlexLayout
             Padding="9,0,9,0"
@@ -28,10 +37,60 @@
             <Label Margin="8,0,0,0" Text="Cancel" />
         </FlexLayout>
         <BoxView
-            Margin="0,20,0,0"
+            Margin="0,20,0,10"
             HeightRequest="1"
             HorizontalOptions="Fill"
             Color="Gray" />
+        <ScrollView>
+            <VerticalStackLayout>
+                
+                            <Frame Padding="5"
+                                   BackgroundColor="{StaticResource Backgroundcolor}"
+                                   HeightRequest="70"
+                                   VerticalOptions="StartAndExpand"
+                                   CornerRadius="0">
+                                <Grid RowDefinitions="*,*"
+                                      ColumnDefinitions=".2*,.6*,.2*">
+                                    <Frame Grid.RowSpan="2"
+                                           HeightRequest="58"
+                                           WidthRequest="58"
+                                           CornerRadius="30"
+                                           HorizontalOptions="Start">
+                                        <Image Source="add"
+                                               Aspect="AspectFit"
+                                               WidthRequest="58"
+                                              />
+                                    </Frame>
+                                    <Label Text="Regine Matugas"
+                                           Grid.Column="1"
+                                           HorizontalOptions="Start"
+                                           VerticalOptions="End"
+                                           FontFamily="InterSemiBold"/>
+                                    <Label Text="@matugasregine"
+                                           Grid.Row="1"
+                                           Grid.Column="1"
+                                           HorizontalOptions="Start"
+                                           VerticalOptions="Start"
+                                           TextColor="#8A8A8B"/>
+                                    <Image Source="exit"
+                                           Grid.Column="2"
+                                           Grid.RowSpan="2"
+                                           HeightRequest="22">
+                                            <Image.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding .}" />
+                                            </Image.GestureRecognizers> 
+                                    </Image>
+
+                    </Grid>
+                            </Frame>
+                <!--<CollectionView ItemsSource="{Binding RecentSearches}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="models:RecentSearch">
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>-->
+            </VerticalStackLayout>
+        </ScrollView>
 
 
 

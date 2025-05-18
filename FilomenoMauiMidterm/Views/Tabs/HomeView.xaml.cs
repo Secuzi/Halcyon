@@ -17,7 +17,7 @@ public partial class HomeView : ContentPage
 	}
 	private async void HomePage_Clicked(object sender, EventArgs e)
 	{
-		await DisplayAlert("Alert", "This is HomePAge", "OK");
+		await DisplayAlert("Alert", "This is HomePage", "OK");
 	}
     private bool isLiked = false;
 
