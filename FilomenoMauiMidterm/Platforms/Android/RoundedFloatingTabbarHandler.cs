@@ -39,7 +39,7 @@ namespace FilomenoMauiMidterm
             //tabbarDrawable.SetCornerRadii([40, 40, 40, 40, 0, 0, 0, 0]);
             
             //If we want just all corners to be 50           
-            tabbarDrawable.SetCornerRadius(50);
+            tabbarDrawable.SetCornerRadius(0);
 
             tabbarDrawable.SetColor(appearance.EffectiveTabBarBackgroundColor.ToPlatform());
 
@@ -48,7 +48,7 @@ namespace FilomenoMauiMidterm
             ViewGroup.LayoutParams layoutParameters = bottomView.LayoutParameters;
             if (layoutParameters is MarginLayoutParams marginLayoutParams)
             {
-                marginLayoutParams.SetMargins(50, 0, 50, 50);
+                marginLayoutParams.SetMargins(0, 0, 0, 0);
                 bottomView.LayoutParameters = marginLayoutParams;
             }
 

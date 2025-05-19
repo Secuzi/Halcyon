@@ -45,46 +45,50 @@
                     <Border
                         Stroke="Transparent"
                         StrokeShape="RoundRectangle 100"
-                        WidthRequest="56">
+                        WidthRequest="48">
 
                         <ffimageloading:CachedImage Aspect="AspectFit" Source="{Binding SelectedUserPostProp.Avatar}" />
                     </Border>
-                    <Label
-                        Margin="4,0,0,0"
-                        Text="{Binding SelectedUserPostProp.Username}"
+                    <VerticalStackLayout VerticalOptions="Center">
+                        <HorizontalStackLayout>
+                            <Label
+                            Margin="6,0,0,0"
+                            Text="{Binding SelectedUserPostProp.FirstName}"
+                            VerticalTextAlignment="Center" />
+                            <Label
+                            Margin="6,0,0,0"
+                            Text="{Binding SelectedUserPostProp.LastName}"
+                            VerticalTextAlignment="Center" />
+                        </HorizontalStackLayout>
+                        <Label
+                        Margin="6,0,0,0"
+                          Text="{Binding SelectedUserPostProp.Username, StringFormat='@{0}'}"
                         VerticalTextAlignment="Center" />
+                    </VerticalStackLayout>
 
                 </HorizontalStackLayout>
 
                 <Frame
-                    Margin="0,10"
+                    Margin="8,15,8,0"
                     Padding="0"
                     BackgroundColor="{StaticResource SecondaryColor}"
                     BorderColor="Transparent"
                     CornerRadius="20"
                     VerticalOptions="StartAndExpand"
-                    WidthRequest="363">
+                   >
                     <VerticalStackLayout
                         BackgroundColor="{StaticResource SecondaryColor}"
                         VerticalOptions="StartAndExpand"
-                        WidthRequest="363">
-                        <Image
-                            Margin="0,0,20,5"
-                            HorizontalOptions="End"
-                            Source="options"
-                            VerticalOptions="Start"
-                            WidthRequest="20">
-                            <Image.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding BindingContext.ShowPostOptionsCommand, Source={x:Reference HomeViewRef}}" CommandParameter="{Binding .}" />
-                            </Image.GestureRecognizers>
-                        </Image>
+                       >
+                        <BoxView Margin="0,25,0,0" BackgroundColor="Transparent" Color="Transparent"/>
+                    
 
                         <Frame
                             Padding="0"
                             BackgroundColor="Transparent"
                             CornerRadius="0">
                             <VerticalStackLayout>
-                                <ActivityIndicator IsRunning="{Binding IsImageLoading}" IsVisible="{Binding IsImageLoading}" />
+                                <ActivityIndicator IsRunning="{Binding IsImageLoading}" IsVisible="{Binding IsImageLoading}" Color="#28E2E3"/>
                                 <ffimageloading:CachedImage
                                     Aspect="AspectFit"
                                     LoadingPlaceholder="loading.png"
