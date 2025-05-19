@@ -44,10 +44,8 @@
                         Offset="0,4" />
 
                 </Border.Shadow>-->
+                
                 <VerticalStackLayout Padding="18,13,18,24">
-
-
-
                     <Label
                         Margin="0,0,0,28"
                         FontFamily="InterBold"
@@ -56,6 +54,7 @@
                         Style="{StaticResource PrimaryTextStyle}"
                         Text="Registration" />
 
+                <!--Fill in Entries -->
                     <VerticalStackLayout Margin="0,0,0,14">
                         <Label
                             FontFamily="InterSemiBold"
@@ -82,8 +81,6 @@
                                 Text="{Binding Username}"
                                 TextColor="White" />
                         </Border>
-
-
                     </VerticalStackLayout>
 
                     <VerticalStackLayout Margin="0,0,0,14">
@@ -112,9 +109,6 @@
                                 Text="{Binding FirstName}"
                                 TextColor="White" />
                         </Border>
-
-
-
                     </VerticalStackLayout>
 
 
@@ -144,9 +138,6 @@
                                 Text="{Binding LastName}"
                                 TextColor="White" />
                         </Border>
-
-
-
                     </VerticalStackLayout>
 
                     <VerticalStackLayout Margin="0,0,0,24">
@@ -186,7 +177,7 @@
                                         BackgroundColor="Transparent"
                                         BorderWidth="30"
                                         InputTransparent="True"
-                                        Source="password_visible.svg"
+                                        Source="password_not_visible.svg"
                                         WidthRequest="20" />
                                 </HorizontalStackLayout>
                             </FlexLayout>
@@ -194,12 +185,10 @@
                                 Eyeopen: e901
                                 Eyeclosed: e900
                             -->
-
                         </Border>
-
-
-
                     </VerticalStackLayout>
+                    
+                    <!--Buttons-->
 
                     <Button
                         Margin="0,0,0,22"

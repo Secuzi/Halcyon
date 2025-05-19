@@ -13,20 +13,24 @@
             <Color x:Key="Backgroundcolor">#161617</Color>
         </ResourceDictionary>
     </ContentPage.Resources>
+    
+    <!--Header-->
     <VerticalStackLayout
         Padding="0,22,0,0"
         HorizontalOptions="Fill"
         VerticalOptions="FillAndExpand">
-        <FlexLayout JustifyContent="SpaceAround">
-            <Label Text="Cancel" TextColor="#28E2E3">
+        <FlexLayout JustifyContent="SpaceBetween">
+            <Label Text="Cancel" TextColor="#28E2E3"
+                   Margin="10,0">
                 <Label.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding CancelUpdateCommand}" />
                 </Label.GestureRecognizers>
             </Label>
-            <Label Text="Edit info" />
-            <Label Text="Done" TextColor="#28E2E3">
+            <Label Text="Edit info" 
+                    FontFamily="InterBold"/>
+            <Label Text="Done" TextColor="#28E2E3"
+                   Margin="10,0">
                 <Label.GestureRecognizers>
-
                     <TapGestureRecognizer Command="{Binding UpdatePostCommand}" />
                 </Label.GestureRecognizers>
             </Label>
@@ -36,17 +40,19 @@
             HeightRequest="1"
             HorizontalOptions="Fill"
             Color="#6B6B6B" />
+        
         <ScrollView HeightRequest="600">
             <VerticalStackLayout>
+                
+                <!--Profile-->
                 <HorizontalStackLayout
-                    Margin="0,20,0,0"
+                    Margin="0,15,0,0"
                     Padding="20,0,20,0"
                     VerticalOptions="Center">
                     <Border
                         Stroke="Transparent"
                         StrokeShape="RoundRectangle 100"
                         WidthRequest="48">
-
                         <ffimageloading:CachedImage Aspect="AspectFit" Source="{Binding SelectedUserPostProp.Avatar}" />
                     </Border>
                     <VerticalStackLayout VerticalOptions="Center">
@@ -63,26 +69,23 @@
                         <Label
                         Margin="6,0,0,0"
                           Text="{Binding SelectedUserPostProp.Username, StringFormat='@{0}'}"
-                        VerticalTextAlignment="Center" />
+                        VerticalTextAlignment="Center" 
+                            TextColor="#CCC7C7"/>
                     </VerticalStackLayout>
-
                 </HorizontalStackLayout>
 
+                <!--Post-->
                 <Frame
                     Margin="8,15,8,0"
                     Padding="0"
                     BackgroundColor="{StaticResource SecondaryColor}"
                     BorderColor="Transparent"
                     CornerRadius="20"
-                    VerticalOptions="StartAndExpand"
-                   >
+                    VerticalOptions="StartAndExpand">
                     <VerticalStackLayout
                         BackgroundColor="{StaticResource SecondaryColor}"
-                        VerticalOptions="StartAndExpand"
-                       >
+                        VerticalOptions="StartAndExpand">
                         <BoxView Margin="0,25,0,0" BackgroundColor="Transparent" Color="Transparent"/>
-                    
-
                         <Frame
                             Padding="0"
                             BackgroundColor="Transparent"
@@ -94,27 +97,25 @@
                                     LoadingPlaceholder="loading.png"
                                     Source="{Binding SelectedUserPostProp.Image}" />
                             </VerticalStackLayout>
-
                         </Frame>
-
-                        <Button
+                        <Button Text="Change image"
                             Margin="0,6,0,0"
                             BackgroundColor="#28E2E3"
                             Command="{Binding PickPhotoCommand}"
-                            Text="Change image" />
+                            CornerRadius="0" />
                     </VerticalStackLayout>
                 </Frame>
 
-
                 <VerticalStackLayout Margin="0,8,0,0" Padding="18,0,18,0">
-                    <Editor
-                        AutoSize="TextChanges"
-                        HeightRequest="200"
-                        Placeholder="Your description here"
-                        Text="{Binding SelectedUserPostProp.Description}" />
+                    <Border StrokeThickness="1" >
+                        <Editor
+                            AutoSize="TextChanges"
+                            FlexLayout.Shrink="20"
+                            Placeholder="Your description here"
+                            Text="{Binding SelectedUserPostProp.Description}" 
+                            Margin="5,0"/>
+                    </Border>
                 </VerticalStackLayout>
-
-
             </VerticalStackLayout>
         </ScrollView>
     </VerticalStackLayout>

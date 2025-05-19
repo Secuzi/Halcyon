@@ -15,17 +15,19 @@
             <Color x:Key="Backgroundcolor">#161617</Color>
         </ResourceDictionary>
     </ContentPage.Resources>
-    <VerticalStackLayout Padding="0,21,0,0" BackgroundColor="#121212">
+    
+    <!--Search Bar-->
+    <VerticalStackLayout Padding="0,25,0,0" BackgroundColor="#121212">
         <FlexLayout
-            Padding="9,0,9,0"
+            Padding="0,0,0,0"
             AlignItems="Center"
-            HeightRequest="45"
+            HeightRequest="40"
             JustifyContent="Center">
             <Border
                 BackgroundColor="#6B6B6B"
                 Stroke="Transparent"
                 StrokeShape="RoundRectangle 10"
-                WidthRequest="250">
+                WidthRequest="300">
                 <FlexLayout Padding="8,0,8,0" AlignItems="Center">
                     <Image HeightRequest="20" Source="search_icon.png" />
                     <Entry
@@ -48,10 +50,10 @@
             HeightRequest="1"
             HorizontalOptions="Fill"
             Color="Gray" />
+        
+        <!--Query Results-->
         <ScrollView>
             <VerticalStackLayout>
-
-
                 <CollectionView ItemsSource="{Binding SearchedUsers}">
                     <CollectionView.ItemTemplate>
                         <DataTemplate x:DataType="models:User">
@@ -69,9 +71,10 @@
                                     <Frame
                                         Grid.RowSpan="2"
                                         CornerRadius="30"
-                                        HeightRequest="58"
+                                        HeightRequest="50"
                                         HorizontalOptions="Start"
-                                        WidthRequest="58">
+                                        WidthRequest="50"
+                                        Margin="15">
                                         <Image
                                             Aspect="AspectFit"
                                             HeightRequest="58"

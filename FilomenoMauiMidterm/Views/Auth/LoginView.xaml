@@ -40,18 +40,7 @@
                 
                 StrokeShape="RoundRectangle 8"
                 WidthRequest="310">
-                <!--<Border.Shadow>
-                    <Shadow
-                        Brush="Black"
-                        Opacity="0.25"
-                        Radius="4"
-                        Offset="0,4" />
-
-                </Border.Shadow>-->
                 <VerticalStackLayout Padding="18,13,18,24">
-
-
-
                     <Label
                         Margin="0,0,0,28"
                         FontFamily="InterBold"
@@ -60,6 +49,7 @@
                         Style="{StaticResource PrimaryTextStyle}"
                         Text="Sign in" />
 
+                    <!--Fill in Entries-->
                     <VerticalStackLayout Margin="0,0,0,14">
                         <Label
                             FontFamily="InterSemiBold"
@@ -72,14 +62,6 @@
                             BackgroundColor="#4D515762"
                             Stroke="Transparent"
                             StrokeShape="RoundRectangle 8">
-                            <!--<Border.Shadow>
-                                <Shadow
-                                    Brush="Black"
-                                    Opacity="0.25"
-                                    Radius="4"
-                                    Offset="0,4" />
-                            </Border.Shadow>-->
-
                             <Entry
                                 FontFamily="Inter"
                                 Opacity="1"
@@ -98,13 +80,6 @@
                             BackgroundColor="#4D515762"
                             Stroke="Transparent"
                             StrokeShape="RoundRectangle 8">
-                            <!--<Border.Shadow>
-                                <Shadow
-                                    Brush="Black"
-                                    Opacity="0.25"
-                                    Radius="4"
-                                    Offset="0,4" />
-                            </Border.Shadow>-->
                             <FlexLayout AlignItems="Center" HeightRequest="44">
                                 <Entry
                                     x:Name="passwordEntry"
@@ -124,33 +99,25 @@
                                         BackgroundColor="Transparent"
                                         BorderWidth="30"
                                         InputTransparent="True"
-                                        Source="password_visible.svg"
+                                        Source="password_not_visible.svg"
                                         WidthRequest="20" />
                                 </HorizontalStackLayout>
                             </FlexLayout>
                         </Border>
-
                         <Label
                             FontFamily="InterMedium"
                             FontSize="12"
                             Text="Forgot your password?"
                             TextColor="#059DC7" />
-
                     </VerticalStackLayout>
 
+                    <!--Buttons-->
                     <Button
                         Margin="0,0,0,36"
                         BackgroundColor="#61DAFB"
                         Command="{Binding LogInUserCommand}"
                         FontFamily="InterSemiBold"
                         Text="Sign in">
-                        <!--<Button.Shadow>
-                            <Shadow
-                                Brush="Black"
-                                Opacity="0.10"
-                                Radius="4"
-                                Offset="0,4" />
-                        </Button.Shadow>-->
 
                     </Button>
                     <HorizontalStackLayout HorizontalOptions="Center" VerticalOptions="Center">
@@ -166,20 +133,10 @@
                             <Label.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="OnRegisterTapped" />
                             </Label.GestureRecognizers>
-
-
                         </Label>
-
                     </HorizontalStackLayout>
-
                 </VerticalStackLayout>
-
-
             </Border>
-
         </FlexLayout>
-
-
-
     </Grid>
 </ContentPage>

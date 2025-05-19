@@ -6,8 +6,6 @@ namespace FilomenoMauiMidterm.Views;
 public partial class LoginView : ContentPage
 {
 	bool isPasswordVisible = false;
-	//const string closedEyeIcon = "&#xe900;";
-	//const string openEyeIcon = "&#xe901;";
 	const string openEyeIcon = "password_not_visible.svg";
 	const string closedEyeIcon = "password_visible.svg";
 	private RegisterViewModel _registerViewModel;
@@ -22,7 +20,7 @@ public partial class LoginView : ContentPage
 	{
 		
 		isPasswordVisible = !isPasswordVisible;
-		TogglePasswordButton.Source = isPasswordVisible ? openEyeIcon : closedEyeIcon;
+		TogglePasswordButton.Source = isPasswordVisible ? closedEyeIcon : openEyeIcon;
 		passwordEntry.IsPassword = !isPasswordVisible;
 
 	}

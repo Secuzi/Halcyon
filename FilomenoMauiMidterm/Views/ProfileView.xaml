@@ -19,6 +19,7 @@
             <Setter Property="FontSize" Value="10" />
         </Style>
     </ContentPage.Resources>
+    
     <VerticalStackLayout>
         <ActivityIndicator
             Margin="0,50,0,0"
@@ -33,7 +34,7 @@
                     BackgroundColor="#33373E"
                     CornerRadius="25"
                     HeightRequest="200"
-                    WidthRequest="340">
+                    WidthRequest="365">
                     <Grid
                         Padding="10,0"
                         ColumnDefinitions="*,*"
@@ -53,12 +54,14 @@
                             IsVisible="{Binding CanUserLogout}"
                             Source="logout.svg"
                             VerticalOptions="Start"
-                            WidthRequest="20">
+                            HeightRequest="25"
+                            WidthRequest="30">
                             <Image.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding LogoutCommand}" />
                             </Image.GestureRecognizers>
-
                         </Image>
+                        
+                        <!--Profile  Info-->
                         <Grid
                             Grid.Row="1"
                             Grid.ColumnSpan="2"
@@ -81,7 +84,6 @@
                                 </Border>
                             </FlexLayout>
 
-
                             <Grid
                                 Grid.Column="1"
                                 ColumnDefinitions=".5*,.15*,.15*"
@@ -90,7 +92,6 @@
                                     Style="{StaticResource PrimaryTextStyle}"
                                     Text="{Binding FullName}"
                                     VerticalOptions="End" />
-
                                 <Label
                                     Grid.Row="1"
                                     Style="{StaticResource SecondaryTextStyle}"
@@ -107,6 +108,7 @@
                                     Source="messages"
                                     WidthRequest="20" />
                             </Grid>
+                            
                             <Grid
                                 Grid.Row="1"
                                 Grid.Column="1"
@@ -134,7 +136,7 @@
                                     Grid.Column="1"
                                     HorizontalOptions="Center"
                                     Style="{StaticResource SecondaryTextStyle}"
-                                    Text="Posts"
+                                    Text="Following"
                                     VerticalOptions="Start" />
                                 <Label
                                     Grid.Column="2"
@@ -147,11 +149,9 @@
                                     Grid.Column="2"
                                     HorizontalOptions="Center"
                                     Style="{StaticResource SecondaryTextStyle}"
-                                    Text="Posts"
+                                    Text="Followers"
                                     VerticalOptions="Start" />
-
                             </Grid>
-
                         </Grid>
                     </Grid>
                 </Frame>
@@ -166,16 +166,13 @@
                     </CollectionView.ItemsLayout>
                     <CollectionView.ItemTemplate>
                         <DataTemplate x:DataType="models:Post">
-
                             <Border
                                 HeightRequest="105"
                                 Stroke="Transparent"
                                 StrokeShape="RoundRectangle 10"
-                                WidthRequest="130">
+                                WidthRequest="150">
                                 <ffimageloading:CachedImage Aspect="AspectFill" Source="{Binding Image}" />
                             </Border>
-
-
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>

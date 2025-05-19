@@ -17,7 +17,7 @@ public partial class RegisterView : ContentPage
 	private void TapGestureRecognizer_Tapped(object sender, TappedEventArgs e)
 	{
 		isPasswordVisible = !isPasswordVisible;
-		TogglePasswordButton.Source = isPasswordVisible ? openEyeIcon : closedEyeIcon;
+		TogglePasswordButton.Source = isPasswordVisible ? closedEyeIcon : openEyeIcon;
 		passwordEntry.IsPassword = !isPasswordVisible;
 	}
 
@@ -25,7 +25,6 @@ public partial class RegisterView : ContentPage
 
 	private async void OnLoginTapped(object sender, TappedEventArgs e)
 	{
-		//await Shell.Current.GoToAsync($"..");
 		await Navigation.PopToRootAsync();
 		
 	}
