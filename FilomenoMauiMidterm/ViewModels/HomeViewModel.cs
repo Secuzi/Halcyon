@@ -97,6 +97,13 @@ namespace FilomenoMauiMidterm.ViewModels
             IsDeleteModalEnabled = false;
             HidePostOptions();
         }
+
+        [RelayCommand]
+        private async Task GotoAddPost()
+        {
+            await Shell.Current.GoToAsync("//post");
+        }
+
         [RelayCommand]
         private void OpenDeleteModal()
          {

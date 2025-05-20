@@ -76,6 +76,11 @@ namespace FilomenoMauiMidterm.ViewModels
         {
             PostImage = string.Empty;
         }
+        [RelayCommand]
+        private async Task GotoHome()
+        {
+            await Shell.Current.GoToAsync("//home");
+        }
 
         [RelayCommand]
         private async Task CreatePost()

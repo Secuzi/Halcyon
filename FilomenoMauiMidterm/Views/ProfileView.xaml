@@ -5,6 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:ffimageloading="clr-namespace:FFImageLoading.Maui;assembly=FFImageLoading.Maui"
     xmlns:models="clr-namespace:FilomenoMauiMidterm.Models"
+    xmlns:utils="clr-namespace:FilomenoMauiMidterm.Utils"
     Title="ProfileView"
     Shell.NavBarIsVisible="False">
     <ContentPage.Resources>
@@ -19,22 +20,89 @@
             <Setter Property="FontSize" Value="10" />
         </Style>
     </ContentPage.Resources>
-    
-    <VerticalStackLayout>
+
+    <Grid>
         <ActivityIndicator
             Margin="0,50,0,0"
             IsRunning="{Binding IsBusy}"
             IsVisible="{Binding IsBusy}"
             WidthRequest="32"
             Color="#28E2E3" />
+        <AbsoluteLayout
+            x:Name="DeleteModal"
+            AbsoluteLayout.LayoutBounds="0,0,1,1"
+            AbsoluteLayout.LayoutFlags="All"
+            BackgroundColor="#806B6B6B"
+            InputTransparent="False"
+            IsEnabled="{Binding IsLoginModalEnabled}"
+            IsVisible="{Binding IsLoginModalEnabled}"
+            ZIndex="2">
+
+            <FlexLayout
+                AlignItems="Center"
+                HeightRequest="637"
+                JustifyContent="Center"
+                Opacity="100"
+                WidthRequest="360">
+                <Border
+                    Padding="8,16,8,16"
+                    BackgroundColor="#33373E"
+                    Stroke="Transparent"
+                    StrokeShape="RoundRectangle 10"
+                    WidthRequest="200">
+                    <VerticalStackLayout>
+                        <Label
+                            HorizontalTextAlignment="Center"
+                            Text="Log Out"
+                            TextColor="#28E2E3" />
+                        <Label
+                            Margin="0,14,0,0"
+                            FontSize="10"
+                            HorizontalTextAlignment="Center"
+                            Text="Are you sure you want to Log Out?" />
+                        <BoxView
+                            Margin="0,11,0,0"
+                            HeightRequest="1"
+                            HorizontalOptions="Fill"
+                            Color="Gray" />
+                        <Label
+                            Margin="0,8,0,8"
+                            HorizontalTextAlignment="Center"
+                            Text="Log Out"
+                            TextColor="#28E2E3">
+                            <Label.Behaviors>
+                                <utils:TappedAnimationBehavior />
+                            </Label.Behaviors>
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding LogoutCommand}" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                        <BoxView
+                            Margin="0,0,0,0"
+                            HeightRequest="1"
+                            HorizontalOptions="Fill"
+                            Color="Gray" />
+                        <Label
+                            Margin="0,8,0,0"
+                            HorizontalTextAlignment="Center"
+                            Text="Cancel">
+                            <Label.Behaviors>
+                                <utils:TappedAnimationBehavior />
+                            </Label.Behaviors>
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding CloseLogoutModalCommand}" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </VerticalStackLayout>
+                </Border>
+            </FlexLayout>
+        </AbsoluteLayout>
         <ScrollView Padding="10" IsVisible="{Binding IsNotBusy}">
             <VerticalStackLayout>
                 <Frame
                     Margin="5"
                     BackgroundColor="#33373E"
-                    CornerRadius="25"
-                    HeightRequest="200"
-                    WidthRequest="365">
+                    CornerRadius="25">
                     <Grid
                         Padding="10,0"
                         ColumnDefinitions="*,*"
@@ -50,18 +118,18 @@
                         </Image>
                         <Image
                             Grid.Column="1"
+                            HeightRequest="25"
                             HorizontalOptions="End"
                             IsVisible="{Binding CanUserLogout}"
                             Source="logout.svg"
                             VerticalOptions="Start"
-                            HeightRequest="25"
                             WidthRequest="30">
                             <Image.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding LogoutCommand}" />
+                                <TapGestureRecognizer Command="{Binding OpenLogoutModalCommand}" />
                             </Image.GestureRecognizers>
                         </Image>
-                        
-                        <!--Profile  Info-->
+
+                        <!--  Profile  Info  -->
                         <Grid
                             Grid.Row="1"
                             Grid.ColumnSpan="2"
@@ -108,7 +176,7 @@
                                     Source="messages"
                                     WidthRequest="20" />
                             </Grid>
-                            
+
                             <Grid
                                 Grid.Row="1"
                                 Grid.Column="1"
@@ -178,5 +246,6 @@
                 </CollectionView>
             </VerticalStackLayout>
         </ScrollView>
-    </VerticalStackLayout>
+
+    </Grid>
 </ContentPage>

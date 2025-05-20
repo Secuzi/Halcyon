@@ -41,6 +41,9 @@ namespace FilomenoMauiMidterm.ViewModels
         [ObservableProperty]
         bool _canUserLogout;
 
+        [ObservableProperty]
+        bool _isLoginModalEnabled;
+
         LoginViewModel _loginViewModel;
 
         RegisterViewModel _registerViewModel;
@@ -59,13 +62,27 @@ namespace FilomenoMauiMidterm.ViewModels
         [RelayCommand]
         private async Task BackToHome()
         {
+            if (IsLoginModalEnabled) return;
             await Shell.Current.GoToAsync("..");
         }
         [RelayCommand]
         private async Task Logout()
         {
             _loggedUser.User = new User();
+            IsLoginModalEnabled = false;
             Application.Current.MainPage = new NavigationPage(new LoginView(_loginViewModel, _registerViewModel));
+        }
+        [RelayCommand]
+        private void OpenLogoutModal()
+        {
+            if (IsLoginModalEnabled) return;
+            IsLoginModalEnabled = true;
+        }
+
+        [RelayCommand]
+        private void CloseLogoutModal()
+        {
+            IsLoginModalEnabled = false;
         }
 
         public async Task LoadDataAsync()

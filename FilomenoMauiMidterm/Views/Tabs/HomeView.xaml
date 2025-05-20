@@ -23,15 +23,16 @@
 
     <Grid>
         <Grid HorizontalOptions="FillAndExpand" RowDefinitions="Auto, *, Auto">
-            
+
             <!--  Header  -->
-            <StackLayout Grid.Row="0" BackgroundColor="{StaticResource Backgroundcolor}">
+            <StackLayout
+                Grid.Row="0"
+                Padding="0,0,0,0"
+                BackgroundColor="{StaticResource Backgroundcolor}">
                 <HorizontalStackLayout
-                    Margin="10,5,10,0"
                     HeightRequest="60"
-                    Spacing="195"
-                    VerticalOptions="StartAndExpand"
-                    WidthRequest="400">
+                    Spacing="145"
+                    VerticalOptions="StartAndExpand">
                     <HorizontalStackLayout>
                         <Image
                             Margin="20,0,7,0"
@@ -72,8 +73,7 @@
                 Grid.Row="1"
                 BackgroundColor="{StaticResource Backgroundcolor}"
                 IsVisible="{Binding IsNotBusy}"
-                VerticalOptions="Center"
-              >
+                VerticalOptions="Center">
                 <StackLayout Padding="10" Spacing="10">
 
                     <!--  Lots of scrollable content  -->
@@ -82,10 +82,16 @@
                         CornerRadius="10"
                         HeightRequest="45"
                         HorizontalOptions="CenterAndExpand">
-                        <Entry
-                            HeightRequest="60"
-                            Placeholder="What's on your mind?"
-                            WidthRequest="270" />
+                        <Label
+                            HeightRequest="20"
+                            Text="What's on your mind?"
+                            TextColor="White"
+                            WidthRequest="270">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding GotoAddPostCommand}" />
+                            </Label.GestureRecognizers>
+                        </Label>
+
                     </Frame>
 
                     <!--  Posting Tempalte  -->
@@ -98,11 +104,8 @@
                                     Padding="0"
                                     BackgroundColor="{StaticResource SecondaryColor}"
                                     CornerRadius="20"
-                                    VerticalOptions="StartAndExpand"
-                                   >
-                                    <VerticalStackLayout
-                                        BackgroundColor="{StaticResource SecondaryColor}"
-                                        VerticalOptions="StartAndExpand">
+                                    VerticalOptions="StartAndExpand">
+                                    <VerticalStackLayout BackgroundColor="{StaticResource SecondaryColor}" VerticalOptions="StartAndExpand">
                                         <Image
                                             Margin="0,5,15,5"
                                             HorizontalOptions="End"
@@ -115,7 +118,7 @@
                                         </Image>
 
                                         <Frame
-                                            Padding="0"                                          
+                                            Padding="0"
                                             BackgroundColor="Transparent"
                                             CornerRadius="0">
                                             <ffimageloading:CachedImage
@@ -125,12 +128,12 @@
                                         </Frame>
 
                                         <HorizontalStackLayout
+                                            Margin="5"
                                             Padding="17,5,0,5"
                                             BackgroundColor="Transparent"
                                             HeightRequest="35"
                                             Spacing="4"
-                                            WidthRequest="360"
-                                            Margin="5">
+                                            WidthRequest="360">
                                             <Image
                                                 x:Name="LikeImage"
                                                 Margin="15,15,0,15"
@@ -145,11 +148,11 @@
                                                 Text="{Binding Likes}"
                                                 VerticalOptions="Center" />
                                         </HorizontalStackLayout>
-                                        <Grid                                            
+                                        <Grid
                                             BackgroundColor="Transparent"
                                             ColumnDefinitions="1*, 3*"
-                                            RowDefinitions="*, 2*"
                                             ColumnSpacing="-10"
+                                            RowDefinitions="*, 2*"
                                             VerticalOptions="FillAndExpand">
 
                                             <!--  User_Profile  -->
@@ -197,7 +200,7 @@
                                             <VerticalStackLayout
                                                 Grid.Row="1"
                                                 Grid.Column="1"
-                                                Margin="0,0,0,25"                                      
+                                                Margin="0,0,0,25"
                                                 Padding="0"
                                                 BackgroundColor="Transparent">
                                                 <Label
@@ -231,11 +234,13 @@
             StateChanged="PostOptionsBottomSheet_StateChanged"
             ZIndex="1">
             <bottomSheet:SfBottomSheet.BottomSheetContent>
-                <VerticalStackLayout>
+                <VerticalStackLayout Grid.Row="0">
                     <HorizontalStackLayout>
-                        <ffimageloading:CachedImage Aspect="AspectFit" Source="exit.svg"
-                                                    HeightRequest="25"
-                                                    Margin="10,0">
+                        <ffimageloading:CachedImage
+                            Margin="10,0"
+                            Aspect="AspectFit"
+                            HeightRequest="25"
+                            Source="exit.svg">
                             <ffimageloading:CachedImage.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding BindingContext.HidePostOptionsCommand, Source={x:Reference HomeViewRef}}" />
                             </ffimageloading:CachedImage.GestureRecognizers>

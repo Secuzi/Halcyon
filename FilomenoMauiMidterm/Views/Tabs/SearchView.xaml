@@ -15,8 +15,8 @@
             <Color x:Key="Backgroundcolor">#161617</Color>
         </ResourceDictionary>
     </ContentPage.Resources>
-    
-    <!--Search Bar-->
+
+    <!--  Search Bar  -->
     <VerticalStackLayout Padding="0,25,0,0" BackgroundColor="#121212">
         <FlexLayout
             Padding="0,0,0,0"
@@ -24,10 +24,10 @@
             HeightRequest="40"
             JustifyContent="Center">
             <Border
+                Padding="4,0,4,0"
                 BackgroundColor="#6B6B6B"
                 Stroke="Transparent"
-                StrokeShape="RoundRectangle 10"
-                WidthRequest="300">
+                StrokeShape="RoundRectangle 10">
                 <FlexLayout Padding="8,0,8,0" AlignItems="Center">
                     <Image HeightRequest="20" Source="search_icon.png" />
                     <Entry
@@ -50,8 +50,8 @@
             HeightRequest="1"
             HorizontalOptions="Fill"
             Color="Gray" />
-        
-        <!--Query Results-->
+
+        <!--  Query Results  -->
         <ScrollView>
             <VerticalStackLayout>
                 <CollectionView ItemsSource="{Binding SearchedUsers}">
@@ -70,11 +70,11 @@
                                 <Grid ColumnDefinitions=".2*,.6*, .2*" RowDefinitions="*,*">
                                     <Frame
                                         Grid.RowSpan="2"
+                                        Margin="15"
                                         CornerRadius="30"
                                         HeightRequest="50"
                                         HorizontalOptions="Start"
-                                        WidthRequest="50"
-                                        Margin="15">
+                                        WidthRequest="50">
                                         <Image
                                             Aspect="AspectFit"
                                             HeightRequest="58"

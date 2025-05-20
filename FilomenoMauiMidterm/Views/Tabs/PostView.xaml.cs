@@ -15,7 +15,7 @@ public partial class PostView : ContentPage
     protected override void OnDisappearing()
     {
         base.OnDisappearing();
-
+		
 		_postViewModel.PostDescription = string.Empty;
 		_postViewModel.PostImage = string.Empty;
 

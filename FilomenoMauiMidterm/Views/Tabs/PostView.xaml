@@ -8,19 +8,26 @@
     Title="PostView"
     BackgroundColor="#33373E"
     Shell.NavBarIsVisible="False">
-    
+
     <Grid RowDefinitions=".5*, .25*">
         <VerticalStackLayout Padding="0,16,0,0" BackgroundColor="#33373E">
-            
-            <!--Header-->
+
+            <!--  Header  -->
             <FlexLayout JustifyContent="SpaceBetween">
-                <ffimageloading:CachedImage HeightRequest="24" 
-                                            Source="exit.svg" 
-                                            Margin="10,0"/>
-                <Label Text="Create post" 
-                       VerticalOptions="Center"
-                       FontFamily="InterBold"/>
-                <ffimageloading:CachedImage Source="create.svg" Margin="10,0">
+                <ffimageloading:CachedImage
+                    Margin="10,0"
+                    HeightRequest="24"
+                    Source="exit.svg">
+                    <ffimageloading:CachedImage.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding GotoHomeCommand}" />
+
+                    </ffimageloading:CachedImage.GestureRecognizers>
+                </ffimageloading:CachedImage>
+                <Label
+                    FontFamily="InterBold"
+                    Text="Create post"
+                    VerticalOptions="Center" />
+                <ffimageloading:CachedImage Margin="10,0" Source="create.svg">
                     <ffimageloading:CachedImage.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding CreatePostCommand}" />
                     </ffimageloading:CachedImage.GestureRecognizers>
@@ -31,8 +38,8 @@
                 HeightRequest="1"
                 HorizontalOptions="Fill"
                 Color="Black" />
-            
-            <!--Profile-->
+
+            <!--  Profile  -->
             <FlexLayout
                 Margin="0,25,0,0"
                 Padding="25,0,20,0"
@@ -41,24 +48,33 @@
                     <ffimageloading:CachedImage HeightRequest="40" Source="{Binding LoggedUserProp.User.Avatar}" />
                 </Border>
                 <HorizontalStackLayout Margin="3,0">
-                    <Label Margin="4,0,0,0" Text="{Binding LoggedUserProp.User.FirstName}" FontFamily="InterSemiBold"/>
-                    <Label Margin="4,0,0,0" Text="{Binding LoggedUserProp.User.LastName}" FontFamily="InterSemiBold"/>
+                    <Label
+                        Margin="4,0,0,0"
+                        FontFamily="InterSemiBold"
+                        Text="{Binding LoggedUserProp.User.FirstName}" />
+                    <Label
+                        Margin="4,0,0,0"
+                        FontFamily="InterSemiBold"
+                        Text="{Binding LoggedUserProp.User.LastName}" />
                 </HorizontalStackLayout>
             </FlexLayout>
-            
-            <!--Display Options-->
+
+            <!--  Display Options  -->
             <FlexLayout
                 Margin="20,24,0,16"
                 Padding="3,0,3,0"
-                JustifyContent="Start" >
+                JustifyContent="Start">
                 <Border
+                    Margin="2,0"
                     Padding="4,2,4,2"
                     BackgroundColor="#28E2E3"
                     Stroke="Transparent"
-                    StrokeShape="RoundRectangle 100"
-                    Margin="2,0">
-                    <FlexLayout AlignItems="Center" HeightRequest="21" JustifyContent="Start">
-                        <ffimageloading:CachedImage Source="globe.svg" Scale=".8"/>
+                    StrokeShape="RoundRectangle 100">
+                    <FlexLayout
+                        AlignItems="Center"
+                        HeightRequest="21"
+                        JustifyContent="Start">
+                        <ffimageloading:CachedImage Scale=".8" Source="globe.svg" />
                         <Label
                             Margin="1,0,1,0"
                             FontSize="11"
@@ -67,15 +83,18 @@
                         <ffimageloading:CachedImage Source="chevdown.svg" />
                     </FlexLayout>
                 </Border>
-                
+
                 <Border
+                    Margin="2,0"
                     Padding="4,2,4,2"
                     BackgroundColor="#28E2E3"
                     Stroke="Transparent"
-                    StrokeShape="RoundRectangle 100"
-                    Margin="2,0">
-                    <FlexLayout AlignItems="Center" HeightRequest="21" JustifyContent="Start">
-                        <ffimageloading:CachedImage Source="plus_math.svg"  Scale=".7"/>
+                    StrokeShape="RoundRectangle 100">
+                    <FlexLayout
+                        AlignItems="Center"
+                        HeightRequest="21"
+                        JustifyContent="Start">
+                        <ffimageloading:CachedImage Scale=".7" Source="plus_math.svg" />
                         <Label
                             Margin="1,0,1,0"
                             FontSize="11"
@@ -86,17 +105,17 @@
                 </Border>
 
                 <Border
+                    Margin="2,0"
                     Padding="4,2,4,2"
                     BackgroundColor="#28E2E3"
                     Stroke="Transparent"
                     StrokeShape="RoundRectangle 100"
-                    WidthRequest="70"
-                    Margin="2,0">
+                    WidthRequest="70">
                     <FlexLayout
                         AlignItems="Center"
                         HeightRequest="21"
                         JustifyContent="Start">
-                        <ffimageloading:CachedImage Source="instagram.svg"  Scale=".8"/>
+                        <ffimageloading:CachedImage Scale=".8" Source="instagram.svg" />
                         <Label
                             Margin="1,0,1,0"
                             FontSize="11"
@@ -106,8 +125,8 @@
                     </FlexLayout>
                 </Border>
             </FlexLayout>
-            
-            <!--Post Content-->
+
+            <!--  Post Content  -->
             <ScrollView HeightRequest="300">
                 <VerticalStackLayout Margin="0,0,0,0">
                     <VerticalStackLayout Margin="0,0,0,8" Padding="30,0,30,0">

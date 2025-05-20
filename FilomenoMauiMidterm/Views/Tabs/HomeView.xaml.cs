@@ -41,6 +41,7 @@ public partial class HomeView : ContentPage
     protected override void OnDisappearing()
     {
         base.OnDisappearing();
+
         _homeViewModel.UserPosts = [];
         _cancellationTokenSource?.Cancel();
         _homeViewModel.IsDeleteModalEnabled = false;
