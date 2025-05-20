@@ -44,7 +44,7 @@
                         Offset="0,4" />
 
                 </Border.Shadow>-->
-                
+
                 <VerticalStackLayout Padding="18,13,18,24">
                     <Label
                         Margin="0,0,0,28"
@@ -54,7 +54,7 @@
                         Style="{StaticResource PrimaryTextStyle}"
                         Text="Registration" />
 
-                <!--Fill in Entries -->
+                    <!--  Fill in Entries  -->
                     <VerticalStackLayout Margin="0,0,0,14">
                         <Label
                             FontFamily="InterSemiBold"
@@ -187,8 +187,8 @@
                             -->
                         </Border>
                     </VerticalStackLayout>
-                    
-                    <!--Buttons-->
+
+                    <!--  Buttons  -->
 
                     <Button
                         Margin="0,0,0,22"
@@ -209,6 +209,12 @@
                         Margin="0,0,0,22"
                         FontSize="11"
                         IsVisible="{Binding HasErrors}"
+                        Text="{Binding Errors}"
+                        TextColor="Red" />
+                    <Label
+                        Margin="0,0,0,22"
+                        FontSize="11"
+                        IsVisible="{Binding IsUserNameTaken}"
                         Text="{Binding Errors}"
                         TextColor="Red" />
 

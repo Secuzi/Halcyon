@@ -36,6 +36,8 @@ namespace FilomenoMauiMidterm.ViewModels
         [ObservableProperty]
         private string _errors;
 
+        [ObservableProperty]
+        private bool _isUserNameTaken;
 
         private JsonSerializerOptions _serializerOptions;
         private HttpClient _client;
@@ -46,10 +48,10 @@ namespace FilomenoMauiMidterm.ViewModels
             _serializerOptions = serializerOptions;
             _client = client;
             _userService = userService;
-            Username = "";
-            Password = "";
-            FirstName = "";
-            LastName = "";
+            Username = "graham";
+            Password = "111111";
+            FirstName = "harold";
+            LastName = "vincent";
         }
 
         public string GetRandomImage()
@@ -65,6 +67,7 @@ namespace FilomenoMauiMidterm.ViewModels
         [RelayCommand]
         public async Task<bool> RegisterUser()
         {
+            IsUserNameTaken = false;
             ValidateAllProperties();
             
             if (HasErrors)
@@ -79,7 +82,16 @@ namespace FilomenoMauiMidterm.ViewModels
 
                 var doesUserExist = users.Any(user => user.Username == Username);
                 
-                if (doesUserExist) return false;
+                if (doesUserExist)
+                {
+                    IsUserNameTaken=true;
+                    Errors = "Username is already taken!";
+                    
+                    return false;
+
+                }
+                IsUserNameTaken = false;
+                Errors = "";
                 
                 var user = new User()
                 {

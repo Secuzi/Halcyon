@@ -87,7 +87,7 @@ namespace FilomenoMauiMidterm.ViewModels
         {
             try
             {
-                if (string.IsNullOrEmpty(PostDescription))
+                if (string.IsNullOrEmpty(PostDescription) || PostDescription.StartsWith(" "))
                 {
                     await Shell.Current.DisplayAlert("Invalid input", "Please input a text", "Okay");
 
