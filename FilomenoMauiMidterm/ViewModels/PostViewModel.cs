@@ -89,14 +89,14 @@ namespace FilomenoMauiMidterm.ViewModels
             {
                 if (string.IsNullOrEmpty(PostDescription))
                 {
-                    await Shell.Current.DisplayAlert("Wait lang", "Please input a text", "Okay", "No");
+                    await Shell.Current.DisplayAlert("Invalid input", "Please input a text", "Okay");
 
 
                     return;
                 }
                 if (string.IsNullOrEmpty(PostImage))
                 {
-                    await Shell.Current.DisplayAlert("Wait lang", "Waitg for the image to load", "Okay??", "Okay");
+                    await Shell.Current.DisplayAlert("Invalid input", "Wait for the image to load", "Okay");
 
 
                     return;

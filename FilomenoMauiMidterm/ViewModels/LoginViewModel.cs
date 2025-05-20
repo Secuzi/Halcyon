@@ -78,7 +78,6 @@ namespace FilomenoMauiMidterm.ViewModels
 
                 if (user != null)
                 {
-                    Debug.WriteLine("Login successful.");
                     _loggedUser.User = user;
                     Application.Current.MainPage = new AppShell();
                     //  Navigate to a home page

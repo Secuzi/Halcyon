@@ -15,21 +15,17 @@ namespace FilomenoMauiMidterm.ViewModels
     {
         [ObservableProperty]
         private bool _isImageLoading;
-        [ObservableProperty]
-        private string _postImage;
+     
         [ObservableProperty]
         private UserPost _selectedUserPostProp;
         PostService _postService;
         ImageKitService _imageKitService;
-        string _oldImage;
-        string _oldDescription;
+        
 
         public EditPostViewModel(ImageKitService imageKitService, SelectedPost selectedPost, PostService postService)
         {
             _imageKitService = imageKitService;
             SelectedUserPostProp = selectedPost.SelectedUserPost;
-            _oldDescription = SelectedUserPostProp.Description;
-            _oldImage = SelectedUserPostProp.Image;
             _postService = postService;
         }
 
@@ -61,7 +57,25 @@ namespace FilomenoMauiMidterm.ViewModels
         private async Task UpdatePost()
         {
             if (IsImageLoading) return;
+
+            if (string.IsNullOrEmpty(SelectedUserPostProp.Description))
+            {
+                await Shell.Current.DisplayAlert("Invalid input", "Please input a text", "Okay");
+
+
+                return;
+            }
+            if (string.IsNullOrEmpty(SelectedUserPostProp.Image))
+            {
+                await Shell.Current.DisplayAlert("Invalid input", "Wait for the image to load", "Okay");
+
+
+                return;
+            }
+
             var post = await _postService.GetPost(SelectedUserPostProp.PostId);
+
+
 
             await _postService.UpdatePost(new Post()
             {

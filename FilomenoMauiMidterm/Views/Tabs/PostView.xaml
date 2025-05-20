@@ -127,7 +127,7 @@
             </FlexLayout>
 
             <!--  Post Content  -->
-            <ScrollView HeightRequest="300">
+            <ScrollView HeightRequest="260">
                 <VerticalStackLayout Margin="0,0,0,0">
                     <VerticalStackLayout Margin="0,0,0,8" Padding="30,0,30,0">
                         <Editor
@@ -136,18 +136,27 @@
                             PlaceholderColor="#B3B3B3"
                             Text="{Binding PostDescription}" />
                     </VerticalStackLayout>
+
                     <ActivityIndicator
                         IsRunning="{Binding IsImageLoading}"
                         IsVisible="{Binding IsImageLoading}"
                         Color="#28E2E3" />
-                    <ffimageloading:CachedImage LoadingPlaceholder="loading.png" Source="{Binding PostImage}" />
+                    <ffimageloading:CachedImage
+                        HeightRequest="220"
+                        LoadingPlaceholder="loading.png"
+                        Source="{Binding PostImage}" />
 
-                    <HorizontalStackLayout HorizontalOptions="End" IsVisible="{Binding HasImage}">
-                        <ffimageloading:CachedImage LoadingPlaceholder="loading.png" Source="exit.png">
-                            <ffimageloading:CachedImage.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding ClearImageCommand}" />
-                            </ffimageloading:CachedImage.GestureRecognizers>
-                        </ffimageloading:CachedImage>
+                    <HorizontalStackLayout
+                        Margin="0,8,24,0"
+                        HorizontalOptions="End"
+                        IsVisible="{Binding HasImage}">
+                        <HorizontalStackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding ClearImageCommand}" />
+                        </HorizontalStackLayout.GestureRecognizers>
+                        <ffimageloading:CachedImage
+                            Margin="0,0,4,0"
+                            LoadingPlaceholder="loading.png"
+                            Source="exit.png" />
                         <Label Text="Remove image" />
                     </HorizontalStackLayout>
                 </VerticalStackLayout>

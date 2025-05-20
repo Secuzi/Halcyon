@@ -48,7 +48,6 @@ namespace FilomenoMauiMidterm.Services
             }
             catch (Exception ex)
             {
-                //await Shell.Current.DisplayAlert("Invalid", "An unexpected error occurred: " + ex.Message, "OK");
 
                 return new List<Post>();
             }
