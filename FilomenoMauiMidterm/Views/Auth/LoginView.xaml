@@ -37,7 +37,6 @@
             <Border
                 BackgroundColor="#33373E"
                 Stroke="Transparent"
-                
                 StrokeShape="RoundRectangle 8"
                 WidthRequest="310">
                 <VerticalStackLayout Padding="18,13,18,24">
@@ -49,7 +48,7 @@
                         Style="{StaticResource PrimaryTextStyle}"
                         Text="Sign in" />
 
-                    <!--Fill in Entries-->
+                    <!--  Fill in Entries  -->
                     <VerticalStackLayout Margin="0,0,0,14">
                         <Label
                             FontFamily="InterSemiBold"
@@ -111,15 +110,26 @@
                             TextColor="#059DC7" />
                     </VerticalStackLayout>
 
-                    <!--Buttons-->
+                    <!--  Buttons  -->
                     <Button
                         Margin="0,0,0,36"
                         BackgroundColor="#61DAFB"
                         Command="{Binding LogInUserCommand}"
                         FontFamily="InterSemiBold"
-                        Text="Sign in">
+                        Text="Sign in" />
+                    <Label
+                        Margin="0,0,0,22"
+                        FontSize="11"
+                        IsVisible="{Binding HasErrors}"
+                        Text="{Binding Errors}"
+                        TextColor="Red" />
+                    <Label
+                        Margin="0,0,0,22"
+                        FontSize="11"
+                        IsVisible="{Binding IsCredentialsCorrect}"
+                        Text="{Binding Errors}"
+                        TextColor="Red" />
 
-                    </Button>
                     <HorizontalStackLayout HorizontalOptions="Center" VerticalOptions="Center">
                         <Label
                             FontFamily="InterLight"

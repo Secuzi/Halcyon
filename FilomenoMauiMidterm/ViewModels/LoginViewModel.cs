@@ -31,6 +31,8 @@ namespace FilomenoMauiMidterm.ViewModels
         [ObservableProperty]
         private string _errors;
 
+        [ObservableProperty]
+        private bool _isCredentialsCorrect;
         CancellationToken _cancellationToken;
         private readonly UserService _userService;
         private readonly JsonSerializerOptions _serializerOptions;
@@ -64,7 +66,7 @@ namespace FilomenoMauiMidterm.ViewModels
         public async Task LogInUser()
         {
             ValidateAllProperties();
-
+            IsCredentialsCorrect = false;
             if (HasErrors)
             {
                 Errors = string.Join("\n", GetErrors().Select(e => e.ErrorMessage));
@@ -78,6 +80,8 @@ namespace FilomenoMauiMidterm.ViewModels
 
                 if (user != null)
                 {
+              
+
                     _loggedUser.User = user;
                     Application.Current.MainPage = new AppShell();
                     //  Navigate to a home page
@@ -85,8 +89,9 @@ namespace FilomenoMauiMidterm.ViewModels
                 }
                 else
                 {
-                    Debug.WriteLine("Invalid credentials.");
-                  
+
+                    Errors = "Username or password is incorrect!";
+                    IsCredentialsCorrect = true;
                 }
             }
             catch (Exception ex)
