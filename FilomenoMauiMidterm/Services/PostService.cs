@@ -133,7 +133,7 @@ namespace FilomenoMauiMidterm.Services
             {
                 if (postToUpdate?.PostId == null)
                 {
-                    // Handle the case where the Post doesn't have an ID for updating
+                
                     System.Diagnostics.Debug.WriteLine("Error: Post ID is null for update.");
                     return false;
                 }
@@ -141,14 +141,12 @@ namespace FilomenoMauiMidterm.Services
                 var json = JsonSerializer.Serialize(postToUpdate, _jsonSerializerOptions);
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
 
-                // Assuming your API endpoint for updating a post includes the Post ID
+               
                 var response = await _httpClient.PutAsync($"{_httpClient.BaseAddress}/post/{postToUpdate.PostId}", content, cancellationToken);
 
-                response.EnsureSuccessStatusCode(); // Will throw an exception for unsuccessful status codes
+                response.EnsureSuccessStatusCode(); 
 
-                // If the update was successful, you might want to read the updated Post back
-                // or simply return true if the EnsureSuccessStatusCode didn't throw.
-                // For this example, we'll assume a successful status code means the update worked.
+                
                 return true;
             }
             catch (Exception)
